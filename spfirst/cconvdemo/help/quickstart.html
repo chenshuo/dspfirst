@@ -1,0 +1,92 @@
+<HTML>
+
+<HEAD>
+<TITLE> Quick Start </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Quick Start </DIV>
+<DIV class="Entry">
+
+<p>Hopefully, a person could start using the MATLAB convolution tool without any need to
+read these help files.&nbsp; Features were designed to be intuitive and familiar to those
+with basic computer experience. <small><em>If not send me mail by clicking on my name in the Overview section!!</em></small></p>
+
+<p>For those who like to read the manual (don't be ashamed, I am one of these people),
+this section will give you the minimum you need to get started and be comfortable with the
+use of the GUI.</p>
+
+<p>First, if you have not already done so, follow the information given in the <SPAN class="TextHighlight">Installation</SPAN> section to install and start the MATLAB convolution tool.</p>
+
+<p>To begin, pick an input signal and an impulse response: 
+
+<ol>
+  <li>Press the <strong>Get x(t)</strong> button in the main window.&nbsp; A second window
+    should open with a pulse signal displayed.&nbsp; If you wish, alter the signal type using
+    the list box at the top of the window, and alter the signal parameters with the controls along
+    the right side.&nbsp; Note that time parameters for the <strong>sine</strong> and 
+    <strong>cosine</strong> (<strong>length</strong>, <strong>period</strong>, 
+    <strong>delay</strong>) must be specified in seconds.&nbsp When satisfied click the 
+    <strong>OK</strong> button.&nbsp; The signal you picked is now displayed within the     
+    <strong>Input</strong> plot box.<br>
+    <br>
+    <em><small>Note:&nbsp; The signal may not be fully displayed when changing the signal
+    parameters.&nbsp; To replot the signal, click inside the plot box.</small><br>
+    <br>
+    </em></li>
+    <li>Make sure the <strong>Flip h(t)</strong> radio button is checked and then pick an
+    impulse response by pressing the <strong>Get h(t)</strong> button.&nbsp; After choosing
+    an impulse response and closing the window, the three large axes will now contain the
+    following information:<br>
+    <br>
+    - The top axis displays the <SPAN class="TextHighlight2">Input</SPAN> signal
+    in blue and flipped version of the <SPAN class="TextHighlight">Impulse Response</SPAN>
+    in red.<br>
+    <br>
+    - The middle axis shows the multiplication of the <SPAN class="TextHighlight2">Input</SPAN> 
+    signal and <SPAN class="TextHighlight2">Impulse Response</SPAN> at that particular instance of 
+    time.&nbsp; (This may initially be empty.)<br>
+    <br>
+    - The bottom axis shows the output of the linear convolution between the <SPAN 
+    class="TextHighlight2">Input</SPAN> signal and the <SPAN class="TextHighlight">Impulse 
+    Response</SPAN> signal.<br>
+    <br>
+  </li>
+  <li>There are two labels with arrows pointing to the current time.&nbsp; One is below the 
+    <strong>Signal / Flipped Signal</strong> plot box.&nbsp; The other is above the 
+    <strong>Output</strong> plot box.&nbsp; Move the mouse over either of these.&nbsp; The mouse 
+    pointer should become a hand symbol indicating that the current time can be changed by dragging 
+    the <strong>t</strong> time label.<br>
+    <br>
+    Go ahead and drag the time label around to change the value of the current index
+    location.&nbsp; Quite a few things happen: The <SPAN class="TextHighlight">Flipped Impulse
+    Response</SPAN> follows the location of the time location, and the 
+    <strong>multiplication</strong> plot changes depending on the relative overlap between the 
+    <SPAN class="TextHighlight2">Input</SPAN> signal and the <SPAN class="TextHighlight">Flipped         
+    Impulse Response</SPAN>.<br>
+    <br>
+  </li>
+  <li>Change the time so that the two signals overlap in the <strong>Signal / Flipped 
+    Signal</strong> window.  There will now be a nonzero plot within the 
+    <strong>multiplication</strong> axis.<br>
+    <br>
+    Note that the current time is highlighted in the <strong>Output</strong> plot.&nbsp; The 
+    numeric value (i.e., the value on the y axis) of this time is determined by integrating the 
+    area within the <strong>multiplication</strong> plot.<br>
+    <br>
+    Ex.&nbsp; If the signals overlapped so that the <strong>multiplication</strong> plot
+    integrated to a value of 6, the highlighted value in the <strong>output</strong> plot would     
+    have a value of 6.</li>
+</ol>
+
+<p>That's it!&nbsp; You now understand the basics of how to use the MATLAB convolution
+tool.&nbsp; For a more in depth description of convolution theory and how a convolution is
+calculated see the <SPAN class="TextHighlight">Theory</SPAN> section.&nbsp; The <SPAN class="TextHighlight">Controls</SPAN> and <SPAN class="TextHighlight">Menus</SPAN>
+sections provide a description of all the elements in the user interface.</p>
+
+</DIV>
+<br>
+</BODY>
+</HTML>

@@ -1,0 +1,57 @@
+<HTML>
+
+<HEAD>
+<TITLE> Quick Start </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Quick Start </DIV>
+<DIV class="Entry" style="width: 848; height: 351">
+
+<p>Hopefully, a person could start using the MATLAB Filter Design tool without any need to read these help files. Features were designed to be intuitive and familiar to those with basic computer experience. <small><em>If not send me mail by clicking on my name in the Overview section!!</em></small></p>
+
+<p>For those who like to read the manual, this section will give you the minimum you need to get started and be comfortable with the use of the GUI.</p>
+
+<p>First, if you have not already done so, follow the information given in the <SPAN class="TextHighlight">Installation</SPAN> section to install and start the MATLAB Filter Design GUI.</p>
+
+<ol>
+<li> 
+<p align="justify">To begin with, we need to decide on the type of the filter 
+that we wish to design. This could be FIR or IIR filter design types as shown by 
+the two buttons located in the upper right hand corner.<li> 
+<p align="justify">By selecting IIR , you can then select one of the Butterworth 
+filters using the popup menu in the upper right hand corner.
+<li> 
+<p align="justify">The minimum order of the filter can be determined by the GUI by selecting <strong>Auto Order</strong> from the popup menu on the bottom right, or by selecting <strong>Set Order</strong> from the menu and entering the desired order in the <strong>Order</strong> edit-box, located directly below. 
+In case of FIR filters, the option of <b>Set Order </b>is available and <b>Auto 
+Order</b> is disabled.<li> 
+<p align="justify">Once the filter type and the order have been specified, passband and stopband along with the ripple error bands of the filter can be designed by entering appropriate values in Fpass1, Fstop1 (Fpass2, Fstop2), Rpass, and Rstop edit-boxes.  Alternatively, one can set filter parameters by clicking on tolerance indicators (red lines) and dragging them to the new desired location within the filter plot; you will be able to observe the corresponding parameters updating.  The movement of these lines is restricted by boundary considerations and practical ripple error ranges.
+<li> 
+<p align="justify">By selecting FIR filters, you open up one more pop-up menu on 
+the right hand side of the GUI diplaying <b>Design-Method</b>. This could either 
+be <b>Window </b>or <b>Parks-McClellan</b> filter.<li> 
+<p align="justify">In case of <b>Window</b> design-method,&nbsp; one has to select the <b>Filter Type</b> and the <b>Window</b>&nbsp; 
+through which one decides to design a particular filter. Since in FIR designing 
+with Windows, ripples cannot be controlled Rpass and Rstop option are disabled. 
+Hence one can design the filters using Fpass1(Fcutoff1) and Fpass2(Fcutoff2) 
+parameters. Also, one cannot set the parameters in FIR filter design using the 
+tolerance indicators (red lines).<li> 
+<p align="justify">In case of <b>Parks-McClellan</b> design-method, one has to 
+enter approriate values in Fpass1, Fstop1 (Fpass2, Fstop2) edit-boxes as well as 
+the type of filter. This would result in the final designed stage of 
+Parks-McClellan Filter.<li>
+<p align="justify">Lastly, the filter coefficients can be exported to either the MATLAB workspace or a MAT file from the <strong>File </strong> menu.
+
+</ol>
+
+<p> NOTE: All of the push-buttons, have an equivalent entry in the pull-down menus, and provide the same functionality.  
+
+<p>That's it!&nbsp; You now understand the basics of how to use the MATLAB Filter Design GUI.&nbsp; For a more in depth description of the Filter Design theory, see the <SPAN class="TextHighlight">Theory</SPAN> section.&nbsp; The <SPAN class="TextHighlight">Controls</SPAN> and <SPAN class="TextHighlight">Menus</SPAN>
+sections provide a description of all the elements in the user interface.</p>
+
+</DIV>
+<br>
+</BODY>
+</HTML>

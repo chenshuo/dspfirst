@@ -1,0 +1,10 @@
+??? Name is nonexistent or not a directory
+
+Error in ==> C:\MATLAB6p1\toolbox\spfirst_v111x\convertMfiles.m
+On line 8  ==> cd(thisDir)
+
+pwd
+ans =
+C:\MATLAB6p1\toolbox\spfirst_v111x\v110\cconvdemo\@cexponential
+cd('C:\MATLAB6p1\toolbox\spfirst_v111x');
+diary convertOPS.txt, convertmfiles('v110',pwd), diary off

@@ -1,0 +1,102 @@
+<html>
+
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<div class="Entry">
+<ol>
+  <li><a href="#Theory"><strong>Theory</strong></a></li>
+  <li><a href="#Windows"><strong>Windows</strong></a></li>
+  
+</ol>
+</div>
+
+<a name="Theory">
+<div class="SubHeading"> &nbsp;
+    Filter Design - Theory
+</div></a>
+<p>
+Please refer to <em>"Discrete-Time Signal Processing" by Alan V. Oppenheim and Ronald W. Schafer </em>, for a detailed explanation of the theoretical concepts presented in this GUI.</p>
+
+<a name="Windows">
+<div class="SubHeading"> &nbsp;
+    Filter Design - Windows
+</div></a>
+<p>
+The equations of various <b>Windows</b> used in FIR Filter Design section are
+presented below:</p>
+<ol>
+  <li>
+<p class="MsoNormal" style="line-height: 200%"><font face="Arial">
+<font face="Arial"><b>Rectangular:</b> w(n) = 1 for n = 0, 1,….., N-1</font>
+  </li>
+  <li>
+<p class="MsoNormal" style="line-height: 200%"><font face="Arial"><font face="Arial"><b>Bartlett:</b>
+w(n) = 1- (|n-N/2| / N/2) for n = 0 to N-1</font>
+  </li>
+  <li>
+  <p class="MsoNormal" style="line-height: 200%"><font face="Arial"><b>Hann:</b>
+  w(n) = 0.5- 0.5*cos(2*pi*n/N) for n = 0 to N-1 </font></li>
+  <li>
+  <p class="MsoNormal" style="line-height: 200%">
+  <font face="Arial"><b>Hamming: </b>w(n) = 0.54 - 0.46*cos(2*pi*n/N)
+  for n = 0 to N-1</font></li>
+  <li>
+  <p class="MsoNormal" style="line-height: 200%">
+  <font face="Arial"><b>Blackman:</b> w(n) = 0.42 -
+  0.5*cos(2*k*n/(N-1)) + 0.08*cos(4*pi*k/(N-1)) </font></li>
+  <li>
+  <p class="MsoNormal" style="line-height: 200%">
+  <font face="Arial"><b>Gaussian:</b> w(n) = exp(-.5*
+  (((alpha*(n-N/2))/(N/2)).^2)) </font></li>
+  <li>
+  <p class="MsoNormal" style="line-height: 200%">
+  <font face="Arial"><b>Dolph-Chebyshev </b>: beta = cosh ( ( acosh
+  (10^alpha) /N ) ) W(k)= ( (-1) ^k) * cos(N * acos( ( beta * cos(pi * k/N) ) )
+  ) / cosh(len * acosh(beta) )</font></li>
+	  <li>
+  <p class="MsoNormal" style="line-height: 200%">
+	<face="Arial"><b>Lanczos</b>:
+w(n) = sin( (n-N/2) *pi / N)</font></li>
+<li>
+	  <p class="MsoNormal" style="line-height: 200%">
+	<face="Arial"><b>Kaiser</b>:
+</font>
+  </li>
+  <!-- <li>
+  <p class="MsoNormal" style="line-height: 200%"><font face="Arial"><b>Barcilon-Temes:
+  </b>&nbsp;C=acosh(10^alpha);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  beta=cosh(C/N);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  A = sinh(C);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  B = cosh(C);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  y = N * acos( beta * cos( pi * n/N ) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  W(n) = &nbsp;((-1)^n) * (A * cos( y ) ) + ( B*(y * sin(y) /C ) )/&nbsp;(C+A*B) * ( ( y/C
+  ) ^2 +1)</font></li> -->
+</ol>
+
+<em>Harris, F. J. "On the Use of Windows for Harmonic Analysis with
+the Discrete Fourier Transform." Proceedings of the IEEE. Vol. 66
+(January 1978)</em>
+<p>
+<a name="Windows">
+<div class="SubHeading"> &nbsp; Filter Design - Parks-McClellan</div></a>
+<p style="line-height: 200%">The Parks-McClellan designs an optimum 
+FIR filter given a set of specifications and uses Remez Iterations in order to 
+design the filter. The Parks-McClellan algorithm for the design is referred from&nbsp; 
+Chapter-7 of &quot;<i>Discrete-Time Signal Processing&quot;<b> </b>by Alan V. Oppenheim 
+and Ronald W. Schafer</i>. </p>
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+</body>
+</html>

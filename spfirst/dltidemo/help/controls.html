@@ -1,0 +1,248 @@
+<HTML>
+
+<HEAD>
+<TITLE> Controls </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Controls </DIV>
+
+<ol>
+  <li><a href="#Input Parameters: Amplitude"><strong>Input Parameters:&nbsp Amplitude
+  </strong></a></li>
+  <li><a href="#Input Parameters: Frequency"><strong>Input Parameters:&nbsp Frequency
+  </strong></a></li>
+  <li><a href="#Input Parameters: Phase"><strong>Input Parameters:&nbsp Phase</strong>
+  </a></li>
+  <li><a href="#Input Parameters: DC Level"><strong>Input Parameters:&nbsp DC Level
+  </strong></a></li>
+  <li><a href="#Filter Specifications: Filter Choice">
+  <strong>Filter Specifications:&nbsp Filter Choice</strong></a></li>
+  <li><a href="#Filter Specifications: Custom Parameters">
+  <strong>Filter Specifications:&nbsp Custom Parameters</strong></a></li>
+  <li><a href="#Plot Box: INPUT SIGNAL"><strong>Plot Box:&nbsp INPUT SIGNAL</strong>
+  </a></li>
+  <li><a href="#Plot Box: OUTPUT SIGNAL"><strong>Plot Box:&nbsp OUTPUT SIGNAL</strong>
+  </a></li>
+  <li><a href="#Plot Box: Magnitude of the Filter">
+  <strong>Plot Box:&nbsp Magnitude of the Filter</strong></a></li>
+  <li><a href="#Plot Box: Phase of the Filter">
+  <strong>Plot Box:&nbsp Phase of the Filter</strong></a></li>
+  <li><a href="#Theoretical Answer"><strong>Theoretical Answer</strong></a></li>
+  <li><a href="#Plot Options Menu: Set Line Width">
+  <strong>Plot Options Menu:&nbsp Set Line Width</strong></a></li>
+  <li><a href="#Help Menu: Contents"><strong>Help Menu:&nbsp Contents</strong></a></li>
+</ol>
+
+<A name="Input Parameters: Amplitude">
+<DIV class="SubHeading"> &nbsp;
+     Input Parameters:&nbsp Amplitude
+</DIV>
+</A>
+
+<p>This may be used to set the amplitude of the cosine, either by using
+the sliding bar or typing a value in the text field.  Its maximum and
+minimum values are determined by the GUI.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Input Parameters: Frequency">
+<DIV class="SubHeading"> &nbsp;
+     Input Parameters:&nbsp Frequency
+</DIV>
+</A>
+
+<p>This may be used to set the frequency of the cosine as a  multiple of 2*pi, 
+either by using the sliding bar or typing a value in the text field.  Its
+maximum and minimum values are determined by the GUI.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Input Parameters: Phase">
+<DIV class="SubHeading"> &nbsp;
+      Input Parameters:&nbsp Phase
+</DIV>
+</A>
+
+<p>This may be used to set the phase of the cosine, either by using the sliding
+bar or typing a value in the text field.  Its maximum and minimum values are
+determined by the GUI.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Input Parameters: DC Level">
+<DIV class="SubHeading"> &nbsp;
+      Input Parameters:&nbsp DC Level
+</DIV>
+</A>
+
+<p>This may be used to set the DC level of the cosine, either by using the sliding
+bar or by typing a value in the text field.  Its maximum and minimum values are
+determined by the GUI.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Filter Specifications: Filter Choice">
+<DIV class="SubHeading"> &nbsp;
+     Filter Specifications: Filter Choice     
+</DIV>
+</A>
+
+<p>Use the pop-up menu to choose a filter from among the following choices:<br><br>
+
+<LI>Averaging Filter
+<LI>First Difference
+<LI>Ideal Low-Pass
+<LI>Ideal High-Pass
+<LI>Ideal Band-Pass
+<LI>Low-Pass L=15
+<LI>High-Pass L=15
+<LI>Band-Pass L=21
+<LI>User Input
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Filter Specifications: Custom Parameters">
+<DIV class="SubHeading"> &nbsp;
+      Filter Specifications:&nbsp Custom Parameters
+</DIV>
+</A>
+
+<p>Each filter, with the exception of the first difference filter, will have customizable 
+parameters that can be specified in the <SPAN class="TextHighlight">Filter Specifications
+</SPAN> box at the bottom-right hand corner of the GUI.  For many filters the option 
+exists of using either a text field to type in the parameter or a sliding bar to set it.
+If the text field is used, the GUI will automatically limit the value to a maximum or minimum
+determined by the GUI if the value entered is not within the allowed range.
+
+<OL>
+<LI><strong>Averaging Filter</strong><br><br>
+<SPAN class="TextHighlight2">Length</SPAN> can be used to set the length of the 
+impulse response for an averaging filter.<br><br>
+</LI>
+<LI><strong>Ideal Low-Pass / Ideal High-Pass</strong><br><br>
+<SPAN class="TextHighlight2">Cutoff Freq</SPAN> is used to set the cutoff frequency of
+the amplitude response for the filter in multiples of 2*pi.<br>
+<SPAN class="TextHighlight2">Phase Slope</SPAN> is used to set the slope 
+of the phase response in multiples of pi.<br><br>
+</LI>
+<LI><strong>Ideal Band-Pass</strong><br><br>
+<SPAN class="TextHighlight2">Center Freq</SPAN> is used to set the center frequency of
+the amplitude response for the filter in multiples of 2*pi.<br>
+<SPAN class="TextHighlight2">Phase Slope</SPAN> is used to set the slope 
+of the phase response in multiples of pi.<br><br>
+</LI>
+<LI><strong>Low-Pass / High-Pass (non-ideal)</strong><br><br>
+<SPAN class="TextHighlight2">Cutoff Freq</SPAN> is used to set the cutoff frequency of
+the amplitude response for the filter in multiples of 2*pi.<br><br>
+</LI>
+<LI><strong>Band-Pass (non-ideal)</strong><br><br>
+<SPAN class="TextHighlight2">Center Freq</SPAN> is used to set the center frequency of
+the amplitude response for the filter in multiples of 2*pi.<br><br>
+</LI>
+<LI><strong>User Input</strong><br><br>
+<SPAN class="TextHighlight2">Filter Coeffs: b_k</SPAN> is used to manually set the
+frequency response of the filter.  Values can be entered in the following form:
+<br><br>
+&nbsp &nbsp &nbsp <code>[b1,b2,b3,...,bn]/m</code>
+<br><br>
+where m is a scaling factor and the b's are the coefficients that represent 
+the impulse or frequency response of the filter.
+</OL>
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: INPUT SIGNAL">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp INPUT SIGNAL
+</DIV>
+</A>
+
+<p>This plot displays the input sinusoid according to the parameters specified by the
+user.  It updates itself immediately upon any change in the parameters.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: OUTPUT SIGNAL">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp OUTPUT SIGNAL
+</DIV>
+</A>
+
+<p>This plot displays the output sinusoid according to the input signal and frequency
+response of the filter.  It updates itself immediately upon any change in the input
+signal's parameters or the frequency response parameters of the filter.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Magnitude of the Filter">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp Magnitude of the Filter
+</DIV>
+</A>
+
+<p>This plot displays the amplitude of the frequency response of the filter selected
+by the user.  It updates itself immediately to reflect any change in filter type or
+parameters.</p>  
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Phase of the Filter">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp Phase of the Filter
+</DIV>
+</A>
+
+<p>This plot displays the phase of the frequency response of the filter selected
+by the user.  It updates itself immediately to reflect any change in filter type or
+parameters.</p>  
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Theoretical Answer">
+<DIV class="SubHeading"> &nbsp;
+     Theoretical Answer
+</DIV>
+</A>
+
+<p>Pressing this button will display the mathematical output of the filter system based
+on the sinusoidal signal parameters specified for the input as well as the frequency
+response.  The result will appear immediately above the <SPAN class="TextHighlight">
+OUTPUT SIGNAL</SPAN> plot.  Changing the current parameters will erase the result and the
+button must be pressed again to display the new output signal.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Options Menu: Set Line Width">
+<DIV class="SubHeading"> &nbsp;
+     Plot Options Menu:&nbsp Set Line Width
+</DIV>
+</A>
+
+<p>This menu item enables adjustment of the unit impulse and plotting line widths.  
+Use the sliding bar to change the current line width; the above preview box will
+update to show the currently selected width.  Pressing <SPAN class="TextHighlight2">
+OK</SPAN> will close the window and apply the new line width to the GUI.  This option
+may enable you to see high-frequency input signals more clearly.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Help Menu: Contents">
+<DIV class="SubHeading"> &nbsp;
+     Help Menu:&nbsp Contents
+</DIV>
+</A>
+
+<p>Pressing this button will launch the host computer's internet browser and to load the 
+<code>index.html</code>
+page found in the <code>help</code> directory.&nbsp; If an error occurs you can manually
+load the page into your browser.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML>

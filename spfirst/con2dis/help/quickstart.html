@@ -1,0 +1,92 @@
+<HTML>
+
+<HEAD>
+<TITLE> Quick Start </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Quick Start </DIV>
+<DIV class="Entry">
+
+<p>Hopefully, a person could start using the MATLAB Continuous-Discrete Sampling
+tool without any need to read these help files. Features were designed to be
+intuitive and familiar to those with basic computer experience.</p>
+
+<p>For those who like to read the manual, this section will give you the minimum
+you need to get started and be comfortable with the use of the GUI.</p>
+
+<p>First, if you have not already done so, follow the information given in the
+<SPAN class="TextHighlight">Installation</SPAN> section to install and start the
+MATLAB Continuous-Discrete Sampling tool.</p>
+
+<p>
+
+<ol>
+  <li>To begin with, set the input sinusoid's frequency <em>f<sub>0</sub></em>
+  and <em>phase</em>. You can set the frequency <em>f<sub>0</sub></em> in
+  <em>Hz</em> by using the slider at the bottom-left of the GUI. Another way to
+  set the input frequency is, you can use the mouse to <strong>click and
+  drag</strong> the 'blue' stem plot corresponding to the Input signal in the
+  Continuous time spectrum (Plot axes at the bottom left). The phase of the
+  signal can be entered in the edit box below the text
+  <strong>Phase</strong>. You should be able to see the corresponding change in
+  <strong>Input</strong>, sampled signal <strong>x[n]</strong>,
+  <strong>Output</strong> and the corresponding <strong>Spectrums</strong>.</li>
+
+  <li>You can also set the sampling rate (<em>f<sub>s</sub></em> in <em>Hz</em>)
+  at which the input needs to be sampled. This can be done using the slider at
+  bottom-right of the GUI.</li>
+
+  <li>Instead of specifying the frequencies in <em>Hz</em>, the input frequency
+  and sampling rate can also be set in <em>rad/s</em>.i.e., <font
+  face="symbol">w</font><small><sub>0</sub></small> and <font
+  face="symbol">w</font><sub><small>s</small></sub>, by toggling the
+  radio-button <strong>Rad/sec</strong> to 'ON'. Equivalently, you can achieve
+  the same, using the menu <strong>Plot Options: Show Radian
+  Frequency</strong>. This also toggles the frequency axis of input and output
+  spectrum plots between <em>rad/s</em> and <em>Hz</em>.</li>
+
+  <li>If the sampling frequency selected is less than the Nyquist rate
+  (2<em>f<sub>0</sub></em>), then you will see the text <span
+  class="TextHighlight">ALIASING!</span> displayed in the output spectrum plot,
+  indicating the outputs have aliased.</li>
+
+  <li>You can also toggle the frequency axis in the <strong>Discrete Time
+  Spectrum</strong> between the normalized cyclic frequency <em>f</em> or
+  normalized radian frequency <em>w</em>, using the <strong>Radian</strong>
+  radio-button.</li>
+
+  <li>In the case of output being aliased, you can toggle the reference plot
+  overlying the Discrete time <strong>x[n]</strong> plot, to show either the
+  high-frequency or low-frequency aliased component. i.e. between the aliased
+  and un-aliased signals. This can be done using the menu, <strong>Plot Options:
+  Show Lower Frequency Signal</strong> or double-clicking on the x[n] plot
+  axes.</li>
+
+  <li>Another useful feature of the Demo is its color-coded plots. 
+  <UL>
+    <li>If the frequency of the input signal lies within the range indicated by
+    the 'yellow' strip, then the output signal is not aliased.</li>
+    <li>Un-aliased frequency components are marked in 'blue' and the aliased
+    components are marked in 'red', in the spectrum plots.</li>
+    <li>When Aliasing occurs in the output signal, such that the original signal
+    cannot be reliably reconstructed, then the text <span
+    class="TextHighlight">ALIASING!</span> is displayed in the <strong>output
+    Continuous Time Spectrum</strong> plot axes.</li>
+  </UL>
+  </li>
+</ol>
+<p align="left">That's it!&nbsp; You now understand the basics of how to use the
+MATLAB Continuous-Discrete Sampling tool; For a more in depth description of
+Continuous-Discrete Sampling theory see the <SPAN
+class="TextHighlight">Theory</SPAN> section. The <SPAN
+class="TextHighlight">Controls</SPAN> and <SPAN
+class="TextHighlight">Menus</SPAN> sections provide a description of the various
+elements in the user interface.</p>
+
+</DIV>
+
+</BODY>
+</HTML>

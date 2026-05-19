@@ -1,0 +1,239 @@
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<div class="Entry">
+<ol>
+  <li><a href="#Theory in Words"><strong>Theory in Words</strong></a></li>
+  <li><a href="#Theory in Equations"><strong>Theory in Equations</strong></a></li>
+</ol>
+</div>
+
+<a name="Theory in Words">
+<div class="SubHeading"> &nbsp  
+    Theory in Words
+</div></a>
+
+<!-- Introduction -->
+<p align="center"><img src="images/eqn1.png"><br>where n =...-2,-1,0,1,2,...</p><br>
+<p style="clear:left">When the input to a discrete <SPAN
+class="TextHighlight2">LTI system</SPAN> is a <SPAN
+class="TextHighlight2">sinusoid</SPAN> with a fixed normalized frequency as
+shown above, the output is also a sinusoid.&nbsp  The output signal has the <em>
+<strong>same</strong></em> frequency but a different amplitude and phase than
+the input.&nbsp This transformation is accomplished through the <SPAN
+class="TextHighlight2"> frequency response</SPAN> of the system.</p><br><br>
+
+<!-- Basic Sinusoid Frequency Response Example-->
+<p align="center"><img src="images/eqn2.png"><br></p>
+<p style="clear:left">Consider the filtering example above. A sinusoid of a
+fixed frequency is the input, and a sinusoid of the same frequency but with
+amplitude nearly 2.5 times the input and seventy degree phase shift is the
+output.  How are the multiplication of the amplitude and phase addition
+accomplished?&nbsp The frequency response of the above system is presented
+below:</p>
+
+<p align="center"><img src="images/filter_mag.png">
+<img src="images/filter_phase.png"></p><br>
+<p style="clear:left">The first plot represents the magnitude of the frequency
+response versus normalized input frequency; this quantity amplifies or
+attenuates the amplitude of the input signal by directly
+<strong>multiplying</strong> it.&nbsp In this case, the magnitude plot (maximum
+value of 4) has a value of nearly 2.5 at the input signal's frequency and thus
+its amplitude increases correspondingly when multiplied.&nbsp The second plot
+shows the phase of the frequency response versus normalized input frequency;
+this affects the phase of the input signal by directly <strong>adding</strong>
+to it.&nbsp For this example, the phase plot has a value of nearly -pi/2.5 or
+-70 degrees at the input signal's frequency, and therefore shifts the signal
+from zero degrees phase to ninety degrees.&nbsp Note that the negative
+frequencies are also shown on each plot due to the conjugate symmetry of
+sinusoids (see <a href="#Theory in Equations"> <strong>Theory in
+Equations</strong></a>). The frequency response was calculated, however, using
+the positive frequency.<br></p>
+
+<!-- Sum of Sinusoids Example -->
+<p align="center"><img src="images/eqn3.png" align="center"
+WIDTH="514" HEIGHT="106"><br>
+<p align="center">
+Because <SPAN class="TextHighlight2">LTI Systems</SPAN> are <SPAN
+class="TextHighlight2"> linear</SPAN> by definition, the principle of <SPAN
+class="TextHighlight2">superposition </SPAN> allows us to envision far more
+complicated input signals such as square waves and triangular waves as split up
+into their respective <SPAN class="TextHighlight2">harmonics </SPAN> through
+<SPAN class="TextHighlight2">Fourier analysis</SPAN>.&nbsp Each component is
+processed separately before all of them are added back together.&nbsp Let's
+consider an arbitrary harmonic signal input such as the one shown to the
+right.&nbsp First the frequency components of the signal could be obtained, the
+frequency response applied to each of these components, and then the result
+summed up again to get the final signal.&nbsp A graphical depiction of this
+process is shown below (barring the Fourier analysis, which was magically done
+for you).  The frequency response used here is the same as above, though the
+input components are all of different frequencies:</p><br><br>
+
+<p align="center">
+<img src="images/filter_sum_of_ips_plot.png" WIDTH="643" HEIGHT="416">
+</p>
+
+<p style="clear:left"><br>
+The plots above are roughly to scale and all are plotted against the same number
+of samples.&nbsp The top input component has half the frequency of the middle
+component, while the bottom component has twice the frequency of the middle. All
+the inputs have the same amplitude.&nbsp The amplitudes have increased on the
+output, depending on the filter response at that particular
+frequency. Similarly, the phase shifts are also of different magnitudes (you
+will have to look carefully to notice the phase differences).&nbsp When the
+output components are added together the desired output is attained.&nbsp  Note
+that the output signal happens to be the same shape as the input because the
+phase of the frequency response is linear (see plot of <SPAN
+class="TextHighlight2">phase response</SPAN> above), i.e.,. all frequencies are
+delayed in time by the same amount and thus the signal is not distorted in any
+way.&nbsp If the phase response is not perfectly linear for the entire range of
+frequencies from -pi to pi, the individual frequency components will not add up
+the same way as they did in the input. The sum will still nonetheless be a
+periodic signal, but of a different shape.</p>
+
+<p style="clear:left">
+Having demonstrated the filtering of an arbitrary harmonic input signal, the
+process of finding the output of an LTI system using the frequency response can
+be summarized as follows:  
+<ol>
+  <li>Break down the input signal into a sum of sinusoids.</li>
+  <li>Find the frequency response of each sinusoidal component.
+  <li>Apply the frequency response to each component, adjusting its phase and
+  amplitude.
+  <li>Add all the <strong><font color="#0000FF">shifted</font></strong> and 
+  <strong><font color="#0000FF">scaled</font></strong> sinusoids together.&nbsp
+  Because of <font color="#0000FF"><strong>linearity</strong></font>, the sum
+  will be the desired output.</li> 
+</ol>
+
+<p align="left">As opposed to impulse response, it is difficult to completely
+understand the frequency response without looking at it mathematically.&nbsp
+This explanation is incomplete without the <strong>Theory In Equations</strong>
+given below.&nbsp Please ensure you read this section as we establish a
+relationship between impulse response and the frequency response, and
+mathematically work an example of filtering using frequency response.</p> 
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<!-- Theory in Equations Section -->
+
+<a name="Theory in Equations">
+<div class="SubHeading"> &nbsp  
+     Theory in Equations
+</div></a>
+
+<p> If the input to an LTI system is a <strong>complex exponential
+signal</strong>, the impulse response then becomes the sum of a series of
+complex exponentials as shown below, where x[n-k] is a complex exponential with
+a given amplitude and frequency.&nbsp This transformation is shown below.</p> 
+
+<p align="center"><img src="images/eqn4.png"></p> 
+
+
+<p style="clear:left"> 
+This sum of exponentials is known as the <SPAN class="TextHighlight2">Frequency
+Response </SPAN> or <SPAN class="TextHighlight2">Transfer Function</SPAN> of the
+system, because its only parameter is the normalized frequency of the input
+signal.&nbsp For each value of frequency the function produces a complex
+amplitude, which is then multiplied by the input signal to give the output of
+the system.&nbsp This results in the amplitude being scaled by some factor and
+the phase being shifted.&nbsp The original frequency of the input is thus
+preserved and only its complex amplitude is affected.&nbsp Because it only has
+an effect on the magnitude and phase of the output, the frequency response is
+also called the <SPAN class="TextHighlight2">Gain</SPAN> of the system.&nbsp</p>
+
+<p style="clear:left">Examining the above derivation closely, one can easily
+transform the frequency response into the impulse response and vice versa.&nbsp
+As an example, a length three impulse response with coefficients {1,2,1} can be
+described as a frequency response like so:</p>
+
+<p align="center"><img src="images/eqn5.png"><br></p> 
+
+<p style="clear:left">In the impulse response expression above, the coefficients
+are kept and the unit impulses are simply transformed into complex exponentials
+with an angle multiple equal to the delay of the impulse.&nbsp This result comes
+directly from the derivation above where we separated the frequency response
+from the signal itself.&nbsp Using standard algebra and Euler's relation, the
+sum of exponentials is then simplified into expressions involving sines or
+cosines.</p>
+
+<p style="clear:left">As you can see, the frequency response has two distinct
+portions:&nbsp the complex exponential on the left gives the phase of the
+response and the quantity on the right gives the magnitude of the response.&nbsp
+This particular frequency response will produce plots similar to those shown in
+the <a href="#Theory in Words"><strong>Theory In Words</strong></a> section
+above, and it belongs to a category of filters known as low-pass filters because
+it either amplifies or maintains the amplitude of low-frequency signals while
+diminishing the magnitude of high-frequency signals.&nbsp The accepted range of
+low-frequency signals is called the <SPAN class="TextHighlight2">passband</SPAN>
+of the filter, and is separated from the rejected range or <SPAN
+class="TextHighlight2">stopband</SPAN> at a point called the <SPAN
+class="TextHighlight2">cut-off frequency</SPAN>.&nbsp<br>The Frequency response
+of an LTI system can be therefore be defined as any arbitrary sum of complex
+exponentials. </p>
+
+<p style="clear:left">Now that we have explained the mathematical background of
+frequency response, let us compute the output of a system for an arbitrary
+input.&nbsp As shown below, the input is a complex exponential.&nbsp The
+frequency response is computed for the signal's frequency and multiplied by it
+to find the output of the system:</p> 
+
+<p align="center"><img src="images/eqn6.png"></p> 
+
+<p style="clear:left">As we mentioned in the section above, a short cut exists
+for calculating the frequency response of a sinusoidal signal.&nbsp A cosine can
+be expressed as a sum of complex exponentials by Euler's relation, both of which
+are conjugates to each other with one-half the amplitude of the original
+sinusoid.&nbsp It is left as an exercise to the reader to mathematically show
+that the result of applying the frequency response to each of these components
+and adding them back together yields the same result as applying the frequency
+response only to the positive frequency, multiplying its magnitude directly by
+the amplitude of the input sinusoid and adding its phase directly to the phase
+of the input sinusoid.&nbsp A computational example is shown below using the
+same frequency response as above but with a sinusoid as the input:</p>
+
+<p align="center"><img src="images/cos_example.png" WIDTH="335"
+HEIGHT="209"></p><br> 
+
+<p style="clear:left">You may verify this result through the Discrete LTI Demo
+tool and view it graphically by setting up the input sinusoid with the same
+parameters and specifying a <em>user defined</em> filter with the same
+coefficients as we used above.</p>
+
+<p style="clear:left">The above example establishes the final equation for
+sinusoidal LTI systems; generalizing it to include a DC (zero-frequency)
+component gives the following: 
+</p>
+
+<p align="center">
+<TABLE>
+<TR>
+<TD><SPAN class="TextHighlight2">FREQUENCY RESPONSE OF A SINUSOIDAL
+SIGNAL:</SPAN></TD> 
+<TD><img src="images/final_eq.png" WIDTH="422" HEIGHT="39"></TD>
+</TR>
+</TABLE>
+where <font face="symbol">w<sub>1</sub></font> not equal to 0
+</p>
+
+<p> Does it all make sense to you?&nbsp  If you are not sure go over it one more
+time before moving on with the rest of the tutorial.</p>
+
+<blockquote>
+  <p><small><em>If you still do not get it, let me know what is confusing
+  you.&nbsp  Send me by clicking on my name in the Overview section.&nbsp  I
+  want to make this tutorial understandable and any feedback is
+  appreciated!</em></small></p>
+</blockquote> 
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+</body>
+</html>

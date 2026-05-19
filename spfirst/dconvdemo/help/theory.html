@@ -1,0 +1,296 @@
+<html>
+
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<div class="Entry">
+<ol>
+  <li><a href="#Theory in Words"><strong>Theory in Words</strong></a></li>
+  <li><a href="#Theory in Equations"><strong>Theory in Equations</strong></a></li>
+  <li><a href="#A Common Way of Calculating Convolution"><strong>A Common Way of Calculating
+    Convolution</strong></a></li>
+  <li><a href="#Common Pitfall"><strong>A Common Pitfall</strong></a></li>
+</ol>
+</div>
+
+<a name="Theory in Words">
+<div class="SubHeading"> &nbsp; 
+    Theory in Words
+</div></a>
+
+<p>
+<img src="images/lti.png" alt="lti.png" align="left" WIDTH="287"
+HEIGHT="95"><br>
+<SPAN class="TextHighlight2">Convolution</SPAN> is an operation from which you
+can determine the output of a 
+known <SPAN class="TextHighlight2">linear time-invariant (LTI)</SPAN> system to
+an arbitrary input signal. &nbsp; Consider the <SPAN
+class="TextHighlight2">LTI</SPAN> 
+system to the left with input x[n] and output y[n].&nbsp; Simply put, <SPAN
+class="TextHighlight2">convolution</SPAN> is the operation that we use to find 
+y[n] given x[n].
+</p><BR id="LEFT">
+
+<p style="clear:left;"><img src="images/lti_delta_input.png" alt="lti_delta_input.png" align="right" WIDTH="336" HEIGHT="94"><br>Let us set the input to be a
+unit sample at the origin as shown in the figure to the right.&nbsp; For the particular
+system in this example, the output is a pulse of length 3.&nbsp; When the input to a system is
+an impulse we call the output the <SPAN class="TextHighlight2">impulse response</SPAN>.&nbsp;
+It is common practice to use the notation h[n] to denote the <SPAN class="TextHighlight2">impulse
+response</SPAN>.&nbsp; Therefore, y[n] = h[n] when the input is an impulse.
+&nbsp; The particular system in this example has a length 3 pulse as its <SPAN class="TextHighlight2">impulse response</SPAN>.&nbsp; This is not the case in
+general; it was just a convenient choice used for illustration purposes.</p>
+
+<p style="clear:left;"><img src="images/lti_shifted_delta.png" alt="lti_shifted_delta.png"
+align="left" WIDTH="386" HEIGHT="85">What happens to the output of our system if
+the input impulse is shifted to a new location?&nbsp; The new output appears to
+be just a shifted version of the <SPAN class="TextHighlight2">impulse
+response</SPAN>.&nbsp; But why?&nbsp; The reason is that we assumed the system
+was <SPAN class="TextHighlight2">time-invariant</SPAN>.&nbsp; When a system is
+<SPAN class="TextHighlight2">time-invariant</SPAN>, one can determine the
+response to a shifted input by the output of the unshifted version.&nbsp; In
+this case, the input is a shifted version of an impulse, so the new output is a
+similarly shifted version of the <SPAN class="TextHighlight2">impulse
+response</SPAN>.&nbsp; We will see shortly that <SPAN
+class="TextHighlight2">time-invariance</SPAN> is a very important property in
+the theory of <SPAN class="TextHighlight2">convolution</SPAN>.</p>
+
+<p style="clear:left;">Now let's make the input the sum of three shifted
+impulses as shown in the following figure:</p>
+
+<p align="center">
+<img src="images/lti_sum_of_deltas.png"
+alt="lti_sum_of_deltas.png" WIDTH="520" HEIGHT="439"></p>
+
+<p style="clear:left;">The triangularly shaped output is just the sum of the three shifted <SPAN class="TextHighlight2">impulse responses</SPAN>.&nbsp; Why does it work this
+way?&nbsp; We know this works because we assumed that the system was <SPAN class="TextHighlight2">linear</SPAN>.&nbsp;
+When a system is <SPAN class="TextHighlight2">linear</SPAN> the output of a sum
+of inputs is the sum of their individual outputs.&nbsp; This is one of the two properties
+that define <SPAN class="TextHighlight2">linearity</SPAN>.&nbsp;&nbsp; Next we
+will illustrate the second property of <SPAN class="TextHighlight2">linearity</SPAN>.&nbsp;
+Then, with our understanding of <SPAN class="TextHighlight2">linearity</SPAN>
+and <SPAN class="TextHighlight2">time-invariance</SPAN>, we will see that we
+have gone 98% of the way to our ultimate goal of understanding <SPAN class="TextHighlight2">convolution</SPAN>!</p>
+
+<p style="clear:right;"><img src="images/lti_scaled_delta.png" alt="lti_scaled_delta.png"
+align="left" WIDTH="365" HEIGHT="88">The second property of <SPAN class="TextHighlight2">linearity</SPAN> is illustrated by the figure to the
+left.&nbsp; The input is a scaled version of an impulse.&nbsp; In this case it is 3 times
+as large as our original impulse.&nbsp; The output is just the <SPAN class="TextHighlight2">impulse
+response</SPAN> scaled by the same factor.&nbsp; The second property of <SPAN class="TextHighlight2">linearity</SPAN> states that a scaling factor propagates
+from input to output.</p>
+
+<p style="clear:left;"><img src="images/lti_arb_input.png" alt="lti_arb_input.png" align="right" WIDTH="345" HEIGHT="86"><a name="Arbitrary Input"></a>We're almost
+there.&nbsp; Let us finally consider an arbitrary input:&nbsp; How can we find the output
+for this arbitrary signal?&nbsp; Well, we could break it up and write the input as a sum
+of scaled and shifted unit samples in a similar manner to what we did earlier.&nbsp; Then,
+to get the output for each of these scaled and shifted impulses we use the scaling
+property of <SPAN class="TextHighlight2">linearity</SPAN> and the property of <SPAN class="TextHighlight2">time-invariance</SPAN>.&nbsp; Finally, using the additive
+property of <SPAN class="TextHighlight2">linearity</SPAN> we sum the individual
+outputs to get the total output.&nbsp; Below is a graphical view.</p>
+
+<p style="clear:left;" align="center"><br><img src="images/lti_arb_total.png"
+alt="lti_arb_total.png" WIDTH="487" HEIGHT="411"></p>
+
+<p style="clear:left;">We just found the output for an <SPAN class="TextHighlight2">LTI</SPAN>
+system given an arbitrary input.&nbsp; The process we used to find the output is called <SPAN class="TextHighlight2">convolution</SPAN>!&nbsp; However, keep in mind that <SPAN class="TextHighlight2">convolution</SPAN> is only guaranteed to get us the
+desired output when the system is <SPAN class="TextHighlight2">LTI</SPAN>.
+&nbsp; The following summarizes the steps used in the <SPAN
+class="TextHighlight2">discrete convolution</SPAN> operation:
+
+<ol>
+  <li>Break an input signal into a sum of scaled and shifted impulses.</li>
+  <li>Find the output to each of the individual impulses using the <font color="#0000FF"><strong>linearity</strong></font>
+    property to handle the scaling and the <font color="#0000FF"><strong>time-invariance</strong></font>
+    property to handle the shifting.&nbsp; Thus, each individual output will be a shifted and
+    scaled <font color="#0000FF"><strong>impulse response</strong></font>.</li>
+  <li>Add all the <strong><font color="#0000FF">shifted</font></strong> and
+    <strong><font color="#0000FF">scaled impulses </font></strong>responses
+    together.&nbsp; Because of <font
+    color="#0000FF"><strong>linearity</strong></font>, the sum will be the
+    desired output.</li> 
+</ol>
+
+<p>Does it all make sense to you?&nbsp; If you are not sure go over it one more
+time before moving on with the rest of the tutorial.</p>
+
+<blockquote>
+  <p><small><em>If you still do not get it, let me know what is confusing you.&nbsp; Send me
+  mail by clicking on my name in the Overview section.&nbsp; I want to make this tutorial
+  understandable and any feedback is appreciated!</em></small></p>
+</blockquote>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<a name="Theory in Equations">
+<div class="SubHeading"> &nbsp; 
+     Theory in Equations
+</div></a>
+
+<p>Now that we understand how <SPAN class="TextHighlight2">convolution</SPAN>
+works let us write the operation in the more compact (and at least to most people, more
+confusing!) language of mathematical equations.&nbsp; Hopefully, this section will provide
+a meaning to the equations so when you look at the math you see <SPAN class="TextHighlight2">convolution</SPAN>
+and not just a bunch of variables.</p>
+
+<p>We saw <a href="#Arbitrary Input">earlier</a> that an arbitrary input signal can be
+written as a sum of scaled and shifted impulses.&nbsp; To illustrate this, lets continue
+using our example input signal and write it out using mathematical formulas:.</p>
+
+<p align="center"><img src="images/eqn1.gif" alt="eqn1.gif (1687 bytes)" vspace="5"
+WIDTH="286" HEIGHT="69"></p>
+
+<p>The x[k] terms are the scaling factors.&nbsp; In our example, x[0] = 1, x[1] = 3, and
+x[2] = 2.&nbsp; The &delta;[n-k] are the shifted impulse functions.&nbsp; The
+equation states that any signal can be written as a sum of scaled (the x[k] terms) and
+shifted impulses (the &delta;[n-k] terms).</p>
+
+<p>According to the <SPAN class="TextHighlight2">convolution</SPAN> operation
+the output of an <SPAN class="TextHighlight2">LTI</SPAN> system is the sum of
+similarly scaled and shifted <SPAN class="TextHighlight2">impulse responses</SPAN>:</p>
+
+<p align="center"><img src="images/eqn2.gif" alt="eqn2.gif (1687 bytes)" vspace="5"
+WIDTH="279" HEIGHT="69"></p>
+
+<p>The x[k] terms are the same scaling factors as above.&nbsp; Because of <SPAN class="TextHighlight2">linearity</SPAN> these values which scaled the shifted
+input impulses scale the shifted <SPAN class="TextHighlight2">impulse responses</SPAN>
+as well.&nbsp; Remember that h[n-k] is the notation we use to denote a shifted <SPAN class="TextHighlight2">impulse response</SPAN>.&nbsp; If we add all of the
+scaled and shifted <SPAN class="TextHighlight2">impulse responses</SPAN>
+together we get the desired output of the system y[n].</p>
+
+<p>The equation above was specific to our example input signal which only had three
+nonzero values.&nbsp; An arbitrary signal might be infinitely long.&nbsp; Thus, in
+general, we would need an infinite sum.&nbsp;&nbsp; Here is the final equation for <SPAN class="TextHighlight2">convolution</SPAN>:</p>
+
+<p align="center">
+<TABLE>
+<TR>
+<TD><SPAN class="TextHighlight2">CONVOLUTION:</SPAN></TD>
+<TD><img src="images/eqn3.gif" alt="eqn3.gif" WIDTH="272"
+HEIGHT="45"></TD>
+</TR>
+</TABLE>
+</P>
+
+<p align="left">You are probably saying to yourself, &quot;I understand the first
+equality, but where did the second equality come from?&quot;&nbsp; The second equality is
+derived by making a simple substitution of variables in the first equality.&nbsp; The fact
+that the two are equal tells us that convolution is commutative.</p>
+
+<p align="left">Compare the <SPAN class="TextHighlight2">convolution</SPAN>
+equation to the pictures in the <a href="#Theory in Words">Theory in Words</a>
+section and try to see how they both say the same thing.</p>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<a name="A Common Way of Calculating Convolution">
+<div class="SubHeading"> &nbsp; 
+    A Common Way of Calculating Convolution
+</div>
+</a>
+
+<p>The part of convolution that seems to confuse most people is how to calculate it.
+&nbsp; The method in the previous sections is a perfectly valid method of evaluating a <SPAN class="TextHighlight2">convolution</SPAN>.&nbsp; However, another method is more
+popular since it makes determining a <SPAN class="TextHighlight2">convolution</SPAN>
+easier when formulas are given for x[n] and h[n]. &nbsp; This other method is also the
+method that I have created the MATLAB convolution tool to help explain.&nbsp; You should
+follow along in the tool for this:</p>
+
+<p>To start, toggle the <strong>Plot Options/Tutorial Mode</strong> menu and make sure the
+<strong>Flip h[n]</strong> radio button is checked.&nbsp; The <strong>Output</strong> plot
+box should disappear and be replaced by a <strong>Get Output</strong> button.&nbsp; Now
+click the <strong>Get x[n]</strong> button.&nbsp; A new window should be created and a
+pulse signal displayed.&nbsp; Click the <strong>OK</strong> button to import this signal
+into the main window without changing any of its parameters.&nbsp; Do the same with the <strong>Get
+h[n]</strong> button and import the identical signal for the <strong>impulse response.</strong></p>
+
+<p>Now <em>before</em> clicking the <strong>Get Output</strong> button, let's work out the
+correct answer for y[n] at n = 0.&nbsp; According to the convolution formula above we need
+to calculate</p>
+
+<p align="center"><img src="images/eqn4.gif" alt="eqn4.gif (1230 bytes)" WIDTH="254"
+HEIGHT="45"></p>
+
+<p>Examine the inner summation.&nbsp; We need to write both x[<em>n</em>] and h[<em>n</em>]
+as functions of <em>k</em>.&nbsp; We also need to flip the <SPAN class="TextHighlight2">impulse
+response</SPAN> <em>(because of the h[-k])</em>.&nbsp; This flipping is
+automatically done for you in the MATLAB convolution tool.&nbsp; However, the default is
+to use <em>n</em> = -5 instead of <em>n</em> = 0 as in our example.&nbsp; To fix this drag
+the <strong>n</strong> index label or use the numeric 6 key to change the index until it
+reads <strong>n</strong> = 0.&nbsp; The signal and the flipped impulse response should
+only overlap at the origin.&nbsp; Note that the axis variable is <em>k</em> and that <strong>n</strong>
+is a <em>constant</em> which lets you know where to shift the <SPAN class="TextHighlight2">flipped
+impulse response</SPAN>.</p>
+
+<p>According to the formula above, we must multiply x[<em>k</em>]h[<em>-k</em>] and then
+add up all the terms in the resulting output.&nbsp; In the <strong>Multiplication</strong>
+plot box the result of this multiplication is shown.&nbsp; Since the two signals only
+overlap at the origin, there is only 1 nonzero sample in the multiplication result and it
+has a value of 1.&nbsp; Note again, that the axis variable is <em>k</em> not <em>n</em></p>
+
+<p>Go ahead and click the <strong>Get Output</strong> button.&nbsp; The output y[<em>n</em>]
+is a triangular waveform.&nbsp; The sample at <em>n</em> = 0 is highlighted and its value
+should equal 1 just as we calculated above.&nbsp; Now move the <strong>n</strong> index so
+that n = 2.&nbsp; We are now finding</p>
+
+<p align="center"><img src="images/eqn5.gif" alt="eqn5.gif (1226 bytes)" WIDTH="149"
+HEIGHT="45"></p>
+
+<p>The <strong>Signal / Flipped Signal</strong> plot box displays x[<em>k</em>] and h[2-<em>k</em>].
+&nbsp; The <strong>multiplication </strong>plot box shows the point by point
+multiplication x[<em>k</em>]h[2-<em>k</em>].&nbsp; If we add all the values in the <strong>multiplication</strong>
+plot box we see that the sum equals the value at <strong>n</strong> = 2 in the <strong>Output</strong>
+plot box, or y[2].</p>
+
+<p>Let's summarize the procedure.&nbsp; To calculate the output y[<em>n</em>]: 
+
+<ol>
+  <li>Draw x[<em>k</em>] as a function of <em>k.</em></li>
+  <li>Draw h[-<em>k</em>] as a function of <em>k</em>, that is the <SPAN class="TextHighlight2">flipped
+    impulse response</SPAN>.</li>
+  <li>To find y[<em>n</em>] for each <em>n</em>, shift the drawing made in step 2 to <em>n</em>.
+    &nbsp; Note that a positive value for <em>n</em> implies a shift of the <SPAN class="TextHighlight2">flipped impulse response</SPAN> to the right.&nbsp; Now
+    multiply x[<em>k</em>]h[<em>n</em>-<em>k</em>] and add up all the values in the
+    result.&nbsp; The number you come up with is the value for y[<em>n</em>] at this
+    particular value of <em>n.</em></li>
+</ol>
+
+<p>Now experiment with the MATLAB convolution tool by picking different signals and see if
+you can guess the answer ahead of time!</p>
+
+<p>One last thing.&nbsp; The roles of x[<em>n</em>] and h[<em>n</em>] can be interchanged
+since <SPAN class="TextHighlight2">convolution</SPAN> is commutative. &nbsp;
+That is you can flip either signal and the result remains the same.&nbsp; You can test
+this within the MATLAB tool by using the <strong>Flip x[n] / Flip h[n]</strong> buttons.</p>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<a name="Common Pitfall">
+<div class="SubHeading"> &nbsp; 
+    Common Pitfall
+</div>
+</a>
+
+<p>One common pitfall is dealing with signals that are delayed.&nbsp; It is no different
+then normal, but I have seen so many students make the same mistake when doing problems of
+this kind that I thought it was worth mentioning.&nbsp; Let's use the tool to illustrate
+the common mistake.&nbsp; As above use the <strong>Get x[n] / Get h[n]</strong> to import
+a pulse signal into the main window, however, this time use the controls along the right
+side of the dialog window to set the delay of each pulse to 3 before hitting the <strong>OK</strong>
+button.</p>
+
+<p>Now move the <strong>n</strong> index so that <strong>n</strong> = 0.&nbsp; There is no
+overlap of the two signals!&nbsp; If this was a surprise to you then you fell into the
+trap.&nbsp; When the impulse response is delayed (or advanced), the <strong>n</strong>
+index does not always line up with the edge of the <SPAN class="TextHighlight2">flipped
+impulse response</SPAN>.&nbsp; You have been warned, do not let yourself fall
+into this trap!</p>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+</body>
+</html>

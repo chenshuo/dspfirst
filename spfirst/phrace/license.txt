@@ -1,0 +1,29 @@
+License Agreement
+-----------------
+
+Distribution
+
+  This software may be distributed freely on online services,
+  bulletin boards, or other electronic media as long as the
+  files are distributed IN THEIR ENTIRETY and no fee is
+  charged.  This software may NOT be distributed on CD-ROM,
+  disk, or other physical media without the written permission
+  of the authors.
+
+Modifications
+
+  No modifications shall be made to this software without the
+  express written permission of the authors.
+
+Disclaimer of Warranty
+
+  This software and the accompanying files are supplied "as is"
+  and without warranties as to performance of merchantability
+  or any other warranties whether expressed or implied.  No
+  warranty of fitness for a particular purpose is offered.  In
+  no event will the authors or the Georgia Institute of Technology
+  be held responsible for any damages incurred using this software
+  or for any misuse of these materials.
+
+All rights not expressly granted here are reserved
+by the developers.

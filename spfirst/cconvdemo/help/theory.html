@@ -1,0 +1,209 @@
+<html>
+
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<!-- Introduction -->
+
+
+<p align="center">
+<TABLE cellpadding="20%">
+<TR>
+<TD align="center"><IMG SRC="images/lti_box1.png" WIDTH="448" HEIGHT="127" ALIGN="left"></TD>
+<TD align="left"><SPAN class="TextHighlight2">Convolution</SPAN> is an operation
+by which the output of an <SPAN class="TextHighlight2">linear time-invariant
+(LTI)</SPAN> system with a known response can be determined, given an arbitrary
+input signal.&nbsp; Observe the system to the left, with continuous-time input
+<em>x(t)</em> and output <em>y(t)</em>.&nbsp; Convolution is simply the process
+that determines the output given the input.</TD> 
+</TR>
+</TABLE>
+</p>
+
+<!-- Explanation of Impulse Response using Integrator Example -->
+
+<p align="center">
+<TABLE cellpadding="20%">
+<TR>
+<TD align="center"><IMG SRC="images/equ_1.png" WIDTH="175" HEIGHT="173"></TD>
+<TD align="center"><IMG SRC="images/lti_integrator_impulse.png" WIDTH="699"
+HEIGHT="135"></TD> 
+</TR>
+</TABLE>
+</p>
+
+<p style="clear:left;">The unit impulse is used as an example input for the
+system shown above.&nbsp; When the input to any <SPAN class="TextHighlight2">LTI
+system</SPAN> is a unit impulse, the output is called the <SPAN
+class="TextHighlight2">impulse response</SPAN> and is denoted by
+<em>h(t)</em>. So, in this example <em>h(t)</em>=<em>u(t)</em>&nbsp;  The system
+in this particular example is known as an <SPAN
+class="TextHighlight2">integrator</SPAN> because it produces a unit step signal
+as the output, according to the system's corresponding mathematical relationship
+shown to the left of it.&nbsp; In general, however, any relationship which is 
+<SPAN class="TextHighlight2">linear</SPAN> and <SPAN
+class="TextHighlight2">time-invariant</SPAN>, with unit impulse as input
+qualifies as a valid impulse response for an LTI system.</p>
+
+<!-- Explanation of Time-Invariance and Linearity, Shift and Scale Examples -->
+
+<p align="center">
+<TABLE cellpadding="5%">
+<TR>
+<TD align="left">Because such systems are <SPAN
+class="TextHighlight2">time-invariant</SPAN>, if the impulse is shifted to a new
+location, the output is simply a shifted version of the impulse response.&nbsp;
+<SPAN class="TextHighlight2">Time-invariance</SPAN> is a very helpful and
+important property of continuous-time LTI systems.&nbsp; In the case of the
+integrator, the output of a shifted unit impulse is a shifted unit-step function
+as shown to the right.</TD> 
+<TD align="center"><IMG SRC="images/integrator_shifted.png" WIDTH="712"
+HEIGHT="126"></TD> 
+</TR>
+</TABLE>
+</p>
+
+<!-- Introduction of Convolution Integral, Commutative Properties and Flip & -->
+<!-- Shift --> 
+
+<p style="clear:left;">The other important property of continuous LTI systems is
+<SPAN class="TextHighlight2">linearity</SPAN>, which allows that the output of
+an LTI system can be expressed as the sum of the outputs obtained from the
+individual components that make up the input signal.&nbsp;  If both <SPAN
+class="TextHighlight2">linearity</SPAN> and <SPAN
+class="TextHighlight2">time-invariance</SPAN> hold, the output of the system can
+be found through a relation known as the <SPAN
+class="TextHighlight2">Convolution Integral</SPAN>:</p> 
+
+<p align="center"><IMG SRC="images/equ_2.png" WIDTH="214" HEIGHT="80"></p>
+
+<p style="clear:left;">The above relationship means "<em>x(t)</em> convolved
+with <em>h(t)</em>" where <em>h(t)</em> is the impulse response of the LTI
+system.&nbsp; The variable <em>t</em> is taken to be a <strong>constant</strong>
+for the integration, which is done over the <SPAN class="TextHighlight2">dummy
+variable</SPAN> <em>tau</em> for all nonzero values of the input function.&nbsp;
+After integration the tau variable disappears, leaving a function of time which
+is in the output of the system.</p> 
+
+<p style="clear:left;">Let us look at the argument of the impulse response
+function in the integral.  Note that it is negated as a function of
+<em>tau</em>, and shifted by an amount <em>t</em>.&nbsp; This effectively <SPAN
+class="TextHighlight2">flips</SPAN> the function over the vertical axis and
+<SPAN class="TextHighlight2">shifts</SPAN> it along forward by an amount equal
+to <em>t</em>.&nbsp; Depending upon the value of <em>t</em>, the <em>shifted and
+flipped impulse response</em> and input function will have a particular product
+and thus integrate into different piecewise functions.&nbsp; Continuous
+convolutions therefore often result in functions with multiple distinct
+regions.</p> 
+
+<!-- Example using one-second pulses -->
+
+<p style="clear:left;">Consider an example using the following system and
+input:</p> 
+
+<p align="center"><IMG SRC="images/example_system.png" WIDTH="527"
+HEIGHT="156"></p> 
+
+<p style="clear:left;">The input, shown on the left, is a pulse of length one;
+the impulse response as seen on the right is a pulse of length one delayed by
+one.&nbsp; Taking these two functions and converting them into the forms used in
+the <SPAN class="TextHighlight2">convolution integral</SPAN> gives the
+following:</p> 
+
+<p align="center"><IMG SRC="images/example_setup.png" WIDTH="258"
+HEIGHT="169"></p> 
+
+<p style="clear:left;">As explained above, the impulse response has been flipped
+over the vertical axis and is shown in red. This particular instance of
+the impulse response is displayed for <em>t=0</em>; In this case, the leading edge of the pulse is
+<em>t-1</em>.&nbsp; The input function <em>x(t)</em> is simply expressed in
+terms of the variable <em>tau</em> instead of <em>t</em>, which is also the axis
+variable of integration.</p> 
+
+<p align="left"><IMG SRC="images/example_region_1.png" align="right"
+""WIDTH="260" HEIGHT="158"><br> 
+If you visualize <em>h(t)</em> <SPAN class="TextHighlight2">sliding</SPAN> along
+the <em>tau</em> axis and through <em>x(t)</em>, four distinct regions of
+integration become apparent.&nbsp; The first is for <em>t &#60 1</em>, which is
+the same as the initial situation shown above.&nbsp; No overlap exists between
+the two pulses <em>x(t)</em> and <em>h(t)</em> for this region and the integral
+simply goes to zero.&nbsp; The second region is for <em>1 &#60 t &#60 2</em>,
+shown to the right.&nbsp; The pulses overlap in this region in the interval from
+<em><font face="symbol">t</font> = 0</em> to <em><font face="symbol">t</font> =
+t-1</em>.&nbsp; The corresponding integral is evaluated below:</p><br>
+
+<p align="left"><IMG SRC="images/equ_3.png" WIDTH="487" HEIGHT="189"></p>
+
+<p align="left"><IMG SRC="images/example_region_2.png" align="right"
+""WIDTH="253" HEIGHT="155"><br> 
+A third region consists of <em>2 &#60 t &#60 3</em>,
+when the leading edge of the impulse response slides passed the leading edge of
+the input signal.&nbsp; This is shown in the plot to the right.&nbsp; In this
+region the pulses overlap from <em><font face="symbol">t</font> = t-2</em> to
+<em><font face="symbol">t</font> = 1</em>.&nbsp; The integral for this region is
+evaluated as shown below:</p><br>
+
+<p align="left"><IMG SRC="images/equ_4.png" WIDTH="253" HEIGHT="170"></p>
+      
+<p style="clear:left;"></p>
+
+<p align="center">
+<TABLE cellpadding="20%">
+<TR>
+<TD align="left">After <em>t=3</em>, no overlap occurs and the integral goes to
+zero.&nbsp; Note that at <em>t = 2</em> between the second and third regions,
+both pulses completely overlap and the integral evaluates to the greatest value
+of the output signal.&nbsp; Combining the above results, our output signal is a
+piecewise linear function defined and plotted to the right.</TD> 
+<TD align="center"><IMG SRC="images/equ_5.png" WIDTH="187" HEIGHT="87"></TD>
+<TD align="center"><IMG SRC="images/example_output.png" WIDTH="261"
+HEIGHT="126"></TD> 
+</TR>
+</TABLE>
+</p>
+
+<p style="clear:left;">You may simulate this on the convolution GUI by setting
+the input as an impulse of length one, and the impulse response the same but
+shifted by one.&nbsp; Observe carefully the contents of the <SPAN
+class="TextHighlight">Multiplication</SPAN> window as you slide the impulse
+response function along in the top window; note how the area shown relates to
+the integrated value in the <SPAN  
+class="TextHighlight">Convolution</SPAN> window.</p>
+
+<p style="clear:left;">Another important property of convolution is <SPAN
+class="TextHighlight2">Commutativity</SPAN>, which stipulates that the order of
+convolution does not matter.&nbsp; Flipping and shifting the input signal
+<em>x(t)</em> instead of the impulse response <em>h(t)</em>, therefore, will
+have the same result as the procedures above.&nbsp; The following proof
+establishes that convolution is indeed commutative:</p> 
+
+<p align="center"><IMG SRC="images/equ_6.png" WIDTH="502" HEIGHT="158"></p>
+
+<p style="clear:left;">The new dummy variable <em>sigma</em> is insignificant in
+the evaluation of the integral; all operations are done exactly as shown in the
+convolution example above, substituting <em>x(t)</em> for <em>h(t).</em></p> 
+
+<p>Does it all make sense to you?&nbsp; If you are not sure go over it again,
+and make sure to attempt several examples with the different functions offered
+in the GUI so you can verify them.</p> 
+
+<blockquote>
+  <p><small><em>If you still do not get it, let me know what is confusing
+  you.&nbsp; Send me 
+  mail by clicking on my name in the Overview section.&nbsp; I want to make this
+  tutorial 
+  understandable and any feedback is appreciated!</em></small></p>
+</blockquote>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+
+</body>
+</html>

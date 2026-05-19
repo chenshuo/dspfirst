@@ -1,0 +1,289 @@
+<html>
+
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<div class="Entry">
+<ol>
+  <li><a href="#Theory"><strong>Theory</strong></a></li>
+  <li><a href="#Examples"><strong>Examples</strong></a></li>
+</ol>
+</div>
+
+<a name="Theory">
+<div class="SubHeading"> 
+    Theory
+</div></a>
+
+<p align="left">
+<strong>Continuous-Discrete time conversion: (Sampling)</strong><br>
+
+<p align="left">Most of the real world signals that we encounter are continuous
+time signals. It is difficult and costly to process signals in continuous time. 
+If the continuous time signals can be converted to discrete time signals (sample
+values at discrete points) by some reliable method, then computers can be used
+to do the processing in discrete time. In most cases, processing discrete time
+signals is flexible and preferable, compared to that of continuous time
+signals.</p> 
+
+<p align="left">The conversion process should be such that, the information in
+continuous time is carried over reliably to the discrete domain and the original
+signal can also be reconstructed from its discrete domain value. <span
+class="TextHighlight2">Sampling</span> is the process that can be used to
+convert the continuous time signal to discrete time signal. If a few conditions
+are met, then representing and recovering a continuous time signal from its
+samples will be reliable and the <span class="TextHighlight2">Sampling
+Theorem</span> specifies these conditions. </p>
+
+<p align="left">In relevance to the <span
+class="TextHighlight">Con2Dis</span> tool, we base our discussions on
+Sinusoidal signals. Since, most of real-world signals can be represented using
+Sinusoidal signals, concepts discussed here can be applied and extended to all
+kinds of signals. In this section, we discuss the sampling theorem, requirements
+specified by it and the consequences if the theorem is not satisfied.</p>
+
+<p align="center"><img src="images/ctod_block.png"></p>
+<p align="left">An ideal system that converts Continuous-time signal to
+discrete-time signal is as shown in the figure. Consider a continuous time
+sinusoidal signal of the form, </p> 
+
+<p align="center"><img src="images/ip_eqn.png"></p>
+ where, <font face="symbol">w</font><sub>0</sub> is the radian frequency (rad)
+ of the signal and f<sub>0</sub> is the cyclic frequency (Hz) of the signal.
+<p align="left">The corresponding discrete time signal x[n] can be obtained by
+sampling x(t), using the ideal system shown above. Hence, x[n] is of the
+form,</p> 
+<p align="center"><img src="images/ip_dis_eqn.png"></p>
+
+<p align="left">
+Thus the sampling operation can be seen as a transformation from Continuous-time
+to discrete-time. The system used here is only a mathematical idealization. In
+real-world, this needs to be implemented using an A/D converter that has
+quantization and jitter problems. We are not concerned about these issues in our
+discussion here.</p>
+
+<p align="left">The obtained samples, by themselves cannot be used to reliably
+reconstruct the original signal. This is because, more than one continuous-time
+signal can have the same discrete-time samples, depending on their own frequency
+and sampling frequency. So, in order to reconstruct the signal, we need to know
+the sampling rate of the signal. Another information that is of importance is
+how often do we need to sample the signal, to reliably reconstruct it. A
+condition for this is given by <span class="TextHighlight2">Shannon's Sampling
+Theorem</span>, which states that,</p>
+
+<blockquote>
+A continuous-time signal <code>x(t)</code> with frequencies no higher than
+f<sub>max</sub> can be reconstructed exactly from its samples
+<code>x[n]=x(nT<sub>s</sub>)</code>, if the samples are taken at a rate
+<code>f<sub>s</sub>=1/T<sub>s</sub></code> that is greater than <code>2f<sub>max</sub></code>.
+</blockquote>
+
+<p align="left">f<sub>s</sub> is called the <span
+class="TextHighlight2">sampling rate</span> and 2f<sub>max</sub> 
+is called the <span class="TextHighlight2">Nyquist Rate</span>. So, from
+Sampling theorem, the minimum required sampling rate should be greater than the
+Nyquist Rate, for reconstructing the original signal.</p>
+
+<p align="left">We need to examine the case when this condition is not met,
+i.e.,What happens if we do not sample fast-enough ? We can consider the
+sinusoidal case and see the effect of sampling rate. We begin with a time-domain
+approach and later adopt a frequency domain approach, to see the effects of
+sampling rate selection. Consider another sinusoidal signal, whose frequency is
+f<sub>0</sub>+ <strong><em>l</em></strong> f<sub>s</sub>, which can be
+represented as,
+
+<p align="center"><img src="images/alias_eqn.png"></p>
+
+<p align="left">where f<sub>0</sub> is the frequency of the previuos signal
+given in Eq.1b and <strong><em>l</em></strong> is an integer. If this signal
+is sampled at the same rate as the original signal at a rate f<sub>s</sub>, it
+can be shown that the discrete samples y[n] of the new signal and x[n] of the
+old signal are the same.</p>
+<p align="center"><img src="images/alias_dis_eqn.png"></p>
+
+<p align="left">Thus, signals with frequencies
+f<sub>0</sub>+ <strong><em>l</em></strong>f<sub>s</sub> 
+with different integer values of '<strong><em>l</em></strong>' will have the
+same samples. By just looking at the samples, the exact signal cannot be
+identified, the frequencies
+f<sub>0</sub>+<strong><em>l</em></strong>f<sub>s</sub> are called 'aliases' of
+the frequency f<sub>0</sub>, with respect to the sampling frequency
+f<sub>s</sub>. Similarly, signals with frequency -f<sub>0</sub>+
+<strong><em>l</em></strong>f<sub>s</sub> will also have the samples as x[n] when
+sampled at sampling frequency f<sub>s</sub>. These are also called <span
+class="TextHighlight2">aliases</span> of the original signal with frequency
+f<sub>0</sub>. Our task then, is to correctly identify and reconstruct the
+original signal. To get a better understanding of these signals, sampling
+process and reconstruction we next take a frequency domain approach.</p>
+
+<p align="left">A frequency spectrum view of the above signals will give better
+insight into the frequency of the signal and the corresponding aliases. As
+suggested by Sampling Theorem, if the signal is sampled at a frequency greater
+than twice the signal frequency, problems due to aliasing can be avoided. In
+this case the original signal frequency f<sub>0</sub> lies within the range 0
+and f<sub>s</sub> /2. Similarly, the symmetric component -f<sub>0</sub> lies
+within the range 0 and -f<sub>s</sub> /2. So, if we use the components that lie
+in the range -f<sub>s</sub>/2 and +f<sub>s</sub>/2, the original signal can be
+reconstructed.</p>
+
+<p align="left">If on the other hand, the signal is sampled at a rate
+f<sub>s</sub> <font face="symbol"> &lt </font> f<sub>0</sub>, then aliasing
+occurs. i.e the original signal cannot be reconstructed from the frequency
+components in the range f<sub>s</sub>/2 and +f<sub>s</sub>/2. This is because;
+the frequency component in the specified range corresponds to a signal of much
+lower frequency f<sub>0</sub>-f<sub>s</sub>. The original frequency component
+f<sub>0</sub> lies outside the range -f<sub>s</sub>/2 to +f<sub>s</sub>/2 .</p>
+
+<p align="left">Both these cases are illustrated in the example given below.</p>
+
+<p align="left">So far, we have discussed the process of converting Continuous
+time signal to a Discrete time signal. In the next section, we give a brief
+introduction to the process of reconstruction, i.e., conversion from Discrete to
+Continuous time signal.</p>
+
+<p align="left">
+<strong>Discrete-Continuous time conversion: (Reconstruction)</strong><br>
+
+<p align="left">
+In the previous sections, we have considered the transformation of continuous
+time signals into discrete time signals. In this section, we consider the
+reverse process. This is referred as 'Reconstruction'.  If the sampled sequence
+was obtained by sampling at a rate specified by sampling theorem (f<sub>0</sub>
+< f<sub>s</sub>/2), then we should be able to reconstruct the original
+signal. For the simple case of sinusoid signals, reconstruction is just
+substituting n by f<sub>s</sub>t. If on the other hand f<sub>0</sub> >
+f<sub>s</sub>/2, then the reconstructed signal is an alias of the original
+signal. An ideal D-C converter is as shown in the figure.</p>
+<p align="center"><img src="images/dtoc_block.png"></p>
+
+<p align="left">In the general case, reconstruction is achieved through
+interpolation. The general form of reconstruction by D-C converters is given
+as,<br> 
+<p align="center"><img src="images/recons_eqn.png"></p>
+
+where, p(t) is the pulse shape of the D-C (Digital to Continuous) converter. The
+pulse can be either a square pulse, triangular pulse or 'sinc'. As seen from the
+equation, the output signal is obtained by adding time-shifted pulses at the
+instants specified by the discrete samples obtained by sampling. Each term
+y[n]p(t-nT<sub>s</sub>) in the sum will create a region of amplitude y[n]
+centered at t=nT<sub>s</sub>. At points in between two samples, components from
+many pulses add up to provide the intermediate values of y(t). For ideal
+reconstruction, a 'sinc' pulse can be used, because of its infinite length and
+narrow bandwidth. The 'sinc' pulse is represented by the equation,<br> 
+<p align="center"><img src="images/sinc_eqn.png"></p>
+
+If sampling theorem was satisfied during the sampling process, then a sinusoid
+can be reconstructed exactly using a 'sinc' pulse. </p>
+
+<p align="left">In the case of the <span class="TextHighlight">Con2Dis</span>
+tool, we consider sinusoids and hence reconstruction is by replacing
+<code>n</code> with <code>f<sub>s</sub>t</code>. If aliasing had occurred, then
+the aliased frequency is used in reconstruction, and the original signal is
+lost. </p>
+
+In this section we have a given a brief introduction to the concept of sampling
+and reconstruction, in relevance to the Continuous-Discrete Sampling
+tool. Please refer to standard texts, for a more detailed explanation on these
+concepts. Next, section discusses some examples, to illustrate concepts
+discussed in this section.
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<a name="Examples">
+<div class="SubHeading"> 
+    Examples
+</div></a>
+
+<p align="left"> In this section, we provide examples that illustrate the use of
+<span class="TextHighlight">Con2Dis</span> tool in visualizing effects of
+sampling.</p>
+
+<strong>Oversampling: </strong><br>
+<p align="left">In this case, we sample the input signal at a rate higher than
+the Nyquist rate, to avoid aliasing. The input signal frequency is 12Hz and has
+zero phase. By sampling theorem, we require a sampling rate greater than
+2*f<sub>0</sub> i.e., 24Hz. The maximum allowable sampling frequency in the tool
+is 30Hz and so we set that as the sampling frequency. Once the signal and
+sampling frequency have been set, you should be able to identify them from the
+spectrum plots. </p>
+
+<p align="left">In the <strong>Continuous Time Spectrum</strong> plot at the
+bottom left, the 'yellow' band indicates the range of -f<sub>s</sub>/2 to
++f<sub>s</sub>/2. The 'blue' stem plots indicate the signal frequency. So, from
+this plot we can see that the sampling frequency is more than twice the input
+frequency. This means there should be no Aliasing.</p>
+
+<p align="left">In the Discrete Time plot, after sampling, the normalized
+frequency of the signal is f/f<sub>s</sub>. Corresponding to the input signal
+frequency and sampling frequency, there are other aliased frequencies
+f<sub>0</sub>+ <strong><em>l</em></strong>f<sub>s</sub> for
+<strong><em>l</em></strong>=1,2... These are indicated in the <strong>Discrete
+Time Spectrum</strong> as 'red' stem plots. As can be seen from the spectrum,
+these aliases are outside the -f<sub>s</sub>/2 to +f<sub>s</sub>/2 range. Hence,
+these aliased frequencies will not be used in reconstructing the original
+signal.</p>
+
+<p align="left">The parameters used in this example are, <br><blockquote>
+&nbsp;<em>Input signal frequency: f<sub>0</sub> </em>= 12.0 Hz,
+&nbsp;<em>Minimum required sampling frequency </em>> 24.0 Hz <br> 
+&nbsp;<em>Sampling frequency: f<sub>s</sub></em> = 30.0 Hz,
+&nbsp;<em>Discrete domain (Normalized) frequency: f<sub>0</sub> / f<sub>s</sub>
+</em>= 0.40<br>
+&nbsp;<em>Output signal frequency</em> = 12.0 Hz. (No Aliasing)
+</blockquote>
+<p align="center"><a href="images/oversampled.png" target="_blank"><img src="images/oversampled.png" width="600px"></a></p>
+
+<p align="left">The plots on the top and bottom right of the figure, display the
+reconstructed output signal and its spectrum. Here, ideal reconstruction was
+used and further since the input was a sinusoid, we can directly substitute n
+with f<sub>s</sub>t.</p> 
+
+<strong>Under-Sampling:</strong> <br>
+<p align="left"> Let us next consider the case where the input signal is sampled
+at a rate less than the Nyquist rate (2f<sub>0</sub>). i.e., f<sub>s</sub> can
+be either less than f<sub>0</sub> or less than 2f<sub>0</sub>. We use the same
+input signal frequency of 12Hz. If the input is sampled at 14Hz, which is less
+than the Nyquist rate, then the output signal is aliased. From the
+<strong>Continuous Time Spectrum</strong>, it can be seen that the input signal
+frequency component lies outside the frequency range -f<sub>s</sub>/2 to
++f<sub>s</sub>/2 (-7 to +7).</p>
+
+<p align="left">In the following illustration, Normalized frequencies are used,
+as the Con2Dis tool, uses this in labeling the <strong>Discrete Time
+spectrum</strong>. As seen from the Discrete time spectrum, instead of the
+original frequency f<sub>0</sub>/f<sub>s</sub>(.86, -.86), aliases
+f<sub>0</sub>-f<sub>s</sub>/f<sub>s</sub> (-.14),
+f<sub>s</sub>-f<sub>0</sub>/f<sub>s</sub> (.14) 
+of the input frequency lie within the range. This aliases corresponds to a
+frequency of 2Hz. So, when this component is used in the reconstruction, the
+output signal is not the original signal. Instead its an alias of the original
+signal. Thus, we see that the original signal is lost if the sampling rate is
+less than that specified by the Sampling theorem.</p>
+
+<p align="left">The parameters used in this example are, <br><blockquote>
+&nbsp;<em>Input signal frequency: f<sub>0</sub> </em>= 12.0 Hz,
+&nbsp;<em>Minimum required sampling frequency </em>> 24.0 Hz <br> 
+&nbsp;<em>Sampling frequency: f<sub>s</sub></em> = 14.0 Hz,
+&nbsp;<em>Discrete domain (Normalized) frequency: f<sub>0</sub> / f<sub>s</sub>
+</em>= 0.86<br> 
+&nbsp;<em>Aliased frequency (Normalized) = |f<sub>0</sub>-f<sub>s</sub> /
+f<sub>s</sub></em>| = 0.14,
+&nbsp;<em>Output signal frequency</em> = 2.0 Hz. (Aliased)
+</blockquote>
+
+<p align="center"><a href="images/undersample.png" target="_blank"><img src="images/undersample.png" width="600px"></a></p>
+<p align="left">Please, try other examples and scenarios using the
+<span class="TextHighligh">Con2Dis</span> tool, to become familiar with sampling
+and related concepts.</p> 
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+</body>
+</html>

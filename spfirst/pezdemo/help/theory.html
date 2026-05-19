@@ -1,0 +1,252 @@
+<html>
+
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<div class="Entry">
+<ol>
+  <li><a href="#Theory/Equations"><strong>Pole-Zero plot -
+  Theory/Equations</strong></a></li> 
+  <li><a href="#Examples"><strong>Examples</strong></a></li>
+</ol>
+</div>
+
+<a name="Theory/Equations">
+<div class="SubHeading"> &nbsp; 
+    Pole-Zero plot - Theory/Equations
+</div></a>
+
+<p align="left">
+<strong>Pole-Zero plot and its relation to Frequency domain:</strong><br>
+<p align="left">
+Pole-Zero plot is an important tool, which helps us to relate the Frequency
+domain and Z-domain representation of a system. Understanding this relation will
+help in interpreting results in either domain. It also helps in determining
+stability of a system, given its transfer function H(z).
+
+<p align="left">
+The Fourier transform of a sequence is given as </p>
+<p align="center"><img src="images/ft_eqn1.png" alt="fourier transform"
+align="center"><br> 
+<p align="left">and Z-transform is given as</p>
+<p align="center"><img src="images/zt_eqn1.png" alt="z-transform"></p>
+
+<p align="left">
+There is a close relationship between these equations. If we replace <em>z</em>
+with <em>e</em><sup><em> jw</em></sup>, then the z-transform reduces to the
+Fourier transform. When it exists, the Fourier transform is simply <em>X(z)</em>
+with <em>z=e<sup> jw</sup></em>.i.e for <em>|z| = 1</em>, the z-transform
+corresponds to the Fourier transform. If instead we express <em>z</em> in polar
+form as </p> 
+<p align="center"><img src="images/z_w_eqn.png" alt="Frequency & z domain"></p>
+
+<p align="left">
+This is the Fourier transform of the product of the original sequence
+<em>x[n]</em> and the exponential sequence <em>r<sup> -n</sup></em>. For, <em>r
+= 1</em>, this is the Fourier transform. So, it is possible for the z-transform
+to converge even if the Fourier transform does not. </p>
+ 
+<p align="left">On a similar line, the Fourier transform and z-transform of a
+system can be given as </p> 
+<p align="center"><img src="images/h_ft_z_eqn.png" alt="system FT"></p>
+<p align="center"><img src="images/h_ft_z_eqn2.png" alt="system
+z-transform"></p> 
+ 
+<p align="left">
+<strong>Visualizing Pole-Zero plot:</strong><br>
+
+<p align="left">
+Since the z-transform is a function of a complex variable, it is convenient to
+describe and interpret it using the complex z-plane. In the z-plane, the contour
+corresponding to <em>|z| = 1</em> is a circle of unit radius. This contour is
+referred to as the <strong>Unit Circle</strong>. Also, the z-transform is most
+useful when the infinite sum can be expressed as a simple mathematical
+formula. One important form of representation is to represent it as a rational
+function inside the <strong>Region Of Convergence</strong>.,i.e </p> 
+
+<p align="center"><img src="images/rational_tr_fcn.png" alt="rational TF"></p>
+
+<p align="left">where, the numerator and denominator are polynomials in
+<em>z</em>. The values of <em>z</em> for which <em>H(z) = 0</em> are called the
+zeros of <em>H(z)</em>, and the values of <em>z</em> for which <em>H(z)</em> is
+<font face="symbol">&#165</font> are referred to as the poles of H(z). In other
+words, the zeros are the roots of the numerator polynomial and the poles of H(z)
+for finite values of z are the roots of the denominator polynomial. A plot of
+Pole and Zeros of a system on the z-plane is called a <strong>Pole-Zero
+plot</strong>. Usually, a Zero is represented by a 'o'(small-circle) and a pole
+by a 'x'(cross). Since <em>H(z)</em> evaluated on the unit-circle gives the
+frequency response of a system, it is also shown for reference in a pole-zero
+plot. The pole-zero GUI also uses this convention. 
+<p align="left">
+The pole-zero plot gives us a convenient way of visualizing the relationship
+between the Frequency domain and Z-domain. The frequency response <em>H(e<sup>
+jw </sup>)</em> is obtained from the transfer function <em>H(z)</em>, by
+evaluating the transfer function at specific values of <em>z = e<sup>
+jw</sup></em>. Since, the frequency response is periodic with period 2<font
+face="symbol">p</font>, we need to evaluate it over one period, such as -<font
+face="symbol">p</font> < <font face="symbol">w</font> < <font
+face="symbol">p</font>. If we substitute these values of <font
+face="symbol">w</font> in <em>z= e <sup> jw</sup></em>, values of <em>z</em> lie
+on the unit circle and range from <em>z = -1</em> all the way around and back to
+the point <em>z = -1</em>. This is shown in Figure 1 below. From this the
+periodicity of 2<font face="symbol">p</font> in frequency domain corresponds to
+moving through an angle of 2<font face="symbol">p</font> on the unit circle.
+
+<p align="center"><img src="images/pzplot.png" alt="Complex z-plane"><br>Figure
+1</p> 
+
+<p align="left">
+<strong>Interpreting Pole-Zero plot:</strong><br>
+
+<p align="left">
+In the case of FIR filters, the location of zeros of <em>H(z)</em> can be used
+to design filters to null out specific frequencies. This can be done by placing
+zeros on the unit circle at locations corresponding to the frequencies where the
+gain needs to be 0.
+
+<p align="left">
+In the case of IIR filters, the Pole-Zero plot can be used to determine
+stability. This can be done with some knowledge about the region of convergence
+and frequency response. For a given sequence, the set of values of <em>z</em>
+for which the z-transform converges is called the <strong>Region of Convergence
+(ROC)</strong>. Using the definition of Z-transform given earlier in this
+section, the condition for convergence is as given below.<br>
+<p align="center"><img src="images/zt_summable.png" alt="convergence in
+zdomain">
+
+<p align="left">
+So, as stated earlier, the z-transform might converge even if the Fourier
+transform does not converge. Because from the equations above, depending on the
+value of <em>r</em> the z-transform might converge while the Fourier transform
+might not still converge. Since, for Fourier transform to converge, we need the
+following condition.</p>
+<p align="center"><img src="images/ft_converge.png" alt="convergence in
+zdomain">
+<p align="left">
+Further, the convergence is dependent only on the magnitude of <em>z</em> i.e
+<em>|z|</em>. Thus, if <em>z = z1</em> is in the ROC, then all values of
+<em>z</em> on the circle defined by <em>|z| = |z1|</em> will also be in the
+ROC. As a result, the ROC will consist of a ring in the z-plane centered about
+the origin. The ROC might extend outward to <font face="symbol">&#165</font> or
+inward to origin depending on the sequence. If the ROC includes the Unit circle,
+this implies convergence of z-transform for <em>|z| = 1</em> or, equivalently,
+the Fourier transform converges. The ROC cannot contain a Pole, since at a pole
+H(z) is infinite by definition and hence does not converge.  
+
+<p align="left">
+For a causal system (impulse response <em>h(n)</em> is zero for <em>n< 0</em>),
+the ROC is the exterior of a circle, including <font
+face="symbol">&#165</font>. Further, for a system to be stable, its impulse
+response must be absolutely summable. This implies the Fourier transform
+converges, and consequently, the ROC of <em>H(z)</em> must include the unit
+circle. Combining these two properties, a causal LTI system with a rational
+system function <em>H(z)</em> is stable if and only if all of the poles of
+<em>H(z)</em> lie inside the unit circle.i.e., the magnitude of poles must be
+less than 1. Thus, stability of a IIR system can be determined by looking at the
+pole location.  
+
+<p align="left"> This section has a given a brief description of Pole-Zero plot
+and its use in identifying system behavior. The explanation here pertains mostly
+to the Pole-Zero GUI, so please refer to standard texts for a more complete
+description. The next section, provides examples to link this theory with the
+Pole-Zero GUI. 
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<p align="left">
+<a name="Examples">
+<div class="SubHeading"> &nbsp; 
+     Examples
+</div></a>
+
+<p align="left">
+We will now look at 2 examples, to see how the Pole-Zero GUI can be used in
+visualizing the relation between frequency and z-domain. <br> 
+
+<p align="left">
+<strong>Example 1: </strong><br>
+As a first example, we will determine the filter coefficients of a FIR filter,
+that will filter out specific sinusoidal frequency. We plan to achieve this
+using zeros of the system alone. We can make use of the fact that, signals of
+the form <em>z<sup> n</sup></em> can be removed by placing the zeros in z-plane
+appropriately. A sinusoidal signal of frequency <font
+face="symbol">w</font><sub>0</sub> can be represented as,<br>  
+<p align="center"><img src="images/fir_ex_eqn1.png" alt="input signal"></p>
+<p align="left">In order to filter out this component from the input signal, we
+have to filter out two signals of the form <em>z1 <sup> n</sup>  and z2<sup>
+n</sup></em>. The required second order filter will have zeros at <em>z1 =
+exp(jw<sub>0</sub>)</em> and <em>z2 = exp( -jw<sub>0</sub>)</em>, can be
+obtained by cascading first-order filters to filter each component. The
+first-order filters have a system function of the form
+<p align="center"><img src="images/fir_ex_eqn2.png" alt="input signal"></p>
+<p align="left">
+where, <strong><em>Z<sub>i</sub></em></strong> is the location of the zero for
+that system. Using this the combined system function is given below. In our
+case, <font face="symbol">w</font><sub>0</sub>=<font face="symbol">p</font>/3
+and the transfer function gets modified accordingly. <br><p align="center"><img
+src="images/fir_ex_eqn3.png" alt="input signal"></p>
+
+<p align="left">
+
+From the frequency response in Figure 2, we can see the effect of zeros at
+<em>0.5+j0.866</em> and <em>0.5-j0.866</em>. <em>H(e<sup> jw</sup>)</em> becomes
+zero at <font face="symbol">w</font>=<font face="symbol">p</font>/3 and 
+-<font face="symbol">p</font>/3.  
+<p align="center">
+<img src="images/firplot1.png" alt="FIR z-plane"><br>Figure 2</p>
+
+<p align="left">
+
+<strong>Example 2: </strong><br>
+The 2nd example, shows how a IIR filter's system function and its stability can
+be determined by inspecting its poles. Consider the 1st order system transfer
+function </p> 
+<p align="center"><img src="images/iir_ex_eqn1.png" alt="IIR transfer fcn"></p>
+<p align="left">The corresponding impulse response is given as,</p>
+<p align="center"><img src="images/imp_res_eqn.png" alt="IIR imp res"></p>
+<p align="left">From, this we see that if <em>|a1| > 1</em>, then the system
+becomes unstable and if <em>|a1| < 1</em>, then the system remains stable. Lets
+use the Pole-Zero GUI to see if this can be visualized.  
+<p align="left">In the case, where <em>|a1| > 1</em>, consider a transfer
+function <br> 
+
+<p align="center"><img src="images/iir_ex_eqn2.png" alt="Unstable IIR"><br>
+
+<p align="left">
+To do this using the pole-zero GUI, we can enter the filter coefficients, using
+the dialog box. Figure 3 shows the pole-zero plots for an unstable
+system.
+<p align="center"><img src="images/iirplot1.png" alt="IIR z-plane"><br>
+Figure 3</p>
+<p align="left">
+In order to relate the Pole-Zero plot to the frequency response, the system
+needs to be stable. Since, it is not stable for this case, we cannot use this to
+determine the frequency response.</p>
+<p align="left">Similarly, we can consider a stable system, which can be
+represented as <br>
+<p align="center"><img src="images/iir_ex_eqn3.png" alt="stable IIR"></p>
+<p align="left">
+In this case the system remains stable as can be seen from the Pole-zero GUI in
+Figure 4.
+<p align="left">
+Since the system in stable, we can relate the pole-zero plot to the frequency
+response of the system. A stable system is that, which produces a bounded
+output, when the input to the system is bounded. 
+<p align="center"><img src="images/iirplot2.png" alt="IIR z-plane"><br>
+Figure 4</p>
+In this section, we provided 2 simple examples which show, the use of Pole-Zero
+plot in determining filter coefficients and system stability. Similarly, the
+Pole-Zero GUI can be used to gain further insight into other system behavior,
+and can be a very useful tool. Please refer to standard texts for further
+interpretations and try to relate them using the Pole-Zero GUI. 
+ 
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+</body>
+</html>

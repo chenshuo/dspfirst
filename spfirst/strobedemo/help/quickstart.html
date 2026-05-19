@@ -1,0 +1,70 @@
+<HTML>
+
+<HEAD>
+<TITLE> Quick Start </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Quick Start </DIV>
+<DIV class="Entry">
+
+<p>Hopefully, a person could start using the MATLAB Strobe Demo
+tool without any need to read these help files. Features were designed to be
+intuitive and familiar to those with basic computer experience.</p>
+
+<p>For those who like to read the manual, this section will give you the minimum
+you need to get started and be comfortable with the use of the GUI.</p>
+
+<p>First, if you have not already done so, follow the information given in the
+<SPAN class="TextHighlight">Installation</SPAN> section to install and start the
+MATLAB Strobe Demo tool.</p>
+
+<p>
+
+<ol>
+  <li>To begin with, set the motor's frequency, this will determine the angular frequency of the arrow.
+  You can set the frequency in <em>Hz</em> by using the <strong>Motor Frequency (Hz)</strong> edit-box.
+  Another way to set the motor's frequency is, you can use the <strong>Motor rotations/min</strong> 
+  slider/edit-box to set the motor frequency in revolutions per minute. You should be able to see
+  change in <strong>Samples</strong> plot and the corresponding <strong>Spectrums</strong>.</li>
+
+  <li>You can also set the strobe's flashing rate at which the disk's arrow is sampled. This can be done
+  using the <strong>Flash Frequency (Hz)</strong> edit-box at bottom-right of the GUI, which sets the
+  sampling frequency in <em>Hz</em>.  The flashing rate can be alternatively specified in flashes per minute
+  by using the <strong>Flashes/min</strong> slider/edit-box.</li>
+  
+<li>Once the motor frequency and the strobe's flashing frequency has been set, you can use keyboard
+  keys <strong>k</strong> and <strong>l</strong> to change the flashing rate and observe changes made to
+  <strong>Samples</strong> and <strong>Spectrums</strong> plots. If the flashing frequency selected is 
+  less than the Nyquist rate (2*Motor Frequency), then you will see the text <span         class="TextHighlight">ALIASING!</span> displayed in the <strong>Discrete Time Spectrum</strong> plot, 
+  indicating aliasing.</li>
+
+  <li>You can also toggle the <strong>Fine</strong> radio button to change the step-size when advancing 
+  the sliders.</li>
+
+  <li>Another useful feature of the Demo is its color-coded plots. 
+  <UL>
+    <li>If the frequency of the motor lies within the range indicated by
+    the 'yellow' strip, then the arrow is not aliased.</li>
+    <li>Un-aliased frequency components are marked in 'blue' and the aliased
+    components are marked in 'red', in the spectrum plots.</li>
+    <li>When Aliasing occurs, such that the rotation of the arrow appears to reverse its
+    direction, then the text <span class="TextHighlight">ALIASING!</span> is displayed 
+    in the <strong>Discrete Time Spectrum</strong> plot axis.</li>
+  </UL>
+  </li>
+</ol>
+<p align="left">That's it!&nbsp; You now understand the basics of how to use the
+MATLAB Strobe Demo tool; For a more in depth description of the theory behind 
+Strobe Demonstration see the <SPAN
+class="TextHighlight">Theory</SPAN> section. The <SPAN
+class="TextHighlight">Controls</SPAN> and <SPAN
+class="TextHighlight">Menus</SPAN> sections provide a description of the various
+elements in the user interface.</p>
+
+</DIV>
+
+</BODY>
+</HTML>

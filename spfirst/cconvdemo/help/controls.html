@@ -1,0 +1,154 @@
+<HTML>
+
+<HEAD>
+<TITLE> Controls </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Controls </DIV>
+
+<ol>
+  <li><a href="#Get x(t) | h(t)"><strong>Get x(t) | h(t)</strong></a></li>
+  <li><a href="#Flip x(t) | h(t)"><strong>Flip x(t) | h(t)</strong></a></li>
+  <li><a href="#Index Label:&nbsp; t ="><strong>Index Label:&nbsp; t = #</strong></a></li>
+  <li><a href="#Plot Box:  Input"><strong>Plot Box:&nbsp; Input</strong></a></li>
+  <li><a href="#Plot Box:  Impulse Response"><strong>Plot Box:&nbsp; Impulse
+    Response</strong></a></li>
+  <li><a href="#Plot Box:  Signal / Flipped Signal"><strong>Plot Box:&nbsp; Signal
+    / Flipped Signal</strong></a></li>
+  <li><a href="#Plot Box:  Multiplication"><strong>Plot Box:&nbsp; Multiplication</strong></a></li>
+  <li><a href="#Plot Box:  Output"><strong>Plot Box:&nbsp; Output</strong></a></li>
+  <li><a href="#Close"><strong>Close</strong></a></li>
+  <li><a href="#Help"><strong>Help</strong></a></li>
+</ol>
+
+
+<A name="Get x(t) | h(t)">
+<DIV class="SubHeading"> &nbsp;
+     Get x(t) | h(t)
+</DIV>
+</A>
+
+<p>These buttons bring up a new window which allow you to pick x(t) and h(t).&nbsp; A list
+box at the top provides a limited choice of signals.&nbsp; If one wishes, the signal's
+parameters (e.g., length, amplitude, etc...) can be changed with the controls along the
+right edge of the window.&nbsp; When satisfied clicking the <strong>OK</strong> button
+imports the chosen signal into the main window.<br>
+<br>
+<small><em>Note:&nbsp; The signal may not be fully displayed when changing the signal
+parameters.&nbsp; To replot the signal, click inside the plot box.</em></small></p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Flip x(t) | h(t)">
+<DIV class="SubHeading"> &nbsp;
+     Flip x(t) | h(t)
+</DIV>
+</A>
+
+<p>These radio buttons allow you to change which signal is being flipped.&nbsp; Flipping a
+signal means reflecting the signal to the other side of the origin.<br>
+<br>
+<small><em>Note:&nbsp; The current time indicates the sliding location of the flipped signal.&nbsp; For example, the default starting position is to plot the signal with the <strong>t</strong> =&nbsp; -2.&nbsp; Thus, whatever value of the flipped impulse response was at the origin is shifted to <strong>t</strong> = -2.</em></small></p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Index Label:&nbsp; t =">
+<DIV class="SubHeading"> &nbsp;
+     Index Label:&nbsp; t = #
+</DIV>
+</A>
+
+<p>There are two labels for the current time.&nbsp; Dragging these with the mouse will change the value of the current time.&nbsp; The current time can also be changed by using the numeric 4 and 6 keys.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Input">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp; Input
+</DIV>
+</A>
+
+<p>This plot displays the <strong>Input</strong> signal imported with the <strong>Get x(t)</strong>
+button dialog box.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Impulse Response">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp; Impulse Response
+</DIV>
+</A>
+
+<p>This plot displays the <strong>Impulse Response</strong> imported with the <strong>Get
+h(t)</strong> button dialog box.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Signal / Flipped Signal">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp; Signal / Flipped Signal
+</DIV>
+</A>
+
+<p>This is a plot of two signals.&nbsp; The first signal labeled <SPAN class="TextHighlight2">Signal</SPAN>
+is either the <strong>Input</strong> signal or the <strong>Impulse Response</strong>
+depending on the settings of the <strong>Flip x(t) | h(t)</strong> radio buttons. &nbsp;
+Accordingly, the signal being flipped is labeled <SPAN class="TextHighlight">Flipped
+Signal</SPAN>.&nbsp; Changing the current time will change the location of <SPAN class="TextHighlight">Flipped Signal</SPAN>.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Multiplication">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp; Multiplication
+</DIV>
+</A>
+
+<p>This plot shows the result of the multiplication of the two signals displayed in the <strong>Signal / Flipped Signal</strong> plot box.&nbsp; <font color="#000000">The plot changes depending on the relative overlap between the two signals.</font></p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Output">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box:&nbsp; Output
+</DIV>
+</A>
+
+<p>This plot shows the output of the linear convolution between the <strong>Input</strong>
+signal and the <strong>Impulse Response</strong>.<br>
+<br>
+Note that the value at the current time is highlighted in the <strong>Output</strong>
+plot.&nbsp; The numeric value (i.e., the value on the y axis) of this sample is determined
+by integrating the area within the <strong>multiplication</strong> plot.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Close">
+<DIV class="SubHeading"> &nbsp;
+     Close
+</DIV>
+</A>
+
+<p>Pressing this button will allow you to exit the MATLAB convolution tool.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Help">
+<DIV class="SubHeading"> &nbsp;
+     Help
+</DIV>
+</A>
+
+<p>Pressing this button will launch the host computer's internet browser and load the <code>index.html</code>
+page found in the <code>help</code> directory.&nbsp; If an error occurs you can manually
+load the page into your browser or navigate to <a href="http://www.ece.gatech.edu/users/jr/convolution/help/index.html">http://www.ece.gatech.edu/users/jr/convolution/help/index.html</a>
+where another copy of the help pages are found.&nbsp; (Of course, you probably know this
+or else you could not be reading this!)</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML>

@@ -1,0 +1,134 @@
+<HTML>
+
+<HEAD>
+<TITLE> Menus </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<A name="top">
+<DIV class="Heading">
+   Menus
+</DIV>
+</A>
+
+<p>
+<ol>
+<li><a href="#File: Export Coeffs: W"><strong>File: Export Coeffs: Workspace</strong></a></li>
+<li><a href="#File: Export Coeffs: F"><strong>File: Export Coeffs: File</strong></a></li>
+<li><a href="#File: Exit"><strong>File: Exit</strong></a></li>
+
+<li><a href="#Edit: Rad"><strong>Edit: Show Radian Frequency</strong></a></li>
+<li><a href="#Edit: Mag"><strong>Edit: Show Magnitude (dB)</strong></a></li>
+
+<li><a href="#Options: Line Width"><strong>Options: Line Width</strong></a></li>
+<li><a href="#Options: Zoom"><strong>Options: Zoom</strong></a></li>
+<li><a href="#Options: Grid"><strong>Options: Grid</strong></a></li>
+
+<li><a href="#Help: Help"><strong>Help: Help menu</strong></a></li>
+</ol>
+</p>
+
+<A name="File: Export Coeffs: W"></a>
+<DIV class="Subheading">
+  File: Export Coeffs: Workspace
+</DIV>
+</A>
+<p>
+This option helps to export filter coefficients to the MATLAB workspace.  The user is asked to enter the variable <em>names</em> under which the numerator and the denominator coefficients are to be save.</p>
+<p>
+Workspace variables can be determined by either opening MATLAB Workspace Viewer with command <code>'workspace'</code> or by using the command <code>'who'</code>.
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="File: Export Coeffs: F"></a>
+<DIV class="Subheading">
+  File: Export Coeffs: File
+</DIV>
+</A>
+<p>
+This option exports filter coefficients from the GUI into a MAT file. The default variables being exported are <code>'a'</code> and <code>'b'</code> for denominator and numerator filter coefficients respectively.
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="File: Exit"></a>
+<DIV class="Subheading">
+  File: Exit
+</DIV>
+</A>
+<p>
+This option can be used to gracefully exit from the Filter Design GUI.
+</p>
+
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Edit: Rad"></a>
+<DIV class="Subheading">
+  Edit: Show Radian Frequency
+</DIV>
+</A>
+
+<p> This option toggles the frequency from Hz to radian units.  The x-axis of the plot changes from Hz to radians, where F<sub>samp</sub> / 2 mark becomes &pi;.  The filter design parameters F<sub>passN</sub> and F<sub>stopN</sub> are displayed in radian units when this menu has been selected.</p>
+
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Edit: Mag"></a>
+<DIV class="Subheading">
+  Edit: Show Magnitude (dB)
+</DIV>
+</A>
+
+<p>This option toggles the filter magnitude from linear to dB.  When selected, the y-axis of the plot and also the filter design parameters R<sub>pass</sub> and R<sub>stop</sub> are displayed in dB units.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Line Width"></a>
+<DIV class="Subheading">
+  Options: Line Width
+</DIV>
+</A>
+
+<p>This option allows to interactively change the default line width used in all
+the plots.&nbsp; This feature was implemented as a lecture aid since thin lines are
+sometimes hard to see from the back of a room when projecting an image of a computer
+screen.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Zoom"></a>
+<DIV class="Subheading">
+  Options: Zoom
+</DIV>
+</A>
+
+<p> This option helps to 'Zoom in' within the Filter Design plot, to identify precise location of filter parameters.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Grid"></a>
+<DIV class="Subheading">
+  Options: Grid
+</DIV>
+</A>
+
+<p>This option will toggle the display of a grid.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Help: Help"></a>
+<DIV class="Subheading">
+  Help: Help
+</DIV>
+</A>
+
+<p> Selecting this option brings up the on-line help for the Filter Design GUI in an internet browser. i.e., this help document.
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML> 

@@ -1,0 +1,185 @@
+<HTML>
+
+<HEAD>
+<TITLE> Controls </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Controls </DIV>
+
+<ol>
+  <li><a href="#Choose the signal type"><strong>Choose the signal type
+  </strong></a></li>
+  <li><a href="#Choose the Signal Period"><strong>Choose the signal period
+  </strong></a></li>
+  <li><a href="#Number of Coefficients"><strong>Number of Coefficients
+  </strong></a></li>
+  <li><a href="#coeff"><strong>coeff/freq</strong></a></li>
+   <li><a href="#Plot Box: Waveform of the signal"><strong>Plot Box: Waveform of
+   the signal</strong>
+  </a></li>
+  <li><a href="#Plot Box: Magnitude spectrum"><strong>Plot Box: Magnitude
+  spectrum</strong></a></li>  
+  <li><a href="#Plot Box: Phase spectrum"><strong>Plot Box: Phase
+  spectrum</strong></a></li> 
+  <li><a href="#Plot Options: Set Line Width"><strong>Plot Options: Set Line
+  Width</strong></a></li>
+  <li><a href="#Help Menu: Contents"><strong>Help Menu:
+  Contents</strong></a></li> 
+  <li><a href="#Close"><strong>Close</strong></a></li>
+  <li><a href="#Help"><strong>Help</strong></a></li>
+</ol>
+
+<A name="Choose the signal type">
+<DIV class="SubHeading"> &nbsp;
+     Choose the signal type
+</DIV>
+</A>
+
+<p>This popupmenu can be used to select the input (for which we need to
+determine the Fourier series coefficients) from one of these types of signal
+<br>
+   <DIV class="ListIndent">
+     <ul>
+     <li>Square wave 
+     <li>Triangle
+     <li>Ramp (or) Sawtooth
+     <li>Full-Wave rectified Sine
+     <li>Full-Wave rectified Cosine
+     <li>Half-Wave rectified Sine
+     <li>Half-Wave rectified Cosine
+   </ul>
+   </DIV>
+
+</p>
+
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Choose the Signal Period">
+<DIV class="SubHeading">&nbsp;
+     Choose the Signal Period
+</DIV>
+</A>
+
+<p>This can be used to specify the Period (T0) of the signal, whose Fourier
+series coefficients are being computed. The range of allowed Periods are from 
+5 to 25 in steps of 1 second.</p> 
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Number of Coefficients">
+<DIV class="SubHeading">&nbsp;
+     Number of Coefficients
+</DIV>
+</A>
+
+<p>This may be used to set the number of Fourier Series coefficients that need
+to be used in synthesizing the selected signal. This can be done, by either
+using the slider or the edit box. The range of allowed coefficients in this GUI
+is 0 to 30.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="coeff">
+<DIV class="SubHeading">&nbsp;
+     coeff/freq
+</DIV>
+</A>
+
+<p>This can be used to switch between coefficients and frequency for the X-axis
+in Magnitude and Phase Spectrum plots.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Waveform of the signal">
+<DIV class="SubHeading">&nbsp;
+     Plot Box: Waveform of the signal
+</DIV>
+</A>
+
+<p>This plot displays the <SPAN class="TextHighlight1">original signal</SPAN>
+that needs to be synthesized in black. The <SPAN
+class="TextHighlight">synthesized output signal </SPAN>(using Fourier Series
+coefficients) in red is overlaid on top of the original signal. The synthesized
+signal updates itself upon change in the number of coefficients.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Magnitude spectrum">
+<DIV class="SubHeading"> &nbsp;
+     Plot Box: Magnitude spectrum
+</DIV>
+</A>
+
+<p>This plot displays the magnitude spectrum of the Fourier Series coefficients.
+It updates itself immediately to reflect any change in signal type or number of
+coefficients.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Phase spectrum">
+<DIV class="SubHeading">&nbsp;
+     Plot Box: Phase spectrum
+</DIV>
+</A>
+
+<p>This plot displays the phase spectrum of the Fourier Series coefficients. It
+updates itself immediately to reflect any change in signal type or number of
+coefficients.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Options: Set Line Width">
+<DIV class="SubHeading">&nbsp;
+     Plot Options: Set Line Width
+</DIV>
+</A>
+
+<p>This menu item enables adjustment of the plotting line widths of the signals
+and magnitude/phase spectrum of the Fourier coefficients. Use the sliding bar to
+change the current line width; the preview box above it will update to show the
+currently selected width. Pressing <SPAN class="TextHighlight2">OK</SPAN> will
+close the window and apply the new line width to the GUI.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Help Menu: Contents">
+<DIV class="SubHeading">&nbsp;
+     Help Menu: Contents
+</DIV>
+</A>
+
+<p>Selecting this menu option will launch the host computer's internet browser
+and to load the <code>index.html</code> page found in the <code>help</code>
+directory. If an error occurs you can manually load the page into your
+browser.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Close">
+<DIV class="SubHeading">&nbsp;
+     Close
+</DIV>
+</A>
+
+<p>Pressing this button will allow you to exit the Fourier demo tool.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Help">
+<DIV class="SubHeading">&nbsp;
+     Help
+</DIV>
+</A>
+
+<p>Pressing this button will launch the host computer's internet browser and to
+load the <code>index.html</code> page found in the <code>help</code> directory.
+If an error occurs you can manually load the page into your browser.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML>

@@ -1,0 +1,242 @@
+<HTML>
+
+<HEAD>
+<TITLE> Menus </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<A name="top">
+<DIV class="Heading">
+   Menus
+</DIV>
+</A>
+
+<p>
+<ol>
+<li><a href="#File: Import"><strong>File: Import</strong></a></li>
+<li><a href="#File: Export"><strong>File: Export</strong></a></li>
+<li><a href="#File: Print"><strong>File: Print</strong></a></li>
+<li><a href="#File: Exit"><strong>File: Exit</strong></a></li>
+
+<li><a href="#Edit: Add Pair"><strong>Edit: Add Pair</strong></a></li>
+<li><a href="#Edit: Remove"><strong>Edit: Remove</strong></a></li>
+<li><a href="#Edit: Add Repeatedly"><strong>Edit: Add Repeatedly</strong></a></li>
+<li><a href="#Edit: Add with Conjugate"><strong>Edit: Add with Conjugate</strong></a></li>
+
+<li><a href="#Options: Show Graph"><strong>Options: Show Graph</strong></a></li>
+<li><a href="#Options: Show Ray"><strong>Options: Show Ray</strong></a></li>
+<li><a href="#Options: Zoom"><strong>Options: Zoom</strong></a></li>
+<li><a href="#Options: Line Width"><strong>Options: Line Width</strong></a></li>
+<li><a href="#Options: Line Color"><strong>Options: Line Color</strong></a></li>
+<li><a href="#Options: Click Enable"><strong>Options: Click Enable</strong></a></li>
+<li><a href="#Options: Unlink Pairs/Quad"><strong>Options: Unlink Pairs/Quad</strong></a></li>
+<li><a href="#Options: Move on Real Line"><strong>Options: Move on Real Line</strong></a></li>
+
+<li><a href="#Help: Help"><strong>Help: Help menu</strong></a></li>
+</ol>
+</p>
+
+<A name="File: Import"></a>
+<DIV class="Subheading">
+  File: Import
+</DIV>
+</A>
+<p>
+<p> Selecting this option, brings up a dialog box, which helps you to import <strong>filter coefficients</strong> either from as values or from a (.mat) file.  Coefficients imported from a file should have the same variable names as  those indicated in the dialog box.  The default variable names are <code>z_values</code> and <code>p_values</code>.  Refer to <a href="#File: Import"><strong>File: Import</strong></a> for additional help.<br></p>
+<p>
+<!--Variable name: <code>savedata</code><br>
+<DIV class="ListIndent">
+<code>savedata{1}</code> - Gain, as a constant<br>
+<code>savedata{2}</code> - Location of poles, as a Row matrix. Can be empty if no poles.e.g.,<code>savedata{2} = [0.5-0.5i 0.5+.5i]</code><br>
+<code>savedata{3}</code> - Location of Zeros, as a Row matrix. Can be empty if no zeros.e.g.,<code>savedata{3} = [-.5-.1i]</code><br>
+<code>savedata{4}</code> - String representing location of poles, enclosed in parenthesis. Empty string if no poles.e.g.,<code>savedata{4}=['(.5,-.5)';'(.5,.5)']</code><br>
+<code>savedata{5}</code> - String representing location of zeros, enclosed in parenthesis. Empty string if no zeros.e.g.,<code>savedata{5}=['(-.5,-.1)']</code><br>
+<code>savedata{6}</code> - Line width used in plots, as a constant.<br>
+<code>savedata{7}</code> - Line color used in plots, as a colormap. See 'help colormap' for format of colormap.<br>
+<code>savedata{8}</code> - Square Matrix of size N (number of non-zero Poles/Zeros). If a pair of Poles/Zeros are linked (i.e conjugates), then the corresponding columns have a 1 at two locations.(column and row).e.g., <br>
+&nbsp;&nbsp;If the 2 poles need to be linked,
+<code>savedata{8}=[1 1 0;1 1 0;0 0 1];</code><br>
+&nbsp;&nbsp;If the 2 poles need not to be linked,
+<code>savedata{8}=[1 0 0;0 1 0;0 0 1];</code><br> 
+<code>savedata{9}</code> - String representing markers for Poles/Zeros. Default 'x','o'.e.g.,<code>savedata{9}=['x';'x';'o']</code><br>
+-->
+</DIV>
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="File: Export"></a>
+<DIV class="Subheading">
+  File: Export
+</DIV>
+</A>
+<p> Selecting this option, brings up a dialog box, which helps you to export <strong>filter coefficients</strong> either to a file (.mat) or to MATLAB`s workspace.  Both options allow the user to specify the variable names for poles and zeros and whether they should be saved as polynomial (<code>poly</code>) coefficients or as roots (<code>roots</code>).  The default variable names are <code>z_values</code> and <code>p_values</code>.<br></p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="File: Print"></a>
+<DIV class="Subheading">
+  File: Print
+</DIV>
+</A>
+<p>
+This option can be used to print the Pole-Zero GUI.
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="File: Exit"></a>
+<DIV class="Subheading">
+  File: Exit
+</DIV>
+</A>
+<p>
+This option can be used to gracefully exit from the Pole-Zero GUI.
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Edit: Add Pair"></a>
+<DIV class="Subheading">
+  Edit: Add Pair
+</DIV>
+</A>
+
+<p> This option can be used to add one or pair of Poles/Zeros or both. After selecting one of the 3 choices,<br>
+<li>Pole
+<li>Zero
+<li>Pole_Zero<br>
+<p>
+a mouse-click on the Pole-Zero plot will insert the corresponding pole/zero at that location. This option is linked to the <strong>'Add with Conjugate'</strong> setting. If the <strong>'Add with Conjugate'</strong> is set, pole/zeros are inserted  as conjugate pairs.<br>
+<p>
+<em> Note: While adding single pole/zero, additional zero/pole at Zero are automatically added to have a valid transfer function.</em>
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Edit: Remove"></a>
+<DIV class="Subheading">
+  Edit: Remove
+</DIV>
+</A>
+
+<p> Selecting this Option, removes poles/zeros or both from the Pole-Zero plot.</p>
+
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Edit: Add Repeatedly"></a>
+<DIV class="Subheading">
+  Edit: Add Repeatedly
+</DIV>
+</A>
+
+<p>If this option is set, Poles/Zeros can be added continuously .i.e.,continuous mouse-clicks on the Pole-Zero plot will add appropriate poles/zeros. If its not set, the <strong>'Add Pair'</strong> option has to be selected before each mouse-click to add poles/zeros</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Edit: Add with Conjugate"></a>
+<DIV class="Subheading">
+  Edit: Add with Conjugate
+</DIV>
+</A>
+
+<p>
+This option helps to add poles/zeros as conjugate pairs. If this is set, then poles/zeros added using the <strong>'Add Pair'</strong> menu are added as conjugate pairs.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Show Graph"></a>
+<DIV class="Subheading">
+  Options: Show Graph
+</DIV>
+</A>
+
+<p>Select this option to display the plots in the GUI as a separate figure window. The new figure window has the Pole-Zero, Impulse response, Magnitude and Phase plots.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Show Ray"></a>
+<DIV class="Subheading">
+  Options: Show Ray
+</DIV>
+</A>
+
+<p> Selecting this option, displays a red line ray within the Pole-Zero plot and as a red line within the Magnitude and Phase plots.  In the Pole-Zero plot, the ray can be interactively traversed around the unit-circle to indicate its corresponding angle in the Magnitude and Phase plots.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Zoom"></a>
+<DIV class="Subheading">
+  Options: Zoom
+</DIV>
+</A>
+
+<p> This option helps to 'Zoom in' within the Pole-Zero plot, to identify precise location of poles and zeros.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Line Width"></a>
+<DIV class="Subheading">
+  Options: Line Width
+</DIV>
+</A>
+
+<p> This option lets you to interactively set the width of the lines used in the plots within the GUI, including that of the markers for Poles/Zeros.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Line Color"></a>
+<DIV class="Subheading">
+  Options: Line Color
+</DIV>
+</A>
+
+<p> This option lets you to set the color of the lines used in the plots within the GUI, including that of the markers for Poles/Zeros. It can be set to Black, Blue, Red, Green or Yellow. Default color is Blue.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Click Enable"></a>
+<DIV class="Subheading">
+  Options: Click Enable
+</DIV>
+</A>
+
+<p> This option helps to select or move already exiting poles/zeros using the mouse, within the Pole-Zero plot. Select this option and then choose a pole/zero in the Pole-Zero plot. By holding the pole/zero using the mouse, you can move it to different locations. With the movement of poles/zeros, you should be able to see the corresponding variations in the system response.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Unlink Pairs/Quad"></a>
+<DIV class="Subheading">
+  Options: Unlink Pairs/Quad
+</DIV>
+</A>
+
+<p> This option helps to Unlink already existing pole/zero pairs. Use <strong>'Click Enable'</strong> to select a pole/zero pair. Then selecting <strong>'Unlink Pairs/Quad'</strong> will unlink the pair and will be converted to separate poles/zeros.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Options: Move on Real Line"></a>
+<DIV class="Subheading">
+  Options: Move on Real Line
+</DIV>
+</A>
+
+<p> Selecting this option, allows to place poles/zeros on the Real-axis and move them along the Real-axis.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Help: Help"></a>
+<DIV class="Subheading">
+  Help: Help
+</DIV>
+</A>
+
+<p> Selecting this option brings up the on-line help for the Pole-Zero GUI in an internet browser. i.e., this help document.
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML> 

@@ -1,0 +1,219 @@
+<HTML>
+
+<HEAD>
+<TITLE> Controls </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Controls </DIV>
+
+<ol>
+<li><a href="#Push Button: PP, ZZ, PZ"><strong>Push Button: PP, ZZ, PZ</strong></a></li>
+<li><a href="#Push Button: -P, -Z, -A"><strong>Push Button: -P, -Z, -A</strong></a></li>
+<li><a href="#Push Button: Add Repeatedly"><strong>Push Button: Add Repeatedly</strong></a></li>
+<li><a href="#Push Button: Add with Conjugate"><strong>Push Button: Add with Conjugate</strong></a></li>
+<li><a href="#Push Button: Zoom Enable"><strong>Push Button: Zoom Enable</strong></a></li>
+<li><a href="#Push Button: Click Enable"><strong>Push Button: Click Enable</strong></a></li>
+<li><a href="#Push Button: Unlink"><strong>Push Button: Unlink</strong></a></li>
+<li><a href="#Push Button: Filter Coefficients"><strong>Push Button: Filter Coefficients</strong></a></li>
+<li><a href="#Push Button: Show Graph"><strong>Push Button: Show Graph</strong></a></li>
+<li><a href="#Radio Button: Show Ray"><strong>Radio Button: Show Ray</strong></a></li>
+<li><a href="#Radio Button: Show Grid"><strong>Radio Button: Show Grid</strong></a></li>
+<li><a href="#Plot Box: Pole-Zero Plot"><strong> Plot Box: Pole-Zero Plot</strong></a></li>
+<li><a href="#Plot Box: Impulse Response"><strong>Plot Box: Impulse Response</strong></a></li>
+<li><a href="#Plot Box: Magnitude Response"><strong>Plot Box: Magnitude Response</strong></a></li>
+<li><a href="#Plot Box: Phase Response"><strong>Plot Box: Phase Response</strong></a></li>
+<li><a href="#List Box: Pole Location"><strong>List Box: Pole Location</strong></a></li>
+<li><a href="#List Box: Zero Location"><strong>List Box: Zero Location</strong></a></li>
+</ol>
+
+<A name="Push Button: PP, ZZ, PZ"></a>
+<DIV class="Subheading">
+     Push Button: PP, ZZ, PZ
+</DIV>
+</A>
+
+<p> This option can be used to add one or pair of Poles/Zeros or both by selecting one of the 3 push buttons,<br>
+<li><strong>PP</strong> - Pole
+<li><strong>ZZ</strong> - Zero
+<li><strong>PZ</strong> - Pole_Zero<br>
+A mouse-click on the Pole-Zero plot will insert the corresponding pole/zero at that location. This option is linked to the <strong>'Add with Conjugate'</strong> setting. If the <strong>'Add with Conjugate'</strong> is set, pole/zeros are inserted  as conjugate pairs. An equivalent way to do this is through the <strong>'Add Pair'</strong> in the <strong>'Edit'</strong> pull down menu.<br>
+<p>
+<em> Note: While adding single pole/zero, additional zero/pole at Zero are automatically added to have a valid transfer function.</em>
+</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: -P, -Z, -A"></a>
+<DIV class="Subheading">
+     Push Button: -P, -Z, -A
+</DIV>
+</A>
+
+<p> Clicking on one of these three push buttons will remove all poles/zeros or both depending on the push-button you select,
+<li><strong>-P</strong> - Removes all poles
+<li><strong>-Z</strong> - Removes all zeros
+<li><strong>-A</strong> - Removes all poles and zeros <br>
+An equivalent way to do this is, by using the <strong>'Remove'</strong> from the<strong>'Edit'</strong> pull down menu.
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: Add Repeatedly"></a>
+<DIV class="Subheading">
+     Push Button: Add Repeatedly
+</DIV>
+</A>
+<p>If this option is set, Poles/Zeros can be added continuously .i.e.,continuous mouse-clicks on the pole-zero plot will add appropriate poles/zeros. If its not set, one of the 3 push buttons <strong>PP</strong>,<strong>ZZ</strong>,<strong>PZ</strong> has to be selected before each mouse-click to add poles/zeros</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: Add with Conjugate"></a>
+<DIV class="Subheading">
+  Push Button: Add with Conjugate
+</DIV>
+</A>
+
+<p>
+This option helps to add poles/zeros as conjugate pairs. If this is set, then poles/zeros added using either the push buttons <strong>PP</strong>,<strong>ZZ</strong>,<strong>PZ</strong> or <strong>'Add Pair'</strong> menu, are added as conjugate pairs.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: Zoom Enable"></a>
+<DIV class="Subheading">
+  Push Button: Zoom Enable
+</DIV>
+</A>
+
+<p> This option helps to 'Zoom in' within the Pole-Zero plot, to identify precise location of poles and zeros.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: Click Enable"></a>
+<DIV class="Subheading">
+  Push Button: Click Enable
+</DIV>
+</A>
+
+<p> This option helps to select or move already exiting poles/zeros using the mouse, within the Pole-Zero plot. Select this option and then choose a pole/zero in the pole-zero plot. By holding the pole/zero using the mouse, you can move it to different locations. With the movement of poles/zeros, you should be able to see the corresponding variations in the system response.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: Unlink"></a>
+<DIV class="Subheading">
+  Push Button: Unlink
+</DIV>
+</A>
+
+<p> This option helps to Unlink already existing pole/zero pairs. Use <strong>'Click Enable'</strong> to select a pole/zero pair. Then selecting <strong>'Unlink'</strong> will unlink the pair and will be converted to separate poles/zeros.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: Filter Coefficients"></a>
+<DIV class="Subheading">
+  Push Button: Filter Coefficients
+</DIV>
+</A>
+
+<p> Selecting this option, brings up a dialog box, which helps you to enter the <strong>filter coefficients</strong>. The dialog box also has options to <strong>Import</strong> and <strong>Export</strong> filter coefficients in a MAT file.<br>
+The file for Import/Export has a variable <code>filter_co</code>. This is a cell array with 2 string entries for the <code>'a'</code> and <code>'b'</code> coefficients.</p>
+
+<DIV class="ListIndent">
+<code>filter_co{1}</code> - System denominator coefficients. <code>'a'</code><br>
+<code>filter_co{2}</code> - System numerator coefficients. <code>'b'<br></code>
+</DIV>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Push Button: Show Graph"></a>
+<DIV class="Subheading">
+  Push Button: Show Graph
+</DIV>
+</A>
+
+<p>Select this option to display the plots in the GUI as a separate figure window. The new figure window has the Pole-Zero, Impulse response, Magnitude and Phase plots.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+<A name="Radio Button: Show Ray"></a>
+<DIV class="Subheading">
+  Radio Button: Show Ray
+</DIV>
+</A>
+
+<p>This radio-button can be used to toggle the red-line display which appears in the Pole-Zero, Magnitude, and Phase plots.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Radio Button: Show Grid"></a>
+<DIV class="Subheading">
+  Radio Button: Show Grid
+</DIV>
+</A>
+
+<p>
+This radio-button can be used to toggle grid display which appears in the Magnitude and Phase plots.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Pole-Zero Plot"></a>
+<DIV class="Subheading">
+     Plot Box: Pole-Zero Plot
+</DIV>
+</A>
+
+<p>This plot box, displays the complex z-plane with poles/zeros in it. It also indicates system stability by changing the color of the region outside the Unit circle to 'pink' for unstable systems.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Impulse Response"></a>
+<DIV class="Subheading">
+     Plot Box: Impulse Response
+</DIV>
+</A>
+
+<p>This displays the impulse response of the system.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Magnitude Response"></a>
+<DIV class="Subheading">
+     Plot Box: Magnitude Response
+</DIV>
+</A>
+
+<p>This displays the magnitude response of the system in frequency domain.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: Phase Response"></a>
+<DIV class="Subheading">
+     Plot Box: Phase Response
+</DIV>
+</A>
+
+<p>This displays the phase response of the system in frequency domain.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="List Box: Pole Location"></a>
+<DIV class="Subheading">
+     List Box: Pole Location
+</DIV>
+</A>
+
+<p>This list box displays the co-ordinates of the poles in the system. These locations can be changed, by using the 'Edit' button at the bottom of the list box. This is helpful in precise placement of poles in the z-plane.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="List Box: Zero Location"></a>
+<DIV class="Subheading">
+     List Box: Zero Location
+</DIV>
+</A>
+
+<p>This list box displays the co-ordinates of the zeros in the system. These locations can be changed, by using the 'Edit' button at the bottom of the list box. This is helpful in precise placement of zeros in the z-plane.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML>

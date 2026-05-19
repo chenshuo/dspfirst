@@ -1,0 +1,139 @@
+<HTML>
+
+<HEAD>
+<TITLE> Controls </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Controls </DIV>
+
+<ol>
+  <li><a href="#Plot Box:  Input"><strong>Plot Box: MOTOR</strong></a></li>
+  <li><a href="#Plot Box:  Output"><strong>Plot Box: SAMPLES</strong></a></li>
+  <li><a href="#Plot Box:  Continuous Time Spectrum"><strong>Plot Box: Continuous Time Spectrum</strong></a></li>
+  <li><a href="#Plot Box:  Discrete Time Spectrum"><strong>Plot Box: Discrete Time Spectrum</strong></a></li>
+  <li><a href="#Motor Freq"><strong>Motor Frequency (Hz)</strong></a></li>
+  <li><a href="#Motor RPM"><strong>Motor rotations/min</strong></a></li>
+  <li><a href="#Flash Freq"><strong>Flash Frequency (Hz)</strong></a></li>
+  <li><a href="#Flash Min"><strong>Flashes/min</strong></a></li>
+  <li><a href="#Fine"><strong>Fine</strong></a></li>
+  <li><a href="#AS"><strong><-a s-></strong></a></li>
+  <li><a href="#KL"><strong><-k l-></strong></a></li>
+</ol>
+
+
+<A name="Plot Box:  MOTOR">
+<DIV class="SubHeading"> 
+     Plot Box: MOTOR
+</DIV>
+</A>
+
+<p>This plot displays graphical representation of a disk attached to the shaft of a <strong>Motor</strong> with a radial arrow representing a <em>mark</em> placed on the disk.  The direction of the rotation of the disk is depicted by the solid arrow.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  SAMPLES">
+<DIV class="SubHeading">
+     Plot Box: SAMPLES
+</DIV>
+</A>
+
+<p>This plot shows the arrow <strong>SAMPLES</strong> displayed whenever the strobe light flashes. If no aliasing has occurred, then the direction of the rotation of the arrow is clock-wise.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Continuous Time Spectrum">
+<DIV class="SubHeading">
+     Plot Box:  Continuous Time Spectrum
+</DIV>
+</A>
+
+<p>This plot shows the arrow's frequency spectrum in <em>Hz</em>. A 'yellow' band indicates the flash frequency range -f<sub>s</sub>/ 2 to f<sub>s</sub>/ 2. The arrow's rotating frequency is indicated by 'blue' impulse (stem) plots.</p>
+
+<p>A similar spectrum for the sampled disk is also shown at the bottom-right corner of the GUI.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Discrete Time Spectrum">
+<DIV class="SubHeading">
+     Plot Box:  Discrete Time Spectrum
+</DIV>
+</A>
+
+<p>This plot shows the spectrum of the discrete (sampled) arrow angular frequency. This spectrum also has a yellow band indicating the range -f<sub>s</sub>/ 2 to f<sub>s</sub>/ 2. The arrow's angular frequency is indicated using 'blue' impulse (stem) plots and the aliases of this frequency are indicated using 'red' impulse plots.</p>
+
+If the output signal has been aliased, then, a text <span class="TextHighlight">'ALIASING!'</span> is displayed in this plot.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Motor Freq">
+<DIV class="SubHeading">
+     Motor Frequency (Hz)
+</DIV>
+</A>
+<p>This edit-box can be used to set the motor frequency of the disk in <em>Hz</em>. The maximum value can be 1.5 times the flashing frequency.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Motor RPM">
+<DIV class="SubHeading">
+     Motor rotations/min
+</DIV>
+</A>
+
+<p>This slider/edit-box can be used to set the rotations per minute of the motor.
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Flash Freq">
+<DIV class="SubHeading">
+     Flash Frequency (Hz)
+</DIV>
+</A>
+
+<p>This edit-box can be used to set the flashing frequency of the strobe in <em>Hz</em>. The maximum value that can be specified is 70Hz.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Flash Min">
+<DIV class="SubHeading">
+     Flashes/min
+</DIV>
+</A>
+
+<p>This slider/edit-box can be used to set the number of flashes per minute of the strobe. The maximum value that can be specified is 4200 flashes per minute.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Fine">
+<DIV class="SubHeading">
+     Fine
+</DIV>
+</A>
+
+<p>This radio-button can be used to change the step-size of <b>Motor rotations/min</b> or <b>Flashes/min</b> sliders, thus allowing for slowly varying GUI's parameters.  This feature has been primarily designed  for fine-tuning GUI parameters to hardware-based demonstration.
+
+<h5><a href="#top">Back to Top</a></h5>
+<A name="AS">
+<div class="SubHeading">
+     <-a s->
+</DIV>
+</A>
+
+<p>Keyboard keys <b>a</b> and <b>s</b> can be used to advance the <b>Motor rotations/min</b> slider.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+<A name="KL">
+<div class="SubHeading">
+     <-k l->
+</DIV>
+</A>
+
+<p>Keyboard keys <b>k</b> and <b>l</b> can be used to advance the <b>Flashes/min</b> slider.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML>

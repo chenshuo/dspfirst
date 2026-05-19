@@ -1,0 +1,236 @@
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<div class="Entry">
+<ol>
+  <li><a href="#Theory"><strong>Theory</strong></a></li>
+  <li><a href="#Examples"><strong>Examples</strong></a></li>
+</ol>
+</div>
+
+<a name="Theory">
+<div class="SubHeading"> &nbsp  
+    Theory
+</div></a>
+
+<!-- Introduction -->
+<p align="left">This section gives a brief introduction to Fourier Series
+representation of signals as relevant to the Fourier Series demo. Towards the
+end, Fourier series representation for those signals used in the tool are
+derived as examples.</p> 
+
+<p align="left">What is Fourier series representation and why do we need it ?
+The analysis of LTI (Linear Time Invariant) systems can be made easier if we can
+represent different signals using some basic set of signals. Fourier Series is
+one kind of representation of signals, where we use complex exponentials. These
+basic signals can be used to construct more useful class of signals using
+Fourier Series representation. Fourier Series can be used to represent both
+continuous and discrete Periodic signals.</p> 
+
+<p align="left">
+<h3>Fourier Series representation of Continuous time periodic signal</h3>
+
+There are two well known basic periodic signals, the sinusoidal signal 
+<p align="center"><img src="images/eqn1.png"></p>
+and complex exponential signal given as,
+<p align="center"><img src="images/eqn2.png"></p>
+
+These are periodic with fundamental frequency <em><font
+face="symbol">w</font><sub>0</sub></em> and fundamental period <em>T = 2<font
+face="symbol">p</font>/<font face="symbol">w</font><sub>0</sub></em>. These
+signals are called periodic since <em><code>x(t) = x(t+T)</code></em>
+Associated with this signal are other harmonic complex exponentials, given as
+<p align="center"><img src="images/eqn3.png"></p>
+They have fundamental frequencies, that are multiple of  <em><font
+face="symbol">w</font><sub>0</sub></em> and with period equal
+to T or a fraction of T. A linear combination of these harmonic signals as given
+below, is also periodic with period T.
+<p align="center"><img src="images/eqn4.png"></p>
+The representation of a periodic signal as sum of harmonically related complex
+exponentials is referred to as the Fourier Series representation. Here the
+Fourier Series has been expressed in an exponential form. This
+expression can be modified for real-periodic signals, using the fact that 
+<p align="center"><img src="images/eqn4a.png"></p>
+<p align="left">For real signals we have, 
+<p align="center"><img src="images/eqn4b.png"></p>
+<p align="center"><img src="images/eqn4c.png"></p>
+The above expressions are common forms of Fourier Series representation for
+real-periodic signals. Here they have been expressed in Trignometric form.
+
+<h3>Fourier Series coefficients</h3>
+<p align="left">If a periodic signal can be represented in the form shown in
+Eqn(1.1), then we need to have a way to determine the coefficients
+<em>a<sub>k</sub></em>. These are called the Fourier coefficients. The steps in
+deriving the equation to determine the coefficients are shown below.<br>
+<p align="center"><img src="images/eqn5.png"></p>
+<p align="center"><img src="images/eqn6.png"></p>
+This equation can be used to determine the Fourier Series coefficients in the
+Fourier Series representation of a periodic signal.</p>
+
+<p align="left">In summary, the Fourier Series for a periodic continuous-time
+signal can be described using the two equations
+<p align="center"><img src="images/eqn7.png"></p>
+
+The next section, deals with derivation of the Fourier Series coefficients for
+some commonly used signals. Especially, it includes those signals that are used
+in the Fourier Series demo.
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<!-- Examples -->
+<a name="Examples">
+<div class="SubHeading"> &nbsp  
+    Examples
+</div></a>
+<p align="left">
+This section shows the steps in deriving the Fourier series coefficients for the
+signals used in the Fourier Series demo. While the first case has detailed
+steps, for the rest few intermediate steps and the final form is provided. Now
+lets look at the different type of signals.</p>
+<div class="ListIndent">
+<ul>
+<li><a href="#square">Square wave</a>
+<li><a href="#triangle">Triangle wave</a>
+<li><a href="#ramp">Ramp or Sawtooth wave</a>
+<li><a href="#fullwave">Full-wave Sine</a>
+<li><a href="#halfwave">Half-wave Sine</a>
+</ul>
+</div>
+
+<a name="square">
+<h3>Square wave</h3>
+</a>
+Here we consider the original signal to be a periodic continuous Square wave and
+derive its Fourier Series coefficients. The steps involved are as shown
+below. We start with the functional form of the original square wave,
+
+<p align="center"><img src="images/ex1_eqn_1.png"></p>
+<p align="center"><img src="images/ex1_eqn_2.png"></p>
+<p align="center"><img src="images/ex1_eqn_3.png"></p>
+
+Comments:
+
+<li>From the result in Eqn(2.7), we see that the Fourier Series of
+square wave consists of sine terms only. This is as expected, because both the
+square and sine wave are odd functions, i.e.,
+<p align="center"><img src="images/odd_fcn.png"></p>
+</li>
+<li>From the plots shown below, since we used only a limited number of terms
+(i.e a truncated Fourier series), the approximation does not seem very accurate
+at discontinuities of the square wave. With increasing number of coefficients,
+the approximation improves, but the magnitude of overshoots does not decrease,
+following Gibbs Phenomenon. For more details on this, please refer to standard
+texts. </li>
+<li>The magnitude and phase plots agree with the result we obtained
+in Eqn(2.6). That is for non-zero for k < 0, <code>X<sub>k</sub></code> is
+-<font face="symbol">p</font>/2, while for k > 0,  <code>X<sub>k</sub></code> is
+<font face="symbol">p</font>/2.
+</li>
+
+<p align="center"><img src="images/ex1_figure.png"></p>
+
+<h4><a href="#Examples"><small>[Back to Examples]</small></a></h4>
+
+<a name="triangle">
+<h3>Triangle wave</h3>
+</a>
+Here we consider the original signal to be a periodic continuous Triangle wave
+and derive its Fourier Series coefficients. The detailed steps are not shown
+below. We start with the functional form of the original triangle wave,
+<p align="center"><img src="images/ex2_tri_eqn.png"></p>
+
+Comments:
+
+<li>From the result in Eqn(3.4) , we see that the Fourier Series form of the
+Triangle wave consists of cosine terms only. This is as expected, since both the
+triangle and cosine wave are even functions.i.e.,
+<p align="center"><img src="images/even_fcn.png"></p>
+<li>Further, the Fourier Series representation does not have any complex terms
+and hence the phase is always zero.
+<li>Since the triangle wave does not have discontinuities as in the Square wave,
+the reconstructed function is very smooth and almost overlaps the original
+function. This can be seen from the figure below.
+<p align="center"><img src="images/ex2_figure.png"></p>
+
+<h4><a href="#Examples"><small>[Back to Examples]</small></a></h4>
+
+<a name="ramp">
+<h3>Ramp or Sawtooth wave</h3>
+</a>
+Here we consider the original signal to be a Ramp or sawtooth wave and look at
+the steps involved in deriving its Fourier Series coefficients. We start with
+the functional form of the ramp used in the demo,
+<p align="center"><img src="images/ex3_ramp_eqn.png"></p>
+
+Comments:
+
+<li>From the result in Eqn(4.4), we see that the Fourier Series form consists of
+sine terms only. This is as expected, since the original ramp and sine function
+are both odd functions as in eqn. This is similar to the results obtained with
+the Square wave.i.e., both the Square and Ramp we considered in the demo are odd
+functions.
+<li>Again because of discontinuities in the original Ramp, the reconstructed
+signal is not as smooth as that was reconstructed in the triangle wave.
+
+<p align="center"><img src="images/ex3_figure.png"></p>
+
+<h4><a href="#Examples"><small>[Back to Examples]</small></a></h4>
+
+<a name="fullwave">
+<h3>Full-wave</h3>
+</a>
+Here we consider the original signal to be a full-wave rectified sine wave and
+look at the steps involved in deriving its Fourier Series coefficients. We start
+with the functional form of the full-wave used in the demo,
+<p align="center"><img src="images/ex4_full_eqn.png"></p>
+
+Comments:
+<li>From the result in Eqn(5.4), we see that the Fourier Series form of the
+full-wave consists of cosine terms only. This is as expected, since both the
+full-wave and cosine wave are even functions as in Eqn(3.5).
+
+<p align="center"><img src="images/ex4_figure.png"></p>
+
+<h4><a href="#Examples"><small>[Back to Examples]</small></a></h4>
+
+<a name="halfwave">
+<h3>Half-wave</h3>
+</a>
+Here we consider the original signal to be a half-wave rectified sine wave and
+look at the steps involved in deriving its Fourier Series coefficients. We start
+with the functional form of the half-wave used in the demo,
+<p align="center"><img src="images/ex5_half_eqn.png"></p>
+
+Comments:
+<li>From the result in Eqn(6.4) , we see that the Fourier Series form of the
+half-wave consists of cosine terms only. This is as expected, since both the
+half-wave and cosine wave are even functions as in Eqn(3.5).
+
+<p align="center"><img src="images/ex5_figure.png"></p>
+
+The results that have been derived here can be verified using the Fourier Series
+GUI. Though the derivations have not been given in full detail, users can easily
+derive the results from the starting equations given here.
+
+<h4><a href="#Examples"><small>[Back to Examples]</small></a></h4>
+
+<p align="left">Does it all make sense to you? If you are not sure go over it
+one more time before moving on with the rest of the tutorial.</p> 
+
+<blockquote>
+  <p><small><em>If you still do not get it, let us know what is confusing
+  you. We want to make this tutorial understandable and any feedback is
+  appreciated!</em></small></p> 
+</blockquote>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+</body>
+</html>

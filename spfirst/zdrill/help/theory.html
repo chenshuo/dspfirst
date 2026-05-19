@@ -1,0 +1,181 @@
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<!-- Introduction -->
+
+<p style="clear:left"><SPAN class="TextHighlight2">Complex Numbers</SPAN> are an
+extension of the real number systems and are important especially to
+engineering.&nbsp They may be first encountered in algebra as the non-real roots
+of quadratic equations, or in differential equations as non-real
+solutions.&nbsp A complex number is defined by the following form:
+</p>
+
+<p align="center"><img src="images/equ_1.png" WIDTH="119" HEIGHT="54"></p>
+
+<p style="clear:left">As you can see above, a complex number is composed of a real part, 
+<strong><em>a</em></strong>, and an imaginary part, <strong>b</strong>.&nbsp The symbol 
+<strong><em>j</em></strong> in front of <strong><em>b</em></strong> indicates that it is 
+imaginary; though you may have seen this as <strong><em>i</em></strong> in math and physics, 
+engineers use a <strong><em>j</em></strong> because the symbol <strong><em>i</em></strong> is
+ sacrosanct in electrical engineering to represent current.&nbsp The symbol <strong><em>j
+</em></strong> itself is a number called the imaginary base and is defined below:</p>
+
+<p align="center"><img src="images/def_j.png" WIDTH="106" HEIGHT="55"></p>
+
+<p style="clear:left">Just as data points in two numbers can be plotted on the 
+<SPAN class="TextHighlight2">Cartesian plane</SPAN>, complex numbers can be plotted on
+the <SPAN class="TextHighlight2">complex plane</SPAN>.&nbsp The vertical axis represents the
+imaginary component and the horizontal axis represents the real component.</p>
+
+<p align="center"><img src="images/complex_plane.png" WIDTH="226" HEIGHT="206"></p>
+
+<p style="clear:left">Complex coordinates can be converted to <SPAN class="TextHighlight2">
+polar</SPAN> coordinates just like ordinary rectangular coordinates.&nbsp Each complex vector
+has a phase and magnitude, obtained directly from its rectangular form through 
+straightforward formulas:</p>
+
+<p align="center">
+<TABLE cellpadding="30%">
+<TR>
+<TD align="center"><img src="images/equ_2_new.png" WIDTH="314" HEIGHT="162"></TD>
+<TD align="center"><img src="images/polar_conversion_plot.png" WIDTH="251" HEIGHT="211"></TD>
+</TR>
+</TABLE>
+</p>
+where, <strong><em>A</em></strong> is the magnitude in polar form and <strong><font
+face="symbol">j</font></strong> is the phase in polar form.</p>
+<p style="clear:left">Because of Euler's relation, however, complex vectors in polar form
+can be also represented as <SPAN class="TextHighlight2">complex exponentials</SPAN>:</p>
+
+<p align="center"><img src="images/equ_3.png" WIDTH="315" HEIGHT="96"></p>
+
+<p style="clear:left">where <code><strong>A*cos(phi)</strong></code> and 
+<code><strong>A*sin(phi)</strong></code> are the <strong><em>a</em></strong> and 
+<strong><em>b</em></strong> components, respectively, of the complex number.&nbsp The complex
+ exponential form is extremely useful when doing multiplication and division of complex 
+numbers, shown below.&nbsp As can be inferred from the above equation, it is also 
+a very useful way to represent sinusoidal signals.</p><br><br>
+
+<H2><CENTER>Examples</CENTER></H2>
+
+<p style="clear:left">Below are some examples of arithmetic involving complex vectors.&nbsp 
+All plots are displayed on a complex plane with the <SPAN class="TextHighlight2">unit 
+circle</SPAN> (| r | = 1 for all angles) marked.  Resultant vectors are shown as <strong>black
+</strong> arrows in the examples.&nbsp The following two complex numbers will be used in all 
+examples below.&nbsp Both the mathematical forms and plots are shown; the <strong>red
+</strong> arrow is <strong>z1</strong> and the <strong>pink</strong> arrow is <strong>z2
+</strong>.</p> 
+
+<p align="center">
+<TABLE cellpadding="20%">
+<TR><TD align="center"><img src="images/ex_equ_1.png" WIDTH="489" HEIGHT="127"></TD></TR>
+<TR><TD align="center"><img src="images/zdrill_exvect.png" WIDTH="181" HEIGHT="181"></TD>
+</TR>
+</TABLE>
+</p>
+
+<H4>Addition & Subtraction</H4>
+
+<p style="clear:left">To add the vectors, simply sum the two real components together and
+the two imaginary parts together to get the new real and imaginary components, respectively, 
+of the resultant vector:</p>
+
+<p align="center">
+<TABLE cellpadding="20%">
+<TR>
+<TD align="center"><img src="images/ex_equ_2_new.png" WIDTH="352" HEIGHT="153"></TD>
+<TD align="center"><img src="images/zdrill_addex.png" WIDTH="177" HEIGHT="176"></TD>
+</TR>
+</TABLE>
+</p>
+
+<p style="clear:left">Subtraction is done similarly and is left as an exercise to the
+reader.</p>
+
+<H4>Multiplication</H4>
+
+<p style="clear:left">Two methods exist for multiplying two complex vectors.  The first is
+to directly multiply the two numbers as binomials:</p>
+
+<p align="center"><img src="images/ex_equ_3.png" WIDTH="325" HEIGHT="193"></p>
+
+<p style="clear:left">The second way is much more readily done, but requires that the
+rectangular complex form be converted to polar or complex exponential form before the 
+operation is done (here this has been done for you at the beginning of the examples).&nbsp 
+When exponentials are multiplied the powers add and the coefficients are
+multiplied, so the magnitude of the result is simply the product of the two magnitudes
+and its phase is the addition of the two phases.&nbsp An example using
+complex exponentials as well as the resultant plot is shown below:</p>
+
+<p align="center">
+<TABLE cellpadding="20%">
+<TR>
+<TD align="center"><img src="images/ex_equ_4.png" WIDTH="207" HEIGHT="156"></TD>
+<TD align="center"><img src="images/zdrill_multex.png" WIDTH="176" HEIGHT="177"></TD>
+</TR>
+</TABLE>
+</p>
+
+<H4>Division</H4>
+
+<p style="clear:left">Division is done in a similar manner as multiplication.&nbsp For
+the rectangular form the denominator must first be rationalized by multiplying both  
+itself and the numerator by its conjugate, leaving a real number in the denominator 
+and a complex number in the numerator.<br><br>If complex exponentials are used, the 
+magnitudes of the polar form are divided instead of multiplied and its phases are 
+subtracted instead of added.&nbsp  Examples using both methods are shown below:</p>
+
+<p align="center">
+<TABLE cellpadding="30%">
+<TR>
+<TD align="center" valign="top"><img src="images/ex_equ_5.png" WIDTH="331" HEIGHT="322"></TD>
+<TD align="center" valign="top"><img src="images/ex_equ_6.png" WIDTH="158" HEIGHT="232"></TD>
+<TD align="center" valign="top"><img src="images/zdrill_divex.png" WIDTH="172" HEIGHT="179">
+</TD>
+</TR>
+</TABLE>
+</p>
+
+<H4>Inversion & Conjugation</H4>
+
+<p style="clear:left">Inversion and conjugation are the final two operations on complex
+vectors explored in this tutorial; they involve only one operand and are both more readily
+done in polar form than rectangular.&nbsp Inversion is the well known mathematical 
+process; conjugation was shown above in the division example and involves negating either 
+the phase or the imaginary component of the vector.&nbsp Examples of both operations are 
+shown below using vector <strong>z1</strong> in complex exponential form:
+
+<p align="center">
+<TABLE cellpadding="20%">
+<TR>
+<TD><img src="images/ex_equ_7.png" WIDTH="160" HEIGHT="211"></TD>
+<TD><img src="images/zdrill_invex.png" WIDTH="223" HEIGHT="172"></TD>
+</TR>
+<TR>
+<TD><img src="images/ex_equ_8.png" WIDTH="207" HEIGHT="105"></TD>
+<TD><img src="images/zdrill_conjex.png" WIDTH="179" HEIGHT="179"></TD>
+</TR>
+</TABLE>
+</p>
+where, <strong><em>z1*</em></strong> is the complex conjugate of
+<strong><em>z1</em></strong>. <br>
+
+<p> Does it all make sense to you?&nbsp If you are not sure go over it one more time.</p>
+
+<blockquote>
+  <p><small><em>If you still do not get it, let me know what is confusing you.&nbsp  Send 
+  me by clicking on my name in the Overview section.&nbsp  I want to make this tutorial
+  understandable and any feedback is appreciated!</em></small></p>
+</blockquote>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+</body>
+</html>

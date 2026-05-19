@@ -1,0 +1,156 @@
+BODY,TD,TH,CAPTION,P,.title,.Heading,.footer {
+   background: white;
+   color: black;
+   font-family: arial; 
+   font-size: 10pt
+}
+.title {
+   background: white;
+   text-align: center;
+   color: 0000CC;
+   width: 100%;
+   margin-top: 0em;
+   margin-bottom: 0em;
+   margin-left: 0em;
+   margin-right: 0em;
+   font-size: 20pt;
+   font-weight: bold;
+}
+.menustrip {  /* Some weird declarations, but apparently only way to get colored underline */
+   background: white;
+   text-align: center;
+   color: 0000CC;
+   border-style: solid;    
+   border-color: green;
+   border-right-style: none;
+   border-left-style: none;
+   border-top-width: 2px;
+   border-bottom-width: 2px;
+   width: 100%;
+   margin-top: 0em;
+   margin-bottom: 0em;
+   margin-left: 0em;
+   margin-right: 0em;
+   font-size: 20pt;
+   font-weight: bold;
+}
+TD.TOCItem {
+   background: white;
+   border-style: none;
+   text-align: center;
+   padding: 0em;
+   font-size: 10pt;
+   font-weight: bold;
+   color: white;
+}
+.footer {
+   text-align: center;
+   font-size: 7pt;
+   margin-top: 3em;
+   margin-bottom: 0em;
+   margin-left: 0em;
+   margin-right: 0em;
+}
+.Heading {
+   background: #CC0000;
+   border: none;
+   text-indent: 0.5em;
+   margin-top: 1em;
+   margin-bottom: 0.5em;
+   margin-right: 0em;
+   margin-left: 0em;
+   font-size: 16pt;
+   font-weight: bold;
+   color: white
+}
+.SubHeading {  /* Some weird declarations, but apparently only way to get colored underline */
+   background: white;
+   color: blue;
+   border-style: solid;    
+   border-color: green;
+   border-right-style: none;
+   border-left-style: none;
+   border-top-width: 2px;
+   border-bottom-width: 2px;
+   width: 100%;
+   margin-top: 0em;
+   margin-bottom: 0em;
+   margin-left: 0em;
+   margin-right: 0em;
+   font-size: 14pt;
+   font-weight: bold;
+}
+.Entry {
+   margin-top: 0em;
+   margin-bottom: 0em;
+   margin-right: 1em;
+   margin-left: 1em;
+   font-family: arial; 
+   font-size: 10pt; 
+}
+.TextHighlight {
+   color: red;
+   font-weight: bold
+}
+.TextHighlight2 {
+   color: blue;
+   font-weight: bold
+}
+.Download {
+   font-weight: bold
+}
+.ListIndent {
+   margin-top: 0.5em;
+   margin-bottom: 0.5em;
+   margin-right: 0em;
+   margin-left: 1.5em
+}
+DIV.FileTable {
+   margin-top: 0em;
+   margin-bottom: 0em;
+   margin-right: 0em;
+   margin-left: 2em
+}
+TABLE {
+   vertical-align: top
+}
+TD.GUIPicture {
+   padding: 0em;
+} 
+TD.GUIDescription {
+   text-align: justify;
+   color: black
+   border-style: none;
+   padding-top: 0em;
+   padding-bottom: 0em;
+   padding-left: 1em;
+   padding-right: 0em;
+   font-size: 10pt;
+}
+TD.Element, TD.ElementDescription {
+   border-style: none;
+   padding: 0em;
+   font-size: 10pt;
+}
+TD.ElementDescription {
+   color: black;
+}
+TD.FooterEntry {
+   text-align: center;
+   font-size: 8pt
+}
+BR#LEFT {
+   clear: left;
+}
+BR#RIGHT {
+   clear: right;
+}
+UL {
+   margin-top: 0em;
+   margin-bottom: 0em;
+   margin-right: 0em;
+   margin-left: 0em
+}
+A:link { color: blue }
+A:visited { color: gray}
+A:hover {color: red }

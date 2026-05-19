@@ -1,0 +1,182 @@
+<head>
+<title> Theory </title>
+<link rel="stylesheet" href="pagestyles.css">
+</head>
+
+<body>
+<div class="Heading">
+Theory
+</div>
+
+<!-- Introduction -->
+<p align="left">
+Sinusoidal signals are the most basic signals in the theory of signals and
+systems. This tool tries to help the student in getting more familiar with
+operations that need to be performed on Sinusoids. Manipulating sinusoids can be
+done by representing them as Phasors and Complex exponentials. In this section
+we give a brief overview of the different kinds of representation of sinusoids
+and some basic operations that can be performed on them. 
+</p>
+
+<p align="left">
+Sinusoids include both 'cosine' and 'sine' signals. The mathematical formula
+representing a sinusoidal signal is 
+<p align="center"><img src="images/cosine.png"></p>
+
+Analysis and manipulation of sinusoidal signals in the above form will be
+difficult to achieve. So, often they are converted to related Complex
+exponential signals which are easier to manipulate and analyze. These complex
+exponentials depend on the polar form of representation of complex numbers.</p>
+
+<p align="left"> 
+In general for a complex number represented in cartesian form
+<p align="center"><img src="images/rectform.png"></p>
+its modulus and phase are represented as
+<p align="center"><img src="images/mag_phase.png"></p> 
+Using the above relations any complex number can be represented in polar form,
+<p align="center"><img src="images/rect_to_pol.png"></p>
+A better polar form can be obtained using Euler's formula for complex
+exponentials, given below.
+<p align="center"><img src="images/eulers_form.png"></p>
+Making use of the above relation any complex number can be represented as,
+<p align="center"><img src="images/rect_to_cos_sin.png"></p>
+Now we will look at the relation between sinusoidal signal and its
+representation as a complex exponential signal. The complex exponential signal
+is defined in the next equation and represnted using Euler's formula as shown, 
+<p align="center"><img src="images/phasor_as_cosine.png"></p>
+
+From this the representation cosine part can be obtained as 
+<p align="center"><img src="images/cos_as_real.png"></p>
+
+</p>
+
+<p align="left">
+Having been exposed to different ways of representing sinusoidal signals, next
+we look at ways to manipulate such signals using the above representations. One
+useful operation would be to add 2 or more sinusoids. This can be achieved by
+first representing the sinusoids as complex exponentials and then converting to
+the cartesian or rectangular forms. Addition of 2 or more components can be
+easily done in rectangular form. After this they can be converted back to
+sinusoid form. 
+<p align="left">The Examples section provides examples for doing several forms
+of this manipulation.i.e., between cosine, complex exponentials, phasors and
+rectangular forms of complex numbers.</p>
+
+<p align="left">
+<strong>Sampling</strong>
+The continuous time sinusoid given as 
+<p align="center"><img src="images/cont_cosine.png"></p>
+can be represented in its discrete-time form for a given sampling period
+<code>T<sub>s</sub></code> as shown below,
+<p align="center"><img src="images/discrete_cosine.png"></p>
+
+Here we do not deal with issues related to sampling of signals, please refer to
+other related tools to know more about sampling of signals.
+</p>
+
+<p align="left">
+<strong>Pole-Zeros from Transfer function</strong>
+The general form of representing system transfer function is 
+<p align="center"><img src="images/gen_hz.png"></p>
+Let us consider the second-order case, which is represented as 
+<p align="center"><img src="images/hz_2nd_order.png"></p>
+The numerator and denominator polynomials each have 2 roots. The numerator roots
+are called the 'Zeros', since for these roots H(z) becomes zero. The denominator
+roots are called 'Poles' of the system and for these roots, H(z) becomes
+undefined (infinite). The poles and zeros are plotted in the complex z-plane and
+can be determined as shown in the Example section below.
+</p>
+
+The next section deals with specific examples related to the various types of
+tests in the Phasor Races GUI.
+  
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+<H2><CENTER>Examples</CENTER></H2>
+
+In this section, the arithmetic involved in solving the different types of
+Questions in the tool are illustrated with examples. 
+<H3>Complex</H3>
+In this type of test, the sum of given 2 complex numbers needs to be found. By
+default, the numbers are in exponential form. So, in order to find the sum 
+<li>Convert each complex number to rectangular form
+<li>The real and imaginary parts can be added separately to obtain the required
+complex number (sum) in rectangular form.  
+<li>The Rectangular form can than be converted to Polar form, by finding the
+magnitude and phase.
+
+These steps are shown below.
+<p align="center"><img src="images/complex.png"></p>
+
+<H3>Sinusoid</H3>
+This type of test deals with adding sinusoids that have the same frequency, but
+different (or same) amplitude and phase. One way to do this is
+<li>Represent the sinusoids as Phasors
+<li>Convert the Phasors to their Rectangular form
+<li>Perform addition of the complex numbers in rectangular form
+<li>Convert the result obtained in previous step to the polar form to obtain the
+phasor.
+<li>Express the phasor in its cosine form.
+
+These steps are shown below.
+<p align="center"><img src="images/sinusoids.png"></p>
+
+<H3>Real Part</H3>
+The goal in this type of test is, given a complex number in mixed form, we need
+to determine the Real part of the number. One way to do this is,
+<li>Convert the rectangular form of the complex number to its exponential form,
+by finding its magnitude and phase.
+<li>Once the exponential form is available, Euler's formula can be used to
+express it as sum of cosine and sine.
+<li>Then the required real part is the cosine term.
+
+These steps are shown below.
+<p align="center"><img src="images/realpart.png"></p>
+
+<H3>Spectrum</H3>
+In this type of test, there are two kinds of question. They are
+<ol>
+<li>Converting exponentials to cosine form
+<li>Converting cosine to exponential form
+</ol>
+The Inverse form of Euler's formula can be used to obtain the required
+form. This can be done as shown below,
+<H4>Exponential to Cosine form</H4>
+<p align="center"><img src="images/spect_tocos.png"></p>
+<H4>Cosine to Exponential form</H4>
+<p align="center"><img src="images/spect_toexp.png"></p>
+
+<H3>Sampling</H3>
+In this type of test, we are to determine the Discrete-time representation of a
+signal from its continuous-time representation and given sampling period. This can
+be done as shown in below,
+<p align="center"><img src="images/sampling.png"></p>
+
+<H3>Z-Transform</H3>
+In this type of test, we are required to determine the location of Poles and
+Zeros of a given transfer function. The way to determine the poles and zeros is
+as shown below,
+<p align="center"><img src="images/ztransform.png"></p>
+
+In the Pole-Zero plot shown below, <SPAN class="TextHighlight">'O'</SPAN>
+represent a Zero and <SPAN class="TextHighlight5">'x'</SPAN> represent a Pole.
+<p align="center"><img src="images/pzplot.png"></p>
+
+<H3>All</H3>
+In this mode, one of the above types of tests is presented in a random order.
+<br><br>
+
+<p> Does it all make sense to you?&nbsp If you are not sure go over it one more
+time.</p>
+
+<blockquote>
+  <p><small><em>If you still do not get it, let me know what is confusing
+  you.&nbsp  Send  
+  me by clicking on my name in the Overview section.&nbsp  I want to make this
+  tutorial understandable and any feedback is appreciated!</em></small></p>
+</blockquote>
+
+<h4><a href="#top"><small>[Back to Top]</small></a></h4>
+
+</body>
+</html>

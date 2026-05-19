@@ -1,0 +1,131 @@
+<HTML>
+
+<HEAD>
+<TITLE> Controls </TITLE>
+<link rel="stylesheet" href="pagestyles.css">
+</HEAD>
+
+<BODY>
+
+<DIV class="Heading"> Controls </DIV>
+
+<ol>
+  <li><a href="#Plot Box:  Input"><strong>Plot Box: Input</strong></a></li>
+  <li><a href="#Plot Box:  x[n]"><strong>Plot Box: x[n]</strong></a></li>
+  <li><a href="#Plot Box:  Output"><strong>Plot Box: Output</strong></a></li>
+  <li><a href="#Plot Box:  Continuous Time Spectrum"><strong>Plot Box: Continuous Time Spectrum</strong></a></li>
+  <li><a href="#Plot Box:  Discrete Time Spectrum"><strong>Plot Box: Discrete Time Spectrum</strong></a></li>
+  <li><a href="#Rad/sec"><strong>Rad/sec</strong></a></li>
+  <li><a href="#Radian"><strong>Radian</strong></a></li>
+  <li><a href="#f0"><strong>f<sub>0</sub>/<font face="symbol">w</font><sub>0</sub></strong></a></li>
+  <li><a href="#fs"><strong>f<sub>s</sub>/<font face="symbol">w</font><sub>s</sub></strong></a></li>
+  <li><a href="#Phase"><strong>Phase</strong></a></li>
+</ol>
+
+
+<A name="Plot Box:  Input">
+<DIV class="SubHeading"> 
+     Plot Box: Input
+</DIV>
+</A>
+
+<p>This plot displays the <strong>Input</strong> sinusoidal signal, whose frequency <em>f0</em> and <em>phase</em> terms are specified at the bottom-left of the GUI.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box: x[n]">
+<DIV class="SubHeading">
+     Plot Box: x[n]
+</DIV>
+</A>
+
+<p>This plot displays the Discrete (sampled) version <strong>x[n]</strong> of the input signal. The continuous time signal is also overlaid on the discrete samples. If aliasing has occurred, then the overlaid continuous time plot can be toggled between the aliased and unalised signal, by double clicking on this plot.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Output">
+<DIV class="SubHeading">
+     Plot Box: Output
+</DIV>
+</A>
+
+<p>This plot shows the continuous time <strong>Output</strong>, reconstructed from the Discrete signal. If no aliasing has occurred, then the original Input signal is restored.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Continuous Time Spectrum">
+<DIV class="SubHeading">
+     Plot Box:  Continuous Time Spectrum
+</DIV>
+</A>
+
+<p>This plot shows the Input signal's frequency spectrum. The frequency axis of the plot will either be in <em>Hz</em> or <em>rad/s</em> depending on the <strong>'Rad/sec'</strong> setting. A 'yellow' band indicates the frequency range -f<sub>s</sub>/ 2 to f<sub>s</sub>/ 2. The input signal frequency is indicated by 'blue' impulse (stem) plots.</p>
+
+<p>This also provides an option to change the frequency of the Input signal. <strong>'Click and drag'</strong> the 'blue' stem plot, to change the Input signal frequency.</p>
+
+<p>A similar spectrum for the Output signal is also shown at the bottom-right corner of the GUI. If the output signal has been aliased, then, a text <span class="TextHighlight">'ALIASING!'</span> is displayed in this plot.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Plot Box:  Discrete Time Spectrum">
+<DIV class="SubHeading">
+     Plot Box:  Discrete Time Spectrum
+</DIV>
+</A>
+
+<p>This plot shows the spectrum of the discrete (sampled) input signal. The frequency axis of the plot will either be in normalized cyclic or radian frequency depending on the <strong>'Radian'</strong> setting. This spectrum also has a yellow band indicating the range -f<sub>s</sub>/ 2 to f<sub>s</sub>/ 2. The input signal's frequency is indicated using 'blue' impulse (stem) plots and the aliases of the input frequency are indicated using 'red' impulse plots.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Rad/sec">
+<DIV class="SubHeading">
+     Rad/sec
+</DIV>
+</A>
+
+<p>This radio-button can be used to set the units to Rad/sec or Hz, for setting the input and sampling frequency. Turning this 'On' also toggles the x-axis label in the continuous time spectrum, between <em>rad/s</em> and <em>Hz</em>.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Radian">
+<DIV class="SubHeading">
+     Radian
+</DIV>
+</A>
+
+<p>This radio-button can be used to label the frequency axis in the Discrete Time Spectrum plot, either in normalized cyclic frequency(<em>f</em>) or normalized radian frequency(<em>w</em>).</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="f0">
+<DIV class="SubHeading">
+     f<sub>0</sub>/<font face="symbol">w</font><sub>0</sub>
+</DIV>
+</A>
+
+<p>This slider/edit-box can be used to set the frequency of input signal. The frequency can be specified in either <em>Hz</em> or <em>rad/s</em> depending on <strong>Rad/sec</strong> setting. The maximum value can be 1.5 times the sampling frequency.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="fs">
+<DIV class="SubHeading">
+     f<sub>s</sub>/<font face="symbol">w</font><sub>s</sub>
+</DIV>
+</A>
+
+<p>This slider/edit-box can be used to set the sampling frequency, either in <em>Hz</em> or <em>rad/s</em> depending on <strong>Rad/sec</strong> setting. The maximum value that can be specified is 30Hz or 188rad/s</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+<A name="Phase">
+<DIV class="SubHeading">
+     Phase
+</DIV>
+</A>
+
+<p>This edit-box can be used to set the phase (in Radians) of the input signal.</p>
+
+<h5><a href="#top">Back to Top</a></h5>
+
+</BODY>
+</HTML>

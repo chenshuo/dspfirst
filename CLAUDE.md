@@ -9,11 +9,14 @@ This is a Python port of the [DSP First](https://dspfirst.gatech.edu) MATLAB too
 ## Running the Demos
 
 ```bash
-python3 cconvdemo.py   # Continuous Convolution Demo
-python3 sindrill.py    # Reading Sinusoids Drill
-python3 pezdemo.py     # Pole-Zero Demo (z-domain)
-python3 phrace.py      # Phasor Race timed quiz
-python3 cspindemo.py   # Spinning Phasors Visualisation
+python3 cconvdemo.py    # Continuous Convolution Demo
+python3 sindrill.py     # Reading Sinusoids Drill
+python3 pezdemo.py      # Pole-Zero Demo (z-domain)
+python3 phrace.py       # Phasor Race timed quiz
+python3 cspindemo.py    # Spinning Phasors Visualisation
+python3 strobedemo.py   # Strobe / Aliasing Demo
+python3 specgramdemo.py # Spectrogram Demo
+python3 zdrill.py       # Complex Number Operations Drill
 ```
 
 No build step, package install, or virtual environment is prescribed — the scripts run directly. Dependencies: `PyQt6`, `numpy`, `matplotlib`, `scipy`.
@@ -40,7 +43,7 @@ Four-panel layout using `gridspec.GridSpec(3, 2)`: the z-plane pole-zero plot sp
 
 Interactive features: drag poles/zeros on the z-plane (conjugate pairs co-move); click-to-add modes via the Edit menu or mode buttons; a draggable red frequency cursor (ray) on the mag/phase plots; multiplicity labels for coincident roots; pink background when the system is unstable; zoom +/− buttons scale the z-plane axis. `_parse_coord` accepts `real , imag`, `x+yj`, or sandboxed expressions with `pi`/`j`.
 
-### cspindemo
+### cspin
 
 Four-panel layout using `gridspec.GridSpec(3, 3, width_ratios=[3,1,2], height_ratios=[3,0.7,1.2])`: the unit circle (`ax_uc`, yellowish background) spans the tall left area; `ax_real` (green, thin vertical strip to its right) shows Re{z(t)} vs time with time running top-to-bottom (`ylim=(T, 0)`); `ax_imag` (pink, wide bottom strip) shows Im{z(t)} vs time; `ax_spec` (upper right) shows spectral lines; `ax_eq` (middle right) shows the equation and parameter table.
 
@@ -57,6 +60,32 @@ A `QTimer` at 100 ms drives the elapsed-time display. The "Show Rectangular Form
 ### sindrill
 
 Single-axis quiz app. `LEVELS` dict controls the pools of amplitude/frequency/phase values. User inputs are evaluated via `safe_eval()` — a sandboxed `eval()` that exposes only `pi`, `e`, and basic math functions. The guess overlay (`line_guess`) is toggled with a checkbox; the "Answers" menu items are populated but disabled, revealing true values without requiring extra clicks.
+
+### strobedemo
+
+Five-panel layout using `gridspec.GridSpec(2, 3)`: top row holds `ax1` (MOTOR disk, static) and `ax3` (SAMPLES disk, updates with strobe); bottom row holds `ax2` (continuous-time spectrum), `ax4` (discrete-time spectrum, ω domain), and `ax5` (sampled/aliased spectrum).
+
+`draw_arrow_line` / `draw_arrow_patch` / `update_arrow_line` are pure-function helpers ported from `arrow.m`; they return tuples of `Line2D` / `Polygon` artists that are updated in place on every `_update()` call. `_wrap_delt` mirrors the MATLAB degree-wrapping logic from `fig4update.m`.
+
+State: `fm` (motor Hz) and `fs` (flash Hz), both driven by QSliders (in RPM / flashes-per-min) with paired QLineEdit boxes showing both the per-minute and Hz values. `_update()` computes `what = 2π(−fm/fs)` and classifies into no-aliasing / c==1 alias / c>1 deep-alias, then updates all five axes in one pass. Aliasing detection follows `fig4update.m` exactly: alias arrow visibility, "ALIASING!" text, stem colours, and the three sample-position arrows (black/green/magenta) in `ax3` with visibility gated on `abs(delt) ≤ 120°`.
+
+### specgramdemo
+
+Single large spectrogram plot on the left; a right-side control panel with stacked signal-parameter pages (QStackedWidget, one per signal type). A button row under the plot provides Play, 3D View (toggle), and FT at Click (toggle).
+
+Three signal types — **Linear Chirp** (`cos(π·α·t² + 2π·f₀·t)`, matching `chirp_spec.m`), **Sum of Sinusoids** (space-separated amplitude/frequency/phase vectors), **User Audio** (load `.wav` via `scipy.io.wavfile`). `compute_stft` is a direct port of `spectgr_RWS_GUI.m`: manual overlap-add loop with `np.fft.rfft`, producing `(B, F, T)`. `to_db` clips to `[BAmax − drange, BAmax]`.
+
+2D view uses `ax.imshow` with `origin='lower'`; 3D view uses `Axes3D.plot_surface` with a `np.meshgrid(T, F)` grid. FT-at-click mode is toggled via the button; `canvas.mpl_connect('button_press_event', ...)` calls `_plot_ft(x)` which replaces the spectrogram with a single dB-spectrum slice. STFT parameters (NFFT, window type, window size, overlap) are kept in sync: changing window size via slider or text recalculates noverlap using the current overlap-% menu selection.
+
+### zdrill
+
+Two-axis layout (side-by-side, `add_subplot(1, 2, ...)`) inside a single Figure: `ax_in` shows the input vector(s), `ax_ans` shows the guess (and optionally the answer / vector sum). Controls sit above the axes in a horizontal row.
+
+Six operations: **Add**, **Subtract**, **Multiply**, **Divide**, **Inverse**, **Conjugate**. The active operation is chosen from a QComboBox; unary operations (Inverse, Conjugate) hide the z₂ input panel and the vector-sum checkbox. `new_question()` picks `z1` (and `z2` for binary ops) from `LEVELS[level]` — magnitude from `r` list, angle from `theta` list — then pre-computes all six answers into `self.z3` dict so switching operations never requires recomputation.
+
+`draw_arrow` uses `mpatches.FancyArrow` with sizes proportional to the current axis extent (`M = max(x-range, y-range)`), mirroring `plotvect.m`'s `basewidth = 0.035 * M * arrow_scale`. Tip-to-tail vector-sum display for Add/Subtract draws z₁ first, then z₂ (or −z₂) starting from z₁'s tip. `set_axis_lims` expands the plot to fit whichever complex numbers are currently visible (inputs, guess, answer, vector-sum components).
+
+`polar_form_str` / `rect_form_str` mirror `polarformstring.m` / `rectformstring.m`: snap near-zero values and well-known multiples of π to clean strings. The Answer menu shows read-only `r`, `θ`, and rectangular entries that are always populated but never editable. Level (Novice/Pro) and arrow width are set via the Options menu.
 
 ## Porting Convention
 

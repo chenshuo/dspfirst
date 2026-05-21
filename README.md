@@ -1,11 +1,17 @@
 # _DSP First_ in Python
 
-DSP demos from http://dspfirst.gatech.edu ported to Python.
+DSP demos from http://dspfirst.gatech.edu ported to Python, using Claude Code.
 
 ## _DSP First_ book series
 
 [James H. McClellan](https://en.wikipedia.org/wiki/James_H._McClellan),
-[Ronald W. Schafer](https://en.wikipedia.org/wiki/Ronald_W._Schafer), and Mark A. Yoder wrote three books together
+[Ronald W. Schafer](https://en.wikipedia.org/wiki/Ronald_W._Schafer),
+and [Mark A. Yoder](https://www.rose-hulman.edu/academics/faculty/yoder-mark-yoder.html)
+wrote three books together, the first 6 chapters are almost the same, as well as two chapters on $z$-Transforms and IIR Filters.
+
+* _DSP First: A Multimedia Approach_ (523 pp.) was published in 1998, focused almost entirely on the digital domain.
+* _Signal Processing First_ (512 pp.)published in 2003 expanded the original book, adding several chapters covering Continuous-Time Linear Time-Invariant (LTI) systems, the Continuous-Time Fourier Transform (CTFT), and analog filtering/modulation/sampling. It was designed to serve as a complete, single-semester course covering _both_ analog and digital concepts.
+* [_DSP First, second edition_](https://www.pearson.com/se/Nordics-Higher-Education/subject-catalogue/engineering/mcclellan-digital-signal-processing-first-2e-ge.html) (592 pp.) features three new chapters on Discrete-Time Fourier Transform, The Discrete Fourier Transform, and the Fourier Series.
 
 
 | Chapters | _DSP First: A Multimedia Approach_ (1st Ed, 1998) | _Signal Processing First_ (2003)| _DSP First_ <br>(2nd Ed, 2016) |
@@ -26,29 +32,35 @@ DSP demos from http://dspfirst.gatech.edu ported to Python.
 | Filtering, Modulation, and Sampling       |   | Chap. 12 |  |
 | Computing the Spectrum                    |   | Chap. 13 |  |
 | Spectrum Analysis                         | Chap. 9 |||
-| Complex Numbers       | Appx. A | Appx. A |Appx. A |
-| Programming in Matlab | Appx. B | Appx. B |Appx. B |
-| Laboratory Projects   | Appx. C | Appx. C |Appx. C |
-| Demos                 | Appx. D | Appx. D |Appx. D |
+| Complex Numbers       | Appx. A | Appx. A | Appx. A |
+| Programming in Matlab | Appx. B | Appx. B | Appx. B |
+| Laboratory Projects   | Appx. C | Appx. C | [Labs online](https://dspfirst.gatech.edu/labs.html) |
+| CD-ROM Demos          | Appx. D | Appx. D | [Demos online](https://dspfirst.gatech.edu/demos.html) |
+| Fourier Series        |         |         | Appx. C |
 
-### About authors
+### Other books by the authors
 
-* [James H. McClellan](https://en.wikipedia.org/wiki/James_H._McClellan), famous for Parks-McClellan algorithm .
+* [James H. McClellan](https://en.wikipedia.org/wiki/James_H._McClellan), known for [Parks-McClellan FIR filter design algorithm](https://en.wikipedia.org/wiki/Parks%E2%80%93McClellan_filter_design_algorithm).
 
   ![McClellan|200](img/mcclellan2013.jpg)
 
-  _Computer-Based Exercises for Signal Processing Using MATLAB_, written by
+  _Computer-Based Exercises for Signal Processing Using MATLAB 5_, written by
   James H. McClellan, C. Sidney Burrus, [Alan V. Oppenheim](https://en.wikipedia.org/wiki/Alan_V._Oppenheim),
-  Thomas W. Parks , Ronald W. Schafer, and Hans W. Schuessler.
+  [Thomas W. Parks](https://en.wikipedia.org/wiki/Thomas_W._Parks), Ronald W. Schafer, and Hans W. Schuessler, 1994.
 
 
-* [Ronald W. Schafer](https://en.wikipedia.org/wiki/Ronald_W._Schafer) co-authored two DSP books with [Alan V. Oppenheim](https://en.wikipedia.org/wiki/Alan_V._Oppenheim), _Digital Signal Processing_ (1975) and _Discrete-Time Signal Processing_ (1989, 1999, 2009).
+* [Ronald W. Schafer](https://en.wikipedia.org/wiki/Ronald_W._Schafer) co-authored two DSP books with [Alan V. Oppenheim](https://en.wikipedia.org/wiki/Alan_V._Oppenheim), _Digital Signal Processing_ (1975) and _Discrete-Time Signal Processing_ (1<sup>st</sup> ed. 1989, 2<sup>nd</sup> ed. 1999, 3<sup>rd</sup> ed. 2009).
 
   ![](img/schafer.jpg)
 
+* [Mark A. Yoder](https://www.rose-hulman.edu/academics/faculty/yoder-mark-yoder.html) wrote [_BeagleBone Cookbook_](https://www.beagleboard.org/projects/cookbook),
+built [campanion website for _Discrete-Time Signal Processing 3e_](https://www.rose-hulman.edu/DSPFirst/dtsp/contents/index.htm), and maintains [Signal Processing First website](https://www.rose-hulman.edu/DSPFirst/visible3/contents/index.htm).
+
+  ![](img/yoder.jpg)
+
 ## Demos
 
-Install PyQt6 and dependencies.
+Install PyQt6 and dependencies first.
 
 ```sh
 pip install PyQt6 numpy scipy matplotlib

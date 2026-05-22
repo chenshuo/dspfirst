@@ -34,9 +34,15 @@ Each Python demo follows the same pattern:
 
 ### cconvdemo
 
-Six-panel layout using `gridspec.GridSpec(2, 3)`. The top row shows x(t), h(t), and a formula key; the bottom row shows τ-domain signals, the τ-domain product (filled), and the output y(t). A horizontal slider controls the current `t` value. Convolution is computed numerically via FFT (`numerical_convolve`), with special-case handling when either signal is an impulse.
+UI layout split into two main sections:
+- **Left Side (Dynamic Plots):** 3 vertically stacked, aligned plots (`ax_sig` for τ-domain signals, `ax_mul` for τ-domain product, and `ax_out` for output y(t)) using a `3x1` `GridSpec` on `self.fig_main`. A horizontal slider below controls `t`.
+- **Right Side (Controls & Static Plots):**
+  - Two static plots side-by-side (`ax_x` for input x(t) and `ax_h` for impulse response h(t)), each with its own figure and canvas.
+  - "Get" buttons and "Flip" radio buttons positioned directly below their respective static plots.
+  - A styled `QLabel` (`self.lbl_key`) with HTML content serving as the formula key.
+  - "Close" and "Help" buttons at the very bottom right.
 
-Signal types (`CPulse`, `CExponential`, `CCosine`, `CSine`, `CGaussian`, `CImpulse`) all inherit from an abstract `Signal` base class that defines `eval(t)`, `support()`, `suggest_rate()`, and `formula_str()`. `SignalDialog` is a reusable `QDialog` for selecting and parameterizing a signal with a live preview.
+Convolution is computed numerically via FFT (`numerical_convolve`), with special-case handling when either signal is an impulse. Signal types (`CPulse`, `CExponential`, `CCosine`, `CSine`, `CGaussian`, `CImpulse`) all inherit from an abstract `Signal` base class. `SignalDialog` is a reusable `QDialog` for selecting and parameterizing a signal with a live preview.
 
 ### pezdemo
 

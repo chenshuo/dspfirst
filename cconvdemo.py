@@ -23,6 +23,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QFormLayout,
     QLabel, QLineEdit, QPushButton, QComboBox, QRadioButton,
     QButtonGroup, QSizePolicy, QSlider, QInputDialog, QMessageBox,
+    QFrame, QGroupBox,
 )
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
@@ -571,29 +572,29 @@ class CConvDemoWindow(QMainWindow):
     def _build_ui(self):
         root = QWidget()
         self.setCentralWidget(root)
-        vbox = QVBoxLayout(root)
-        vbox.setContentsMargins(4, 4, 4, 4)
-        vbox.setSpacing(4)
 
-        # ── Figure ───────────────────────────────────────────────────
-        self.fig    = Figure(figsize=(12, 6))
-        self.canvas = FigureCanvas(self.fig)
-        self.canvas.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        vbox.addWidget(self.canvas, stretch=1)
+        # Main horizontal layout
+        main_layout = QHBoxLayout(root)
+        main_layout.setContentsMargins(10, 10, 10, 10)
+        main_layout.setSpacing(10)
 
-        gs = gridspec.GridSpec(2, 3, figure=self.fig,
-                               left=0.06, right=0.98, top=0.93, bottom=0.08,
-                               hspace=0.50, wspace=0.38)
-        self.ax_x    = self.fig.add_subplot(gs[0, 0])
-        self.ax_h    = self.fig.add_subplot(gs[0, 1])
-        self.ax_txt  = self.fig.add_subplot(gs[0, 2])
-        self.ax_sig  = self.fig.add_subplot(gs[1, 0])
-        self.ax_mul  = self.fig.add_subplot(gs[1, 1])
-        self.ax_out  = self.fig.add_subplot(gs[1, 2])
+        # ── Left Side: Main Dynamic Plots ───────────────────────────
+        left_layout = QVBoxLayout()
 
-        for ax, lbl in [(self.ax_x,   'Input  x(t)'),
-                        (self.ax_h,   'Impulse Response  h(t)'),
-                        (self.ax_sig, 'τ-domain  (Signals)'),
+        self.fig_main = Figure(figsize=(8, 8))
+        self.canvas_main = FigureCanvas(self.fig_main)
+        self.canvas_main.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        left_layout.addWidget(self.canvas_main, stretch=1)
+
+        # 3 subplots stacked vertically
+        gs_main = gridspec.GridSpec(3, 1, figure=self.fig_main,
+                                    left=0.08, right=0.95, top=0.95, bottom=0.08,
+                                    hspace=0.4)
+        self.ax_sig = self.fig_main.add_subplot(gs_main[0, 0])
+        self.ax_mul = self.fig_main.add_subplot(gs_main[1, 0])
+        self.ax_out = self.fig_main.add_subplot(gs_main[2, 0])
+
+        for ax, lbl in [(self.ax_sig, 'τ-domain  (Signals)'),
                         (self.ax_mul, 'τ-domain  (Product)'),
                         (self.ax_out, 'Output  y(t)')]:
             ax.set_title(lbl, fontsize=8, fontweight='bold')
@@ -601,40 +602,14 @@ class CConvDemoWindow(QMainWindow):
             ax.grid(self.grid_on)
             ax.set_xlim(*XLIM)
 
-        self.ax_txt.axis('off')
-        self._ftexts = []
-        self._redraw_formula_key()
+        self.canvas_main.mpl_connect('button_press_event', self._canvas_click)
 
-        self.canvas.mpl_connect('button_press_event', self._canvas_click)
-
-        # ── Controls ─────────────────────────────────────────────────
-        ctrl = QHBoxLayout()
-        ctrl.setSpacing(8)
-
-        btn_x = QPushButton('Get x(t)…')
-        btn_x.clicked.connect(lambda: self._get_signal('x'))
-        btn_h = QPushButton('Get h(t)…')
-        btn_h.clicked.connect(lambda: self._get_signal('h'))
-        ctrl.addWidget(btn_x)
-        ctrl.addWidget(btn_h)
-        ctrl.addSpacing(10)
-
-        ctrl.addWidget(QLabel('Flip:'))
-        self.rb_flip_h = QRadioButton('h(t)')
-        self.rb_flip_x = QRadioButton('x(t)')
-        self.rb_flip_h.setChecked(True)
-        grp = QButtonGroup(self)
-        grp.addButton(self.rb_flip_h)
-        grp.addButton(self.rb_flip_x)
-        self.rb_flip_h.toggled.connect(self._flip_changed)
-        self.rb_flip_x.toggled.connect(self._flip_changed)
-        ctrl.addWidget(self.rb_flip_h)
-        ctrl.addWidget(self.rb_flip_x)
-        ctrl.addSpacing(10)
-
-        ctrl.addWidget(QLabel('t ='))
+        # Slider at the bottom of left layout
+        slider_layout = QHBoxLayout()
+        slider_layout.addWidget(QLabel('t ='))
         self.lbl_t = QLabel(f'{self.t_val:.2f}')
         self.lbl_t.setFixedWidth(40)
+
         self.slider = QSlider(Qt.Orientation.Horizontal)
         self.slider.setMinimum(int(XLIM[0] * 100))
         self.slider.setMaximum(int(XLIM[1] * 100))
@@ -642,28 +617,102 @@ class CConvDemoWindow(QMainWindow):
         self.slider.setSingleStep(10)
         self.slider.setPageStep(100)
         self.slider.valueChanged.connect(self._on_slider)
-        ctrl.addWidget(self.slider, stretch=1)
-        ctrl.addWidget(self.lbl_t)
-        ctrl.addSpacing(8)
+
+        slider_layout.addWidget(self.slider, stretch=1)
+        slider_layout.addWidget(self.lbl_t)
 
         btn_reset = QPushButton('Reset t')
         btn_reset.clicked.connect(self._reset_t)
-        ctrl.addWidget(btn_reset)
+        slider_layout.addWidget(btn_reset)
 
-        vbox.addLayout(ctrl)
-        self.setMinimumSize(950, 620)
+        left_layout.addLayout(slider_layout)
+        main_layout.addLayout(left_layout, stretch=2)
+
+        # ── Right Side: Controls and Static Plots ──────────────────
+        right_layout = QVBoxLayout()
+
+        # Static plots row (Input and Impulse Response side-by-side)
+        static_plots_layout = QHBoxLayout()
+
+        # Column for x(t)
+        col_x = QVBoxLayout()
+        self.fig_x = Figure(figsize=(3, 2.2))
+        self.canvas_x = FigureCanvas(self.fig_x)
+        self.ax_x = self.fig_x.add_subplot(111)
+        col_x.addWidget(self.canvas_x)
+
+        btn_x = QPushButton('Get x(t)…')
+        btn_x.clicked.connect(lambda: self._get_signal('x'))
+        col_x.addWidget(btn_x)
+
+        self.rb_flip_x = QRadioButton('Flip x(t)')
+        col_x.addWidget(self.rb_flip_x)
+        static_plots_layout.addLayout(col_x)
+
+        # Column for h(t)
+        col_h = QVBoxLayout()
+        self.fig_h = Figure(figsize=(3, 2.2))
+        self.canvas_h = FigureCanvas(self.fig_h)
+        self.ax_h = self.fig_h.add_subplot(111)
+        col_h.addWidget(self.canvas_h)
+
+        btn_h = QPushButton('Get h(t)…')
+        btn_h.clicked.connect(lambda: self._get_signal('h'))
+        col_h.addWidget(btn_h)
+
+        self.rb_flip_h = QRadioButton('Flip h(t)')
+        self.rb_flip_h.setChecked(True)
+        col_h.addWidget(self.rb_flip_h)
+        static_plots_layout.addLayout(col_h)
+
+        right_layout.addLayout(static_plots_layout)
+
+        # Button group for flip radios
+        self.flip_grp = QButtonGroup(self)
+        self.flip_grp.addButton(self.rb_flip_x)
+        self.flip_grp.addButton(self.rb_flip_h)
+        self.rb_flip_x.toggled.connect(self._flip_changed)
+        self.rb_flip_h.toggled.connect(self._flip_changed)
+
+        # Initialize static plots
+        for ax, lbl in [(self.ax_x, 'Input  x(t)'),
+                        (self.ax_h, 'Impulse Response  h(t)')]:
+            ax.set_title(lbl, fontsize=8, fontweight='bold')
+            ax.axhline(0, color='k', lw=0.5)
+            ax.grid(self.grid_on)
+            ax.set_xlim(*XLIM)
+
+        # Formula key (using QLabel with HTML)
+        self.lbl_key = QLabel()
+        self.lbl_key.setFrameShape(QFrame.Shape.Box)
+        self.lbl_key.setFrameShadow(QFrame.Shadow.Plain)
+        self.lbl_key.setLineWidth(1)
+        self.lbl_key.setStyleSheet("background-color: #E0E0E0; padding: 8px; border-radius: 4px;")
+        self.lbl_key.setTextFormat(Qt.TextFormat.RichText)
+        self.lbl_key.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
+        right_layout.addWidget(self.lbl_key, stretch=1)
+
+        self._redraw_formula_key()
+
+        # Bottom buttons (Close, Help)
+        bottom_btns = QHBoxLayout()
+        btn_close = QPushButton('Close')
+        btn_close.clicked.connect(self.close)
+        btn_help = QPushButton('Help')
+        btn_help.clicked.connect(self._about)
+        bottom_btns.addWidget(btn_close)
+        bottom_btns.addWidget(btn_help)
+        right_layout.addLayout(bottom_btns)
+
+        main_layout.addLayout(right_layout, stretch=1)
+        self.setMinimumSize(1050, 650)
 
     # ------------------------------------------------------------------
     # Formula key (top-right panel)
     # ------------------------------------------------------------------
     def _redraw_formula_key(self):
-        for txt in self._ftexts:
-            txt.remove()
-        self._ftexts.clear()
-        ax = self.ax_txt
-        ax.clear()
-        ax.axis('off')
-
+        if not hasattr(self, 'lbl_key'):
+            return
         if self.flip_h:
             blue, red = 'x(τ)', 'h(t−τ)'
             mul_str   = 'x(τ) · h(t−τ)'
@@ -673,19 +722,18 @@ class CConvDemoWindow(QMainWindow):
             mul_str   = 'h(τ) · x(t−τ)'
             conv_str  = 'y(t) = ∫ h(τ)x(t−τ)dτ'
 
-        rows = [
-            (0.05, 0.94, 'Signal Axis:',           'k', 'left',   9, 'bold'),
-            (0.50, 0.82, f'{blue} = blue',          'b', 'center', 8, 'normal'),
-            (0.50, 0.70, f'{red} = red',            'r', 'center', 8, 'normal'),
-            (0.05, 0.58, 'Multiplication Axis:',    'k', 'left',   9, 'bold'),
-            (0.50, 0.46, mul_str,                   'b', 'center', 8, 'normal'),
-            (0.05, 0.34, 'Convolution Axis:',       'k', 'left',   9, 'bold'),
-            (0.50, 0.22, conv_str,                  'b', 'center', 8, 'normal'),
-        ]
-        for x, y, s, c, ha, fs, fw in rows:
-            t = ax.text(x, y, s, transform=ax.transAxes, color=c, ha=ha,
-                        va='top', fontsize=fs, fontweight=fw)
-            self._ftexts.append(t)
+        text = f"""
+        <div style="font-family: sans-serif; font-size: 11px; line-height: 1.4;">
+            <b>Signal Axis:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: blue; font-weight: bold;">{blue} = blue</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red; font-weight: bold;">{red} = red</span><br><br>
+            <b>Multiplication Axis:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: blue; font-weight: bold;">{mul_str}</span><br><br>
+            <b>Convolution Axis:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: blue; font-weight: bold;">{conv_str}</span>
+        </div>
+        """
+        self.lbl_key.setText(text)
 
     # ------------------------------------------------------------------
     # Signal selection / resampling
@@ -700,24 +748,12 @@ class CConvDemoWindow(QMainWindow):
             self.x_sig = sig
         else:
             self.h_sig = sig
-        self._resample()
         self._draw_individual()
         if self.x_sig is not None and self.h_sig is not None:
             self._recompute_conv()
             self._update_dynamic()
 
-    def _resample(self):
-        self._x_t = self._x_y = None
-        self._h_t = self._h_y = None
-        for sig, attr_t, attr_y in [(self.x_sig, '_x_t', '_x_y'),
-                                     (self.h_sig, '_h_t', '_h_y')]:
-            if sig is not None and not sig.is_impulse:
-                supp = sig.support()
-                fs   = sig.suggest_rate()
-                T    = 1.0 / fs
-                t    = np.arange(supp[0], supp[1] + T * 0.5, T)
-                setattr(self, attr_t, t)
-                setattr(self, attr_y, sig.eval(t))
+
 
     def _recompute_conv(self):
         self._conv = None
@@ -728,8 +764,8 @@ class CConvDemoWindow(QMainWindow):
     # Static plots: x(t) and h(t) panels
     # ------------------------------------------------------------------
     def _draw_individual(self):
-        for sig, ax, lbl in [(self.x_sig, self.ax_x, 'Input  x(t)'),
-                              (self.h_sig, self.ax_h, 'Impulse Response  h(t)')]:
+        for sig, ax, canvas, lbl in [(self.x_sig, self.ax_x, self.canvas_x, 'Input  x(t)'),
+                                     (self.h_sig, self.ax_h, self.canvas_h, 'Impulse Response  h(t)')]:
             ax.clear()
             ax.axhline(0, color='k', lw=0.5)
             ax.grid(self.grid_on)
@@ -738,6 +774,7 @@ class CConvDemoWindow(QMainWindow):
                 ax.set_title(lbl, fontsize=8, fontweight='bold')
                 ax.text(0.5, 0.5, '(not set)', transform=ax.transAxes,
                         ha='center', va='center', color='gray', fontsize=9)
+                canvas.draw_idle()
                 continue
             if sig.is_impulse:
                 self._arrow(ax, sig.delay, sig.area, 'blue')
@@ -751,7 +788,7 @@ class CConvDemoWindow(QMainWindow):
                 ax.plot(t, y, 'b-', lw=self.line_width)
                 _yscale(ax, y)
             ax.set_title(f'{lbl}\n{sig.formula_str()}', fontsize=7, fontweight='bold')
-        self.canvas.draw_idle()
+            canvas.draw_idle()
 
     def _show_placeholder(self):
         for ax, msg in [(self.ax_sig, 'Pick x(t) and h(t)\nthen slide t'),
@@ -759,7 +796,8 @@ class CConvDemoWindow(QMainWindow):
                         (self.ax_out, '')]:
             ax.text(0.5, 0.5, msg, transform=ax.transAxes,
                     ha='center', va='center', color='gray', fontsize=9)
-        self.canvas.draw_idle()
+        if hasattr(self, 'canvas_main'):
+            self.canvas_main.draw_idle()
 
     # ------------------------------------------------------------------
     # Dynamic update (called when t changes or signals change)
@@ -771,11 +809,11 @@ class CConvDemoWindow(QMainWindow):
 
         # Identify blue (non-flipped) and red (flipped) signals
         if self.flip_h:
-            blue_sig, bt, by = self.x_sig, self._x_t, self._x_y
-            red_sig = self.h_sig
+            blue_sig = self.x_sig
+            red_sig  = self.h_sig
         else:
-            blue_sig, bt, by = self.h_sig, self._h_t, self._h_y
-            red_sig = self.x_sig
+            blue_sig = self.h_sig
+            red_sig  = self.x_sig
 
         # ── τ-domain Signal axis ──────────────────────────────────────
         ax = self.ax_sig
@@ -785,20 +823,20 @@ class CConvDemoWindow(QMainWindow):
         ax.grid(self.grid_on)
         ax.set_xlim(*XLIM)
 
+        tau = np.linspace(XLIM[0], XLIM[1], 1000)
+
         if blue_sig.is_impulse:
             self._arrow(ax, blue_sig.delay, blue_sig.area, 'blue')
         else:
-            ax.plot(bt, by, 'b-', lw=self.line_width)
+            y_b = blue_sig.eval(tau)
+            ax.plot(tau, y_b, 'b-', lw=self.line_width)
 
         if red_sig.is_impulse:
             tau_imp = t - red_sig.delay   # impulse appears at τ = t − delay
             self._arrow(ax, tau_imp, red_sig.area, 'red')
         else:
-            supp_r = red_sig.support()
-            n_pts  = max(300, int((supp_r[1] - supp_r[0]) * red_sig.suggest_rate() * 0.5))
-            tau_r  = np.linspace(t - supp_r[1], t - supp_r[0], n_pts)
-            y_r    = red_sig.eval(t - tau_r)
-            ax.plot(tau_r, y_r, 'r-', lw=self.line_width)
+            y_r = red_sig.eval(t - tau)
+            ax.plot(tau, y_r, 'r-', lw=self.line_width)
 
         blue_lbl = 'x(τ)' if self.flip_h else 'h(τ)'
         red_lbl  = 'h(t−τ)' if self.flip_h else 'x(t−τ)'
@@ -817,20 +855,28 @@ class CConvDemoWindow(QMainWindow):
         ax.axhline(0, color='k', lw=0.5)
         ax.grid(self.grid_on)
         ax.set_xlim(*XLIM)
-        self._draw_product(blue_sig, red_sig, t, ax)
+        self._draw_product(blue_sig, red_sig, t, ax, sig_ylim=ylim)
+        ax.text(0.01, 0.98, 'Multiplication', transform=ax.transAxes,
+                color='blue', va='top', fontsize=8, fontstyle='italic')
 
         # ── Output axis ───────────────────────────────────────────────
         self._draw_output(t)
 
-        self.canvas.draw_idle()
+        self.canvas_main.draw_idle()
 
-    def _draw_product(self, blue: Signal, red: Signal, t: float, ax):
+    def _draw_product(self, blue: Signal, red: Signal, t: float, ax, sig_ylim=None):
         """Fill the product blue(τ)·red(t−τ) in the multiply axis."""
+        def set_limits(lo, hi):
+            if sig_ylim is not None:
+                lo = min(lo, sig_ylim[0])
+                hi = max(hi, sig_ylim[1])
+            ax.set_ylim(lo, hi)
+
         if blue.is_impulse and red.is_impulse:
             if abs(blue.delay - (t - red.delay)) < 0.5:
                 A = blue.area * red.area
                 self._arrow(ax, blue.delay, A, 'green')
-            ax.set_ylim(-1, 2)
+            set_limits(-1, 2)
             return
 
         if blue.is_impulse:
@@ -839,7 +885,7 @@ class CConvDemoWindow(QMainWindow):
             if supp_r_flipped[0] < tau0 < supp_r_flipped[1]:
                 val = blue.area * red.eval(np.array([t - tau0]))[0]
                 self._arrow(ax, tau0, val, 'green')
-            ax.set_ylim(-1, 2)
+            set_limits(-1, 2)
             return
 
         if red.is_impulse:
@@ -848,27 +894,27 @@ class CConvDemoWindow(QMainWindow):
             if supp_b[0] <= tau0 <= supp_b[1]:
                 val = red.area * blue.eval(np.array([tau0]))[0]
                 self._arrow(ax, tau0, val, 'green')
-            ax.set_ylim(-1, 2)
+            set_limits(-1, 2)
             return
 
         supp_b         = blue.support()
         supp_r_flipped = (t - red.support()[1], t - red.support()[0])
         ov             = overlap(supp_b, supp_r_flipped)
         if ov is None:
-            ax.set_ylim(-1, 1)
+            set_limits(-1, 1)
             return
 
         fs  = max(blue.suggest_rate(ov), red.suggest_rate(ov))
         tau = np.arange(ov[0], ov[1] + 0.5 / fs, 1.0 / fs)
         if len(tau) < 2:
-            ax.set_ylim(-1, 1)
+            set_limits(-1, 1)
             return
         y   = blue.eval(tau) * red.eval(t - tau)
         tau_p = np.r_[tau[0], tau, tau[-1]]
         y_p   = np.r_[0.0, y, 0.0]
         ax.fill(tau_p, y_p, color='lightgreen', edgecolor='blue', lw=0.8)
         ax.plot(tau_p, y_p, 'b-', lw=self.line_width * 0.6)
-        _yscale(ax, y)
+        _yscale(ax, y, min_ylim=sig_ylim)
 
     def _draw_output(self, t: float):
         ax = self.ax_out
@@ -950,13 +996,18 @@ class CConvDemoWindow(QMainWindow):
         self.grid_on = on
         for ax in (self.ax_x, self.ax_h, self.ax_sig, self.ax_mul, self.ax_out):
             ax.grid(on)
-        self.canvas.draw_idle()
+        if hasattr(self, 'canvas_main'):
+            self.canvas_main.draw_idle()
+        if hasattr(self, 'canvas_x'):
+            self.canvas_x.draw_idle()
+        if hasattr(self, 'canvas_h'):
+            self.canvas_h.draw_idle()
 
     def _toggle_tutorial(self, on):
         self.tutorial = on
         if self.x_sig is not None and self.h_sig is not None:
             self._draw_output(self.t_val)
-            self.canvas.draw_idle()
+            self.canvas_main.draw_idle()
 
     def _change_lw(self):
         lw, ok = QInputDialog.getDouble(self, 'Line Width', 'Enter line width:',
@@ -993,13 +1044,21 @@ class CConvDemoWindow(QMainWindow):
 # Utility
 # ---------------------------------------------------------------------------
 
-def _yscale(ax, y):
+def _yscale(ax, y, min_ylim=None):
     if len(y) == 0:
-        ax.set_ylim(-1, 1)
-        return
-    lo, hi = float(np.min(y)), float(np.max(y))
-    span   = max(abs(hi - lo), 1e-6)
-    ax.set_ylim(min(0.0, lo) - span * 0.12, max(0.0, hi) + span * 0.12)
+        target_lo, target_hi = -1.0, 1.0
+    else:
+        lo, hi = float(np.min(y)), float(np.max(y))
+        span   = max(abs(hi - lo), 1e-6)
+        target_lo = min(0.0, lo) - span * 0.12
+        target_hi = max(0.0, hi) + span * 0.12
+
+    if min_ylim is not None:
+        min_lo, min_hi = min_ylim
+        target_lo = min(target_lo, min_lo)
+        target_hi = max(target_hi, min_hi)
+
+    ax.set_ylim(target_lo, target_hi)
 
 
 # ---------------------------------------------------------------------------

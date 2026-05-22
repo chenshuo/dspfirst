@@ -109,6 +109,16 @@ $ ./fseriesdemo.py
 | --- | --- |
 | ![](img/fseriesdemo_matlab.png) | ![](img/fseriesdemo_python.png) |
 
+### Continuous Convolution demo
+
+```sh
+$ ./cconvdemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/cconvdemo_matlab.png) | ![](img/cconvdemo_python.png) |
+
 
 
 

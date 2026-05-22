@@ -9,15 +9,16 @@ This is a Python port of the [DSP First](https://dspfirst.gatech.edu) MATLAB too
 ## Running the Demos
 
 ```bash
-python3 cconvdemo.py    # Continuous Convolution Demo
-python3 sindrill.py     # Reading Sinusoids Drill
-python3 pezdemo.py      # Pole-Zero Demo (z-domain)
-python3 phrace.py       # Phasor Race timed quiz
-python3 cspindemo.py    # Spinning Phasors Visualisation
-python3 strobedemo.py   # Strobe / Aliasing Demo
-python3 specgramdemo.py # Spectrogram Demo
-python3 zdrill.py       # Complex Number Operations Drill
-python3 fseriesdemo.py  # Fourier Series Demo
+python3 cconvdemo.py      # Continuous Convolution Demo
+python3 sindrill.py       # Reading Sinusoids Drill
+python3 pezdemo.py        # Pole-Zero Demo (z-domain)
+python3 phrace.py         # Phasor Race timed quiz
+python3 cspindemo.py      # Spinning Phasors Visualisation
+python3 strobedemo.py     # Strobe / Aliasing Demo
+python3 specgramdemo.py   # Spectrogram Demo
+python3 zdrill.py         # Complex Number Operations Drill
+python3 fseriesdemo.py    # Fourier Series Demo
+python3 filterdesign.py   # Filter Design Demo (FIR/IIR)
 ```
 
 No build step, package install, or virtual environment is prescribed — the scripts run directly. Dependencies: `PyQt6`, `numpy`, `matplotlib`, `scipy`.
@@ -101,6 +102,21 @@ Three-panel layout using `gridspec.GridSpec(3, 1)`: waveform (top), magnitude sp
 Seven signal types with **analytical** Fourier coefficients (matching `changeplots` in `fouriergui_callbacks.m`): Square ($c_k = -2j/(k\pi)$ for odd k), Triangle ($c_k = 4/(k\pi)^2$ for odd k), Ramp/Sawtooth ($c_k = (-1)^k j/(k\pi)$), Full-wave rectified Sine, Full-wave rectified Cosine, Half-wave rectified Sine, Half-wave rectified Cosine. The reconstruction is the partial sum $\sum_{n=-N}^{N} c_n e^{j2\pi f_0 n t}$; the waveform generators (`sqar`, `make_triangle`, `make_ramp`, `fullwave`, `halfwave`) reproduce the original `.m` helper logic exactly.
 
 Stem plots are drawn as two `Line2D` objects: dot-markers at the tips and a zigzag line (`xs[0::3]=x, xs[1::3]=x, xs[2::3]=NaN`) for the vertical stems. The "Show Error" toggle swaps the original/reconstructed pair for the error signal in the waveform panel. The "coeff / freq" checkbox relabels the spectrum x-axes from integer k to $k \cdot f_0$ Hz without recomputing anything. Mouse hover over either spectrum panel highlights the nearest stem in red and annotates its value (with `π`-fraction labels for phase).
+
+### filterdesign
+
+Single-plot layout: a `FigureCanvas` on the left (expandable) with a fixed-width (248 px) right-side control panel. The single `ax` is reused for all four views — Magnitude, Phase, Impulse Response, and Pole-Zero — cleared and redrawn on every switch via `_do_plot()`.
+
+Two pure-math helper functions sit outside the class: `fir_ideal_impulse` computes the ideal sinc-based impulse response for LP/HP/BP/BR shapes; `compute_window` returns one of 10 window functions (Rectangular, Bartlett, Hann, Hamming, Blackman, Gaussian, Dolph-Chebyshev, BarcTemes, Lanczos, Kaiser).
+
+Three design paths:
+- **FIR Window** (`_fir_window`): multiplies `fir_ideal_impulse` by `compute_window`; Kaiser window auto-computes β from δ and optionally auto-sizes M via the Kaiser–Samueli formula.
+- **FIR Parks-McClellan** (`_fir_pm`): calls `scipy.signal.remez`; enforces odd filter length; clamps band edges to avoid degenerate inputs.
+- **IIR Butterworth** (`_iir_butter`): calls `scipy.signal.butter` (with optional `buttord` for auto-order); normalizes to unit peak; evaluates impulse response via `lfilter` on a 50-sample unit impulse.
+
+`_update_visibility()` shows/hides parameter fields dynamically (F_stop, F_pass2/F_stop2 for band types, δ_pass/δ_stop for Kaiser/PM/IIR, Alpha for Gaussian/Dolph-Chebyshev, Auto Order checkbox). The `x_mode` toggle switches between Hz and normalized-frequency (0–1) display without recomputing; `y_mode` toggles linear vs. dB magnitude and converts the ripple fields accordingly. Red spec-lines (`_draw_spec_lines`) overlay the magnitude plot for designs with an explicit stopband spec (Kaiser, PM, IIR); plain dashed cutoff lines for basic window designs.
+
+File menu exports `b`/`a` coefficients as `.npz` via `np.savez`.
 
 ## Porting Convention
 

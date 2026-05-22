@@ -119,6 +119,16 @@ $ ./cconvdemo.py
 | --- | --- |
 | ![](img/cconvdemo_matlab.png) | ![](img/cconvdemo_python.png) |
 
+### Filter Design demo
+
+```sh
+$ ./filterdesign.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/filterdesign_matlab.png) | ![](img/filterdesign_python.png) |
+
 
 
 

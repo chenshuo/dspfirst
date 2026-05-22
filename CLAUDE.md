@@ -17,6 +17,7 @@ python3 cspindemo.py    # Spinning Phasors Visualisation
 python3 strobedemo.py   # Strobe / Aliasing Demo
 python3 specgramdemo.py # Spectrogram Demo
 python3 zdrill.py       # Complex Number Operations Drill
+python3 fseriesdemo.py  # Fourier Series Demo
 ```
 
 No build step, package install, or virtual environment is prescribed — the scripts run directly. Dependencies: `PyQt6`, `numpy`, `matplotlib`, `scipy`.
@@ -86,6 +87,14 @@ Six operations: **Add**, **Subtract**, **Multiply**, **Divide**, **Inverse**, **
 `draw_arrow` uses `mpatches.FancyArrow` with sizes proportional to the current axis extent (`M = max(x-range, y-range)`), mirroring `plotvect.m`'s `basewidth = 0.035 * M * arrow_scale`. Tip-to-tail vector-sum display for Add/Subtract draws z₁ first, then z₂ (or −z₂) starting from z₁'s tip. `set_axis_lims` expands the plot to fit whichever complex numbers are currently visible (inputs, guess, answer, vector-sum components).
 
 `polar_form_str` / `rect_form_str` mirror `polarformstring.m` / `rectformstring.m`: snap near-zero values and well-known multiples of π to clean strings. The Answer menu shows read-only `r`, `θ`, and rectangular entries that are always populated but never editable. Level (Novice/Pro) and arrow width are set via the Options menu.
+
+### fseriesdemo
+
+Three-panel layout using `gridspec.GridSpec(3, 1)`: waveform (top), magnitude spectrum (middle), phase spectrum (bottom). A right-side controls panel holds a signal-type QComboBox, a period slider (T = 5…25 s, default 10), a coefficient-count slider (N = 0…15) with a paired QLineEdit, a "Show Error" checkbox, and a "coeff / freq" x-axis toggle.
+
+Seven signal types with **analytical** Fourier coefficients (matching `changeplots` in `fouriergui_callbacks.m`): Square ($c_k = -2j/(k\pi)$ for odd k), Triangle ($c_k = 4/(k\pi)^2$ for odd k), Ramp/Sawtooth ($c_k = (-1)^k j/(k\pi)$), Full-wave rectified Sine, Full-wave rectified Cosine, Half-wave rectified Sine, Half-wave rectified Cosine. The reconstruction is the partial sum $\sum_{n=-N}^{N} c_n e^{j2\pi f_0 n t}$; the waveform generators (`sqar`, `make_triangle`, `make_ramp`, `fullwave`, `halfwave`) reproduce the original `.m` helper logic exactly.
+
+Stem plots are drawn as two `Line2D` objects: dot-markers at the tips and a zigzag line (`xs[0::3]=x, xs[1::3]=x, xs[2::3]=NaN`) for the vertical stems. The "Show Error" toggle swaps the original/reconstructed pair for the error signal in the waveform panel. The "coeff / freq" checkbox relabels the spectrum x-axes from integer k to $k \cdot f_0$ Hz without recomputing anything. Mouse hover over either spectrum panel highlights the nearest stem in red and annotates its value (with `π`-fraction labels for phase).
 
 ## Porting Convention
 

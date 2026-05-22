@@ -88,5 +88,29 @@ $ ./phrace.py
 | ![](img/phrace_matlab.png) | ![](img/phrace_python.png) |
 
 
+### ZDrill
+
+```sh
+$ ./zdrill.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/zdrill_matlab.png) | ![](img/zdrill_python.png) |
+
+
+### Fourier series demo
+
+```sh
+$ ./fseriesdemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/fseriesdemo_matlab.png) | ![](img/fseriesdemo_python.png) |
+
+
+
+
 
 

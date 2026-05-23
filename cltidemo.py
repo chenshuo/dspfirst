@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Continuous LTI System Demo — PyQt6/matplotlib port of spfirst/cltidemo.m"""
+"""
+CltiDemo — Continuous LTI System Demo
+
+Shows how a continuous-time LTI filter transforms a cosine input
+x(t) = DC + A·cos(2π·f·t + φ·π) into an output y(t) by multiplying
+amplitude by |H(f)| and adding phase ∠H(f) to the phase of the input.
+
+Four panels update simultaneously as the input or filter parameters change:
+  · x(t)    — input signal as a red line (left)
+  · |H(f)|  — filter magnitude response, 0–200 Hz (centre-top)
+  · ∠H(f)  — filter phase response, 0–200 Hz (centre-bottom)
+  · y(t)    — output signal as a magenta line (right)
+
+Red markers on the magnitude and phase plots show the filter's gain and
+phase shift at DC (f=0) and at the input frequency.
+
+Eight filter types are available:
+  · Ideal Low Pass / High Pass / Band Pass / Band Reject
+    (with optional phase-slope delay ∈ [−1, 1] s)
+  · First-order Low Pass / High Pass  H(f) = 1/(1+jf/fc) or (jf/fc)/(1+jf/fc)
+  · First-order Band Pass / Band Reject  with adjustable bandwidth ∈ [10, 50] Hz
+
+The "Theoretical Answer" button annotates the output axes with the
+closed-form expression for y(t) derived from the filter's frequency response.
+
+Original MATLAB GUI by Dr. James H. McClellan et al. (Georgia Tech, 1994–2021).
+Python / PyQt6 port, 2026.
+"""
 
 import sys
 import numpy as np

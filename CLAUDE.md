@@ -22,6 +22,7 @@ python3 fseriesdemo.py    # Fourier Series Demo
 python3 filterdesign.py   # Filter Design Demo (FIR/IIR)
 python3 dltidemo.py       # Discrete LTI System Demo
 python3 cltidemo.py       # Continuous LTI System Demo
+python3 con2dis.py        # Continuous-to-Discrete Sampling Demo
 ```
 
 No build step, package install, or virtual environment is prescribed — the scripts run directly. Dependencies: `PyQt6`, `numpy`, `matplotlib`, `scipy`.
@@ -182,6 +183,32 @@ Four-panel layout using `gridspec.GridSpec(2, 3, width_ratios=[3,4,3], height_ra
 **Theoretical Answer button**: calls `cosine_string_ct(out_mag, Freq, out_phase, out_dc)` and sets `ax_out.set_title(...)` to display the output formula.
 
 `cosine_string_ct(Amp, Freq, Phase, DC)` generates a human-readable formula for `DC + Amp·cos(2π·Freq·t + Phase·π)` using Unicode π. For Freq=20 Hz it produces "cos(40πt)" (matching MATLAB `cosinestring.m` which formats `2*Freq` as the π coefficient).
+
+### con2dis
+
+Six-panel layout using `gridspec.GridSpec(2, 3)` with explicit margins (no `tight_layout`):
+- `ax1` (top-left) — continuous signal x(t) as a blue line.
+- `ax2` (top-centre) — sampled signal x[n] as black stems, with a faint blue continuous-time underlay (`line11`). A second underlay (`line52`) toggled by **Show Lower Frequency Signal** shows the aliased sinusoid.
+- `ax5` (top-right) — reconstructed output y(t); turns dark red when aliasing occurs.
+- `ax4` (bottom-left) — continuous-time spectrum: yellow `Rectangle` passband patch, dotted lines at ±fs, blue stems at ±fo (`ln4_dot`/`ln4_stem` and `ln4c_dot`/`ln4c_stem`).
+- `ax3` (bottom-centre) — discrete-time spectrum: yellow passband patch, blue in-band stems at ±R, red alias-copy stems at ±1±R and ±2±R.
+- `ax6` (bottom-right) — output CT spectrum; background turns pink when aliasing; stems change colour (blue → magenta → red) for normal / Nyquist / aliasing states; "A L I A S I N G !" text appears in `ax5` when `Fo > Fs/2`.
+
+**Controls** (below canvas): a single `QHBoxLayout` row with a **Rad/s** radio button, fo slider+editbox, phase editbox, **Radian** radio button, and fs slider+editbox. A `QLabel` row above shows the current fo, phase, and fs values in bold.
+
+**State flags**: `wflag` (False = Hz, True = rad/s for CT axes) and `what_flag` (True = show ω̂ = 2π·fo/fs labels in DT spectrum, False = show f = fo/fs). Both are toggled by the radio buttons and mirrored to menu checkboxes under **Plot Options**.
+
+**Key helpers** (module-level, no Qt dependency):
+- `_phase_info(Fo, Fs, phase)` — computes the aliased output frequency `FoNm = Fo − Fs` when `Fo > Fs/2`, and the output amplitude/phase for the special cases at ω̂ = 0 (DC) and ω̂ = π (Nyquist).
+- `_Xsp(Fo, Fs, phase)` — returns stem height: `|cos(phase)|` at DC/Nyquist, `0.5` otherwise.
+- `_make_stem_artists` / `_update_stem` — zigzag `Line2D` + marker dot approach (same as other demos; no `ax.stem()` call).
+- `_input_label` / `_output_label` — build mathtext strings for the signal formulas shown above each panel.
+
+**Spectrum patch update**: the yellow passband uses `matplotlib.patches.Rectangle` (not `axvspan`) so `patch.set_x()` / `patch.set_width()` can update it in place when `Fs` changes.
+
+**Drag interaction**: pressing in `ax4` near either stem (tolerance = 10% of x-axis range) starts a drag; `_on_motion` reads `abs(xdata)`, rounds to nearest 0.1 Hz, clamps to `[0, 1.49·Fs]`, and calls `_update_all()`.
+
+**Menu**: **Plot Options** → Show All Plots (hides/shows ax5 and ax6), Show Lower Frequency Signal, Show Radian Frequency, Show Discrete Radian Frequency.
 
 ## Porting Convention
 

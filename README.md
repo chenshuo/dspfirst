@@ -179,6 +179,16 @@ $ ./specgramdemo.py
 | --- | --- |
 | ![](img/specgramdemo_matlab.png) | ![](img/specgramdemo_python.png) |
 
+### Continuous-Discrete Sampling Demo
+
+```sh
+$ ./con2dis.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/con2dis_matlab.png) | ![](img/con2dis_python.png) |
+
 
 
 

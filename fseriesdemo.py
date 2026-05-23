@@ -1,3 +1,35 @@
+#!/usr/bin/env python3
+"""
+FSeriesDemo — Fourier Series Demo
+
+Illustrates how a periodic signal is built up from its complex exponential
+Fourier series coefficients  c_k = (1/T)∫ x(t) e^{−j2πkf₀t} dt.
+
+The partial sum  x̂(t) = Σ_{n=−N}^{N} c_n e^{j2πnf₀t}  is updated live as
+the number of coefficients N (0–15) changes via slider or edit box.
+
+Seven signal types with analytical coefficients are available:
+  · Square wave
+  · Triangle wave
+  · Ramp / Sawtooth
+  · Full-wave rectified Sine
+  · Full-wave rectified Cosine
+  · Half-wave rectified Sine
+  · Half-wave rectified Cosine
+
+Three vertically stacked panels update simultaneously:
+  · Waveform — original signal (black) and partial-sum reconstruction (red),
+               or the error signal (blue) when "Show Error" is checked.
+  · Magnitude spectrum — |c_k| as stem plot.
+  · Phase spectrum     — ∠c_k as stem plot; hovering highlights the nearest stem.
+
+The period slider sets T ∈ [5, 25] s; the "coeff / freq" toggle relabels the
+spectrum x-axis from integer k to k·f₀ (Hz) without recomputing.
+
+Original MATLAB GUI by Dr. James H. McClellan et al. (Georgia Tech, 1994–2021).
+Python / PyQt6 port, 2026.
+"""
+
 import sys
 import numpy as np
 import matplotlib

@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Discrete LTI System Demo — PyQt6/matplotlib port of spfirst/dltidemo.m"""
+"""
+DltiDemo — Discrete LTI System Demo
+
+Shows how a discrete-time LTI filter transforms a cosine input
+x[n] = DC + A·cos(2π·f̂·n + φ·π) into an output y[n] by multiplying
+amplitude by |H(f̂)| and adding phase ∠H(f̂) to the phase of the input.
+
+Four panels update simultaneously as the input or filter parameters change:
+  · x[n]      — input signal as red stems (left)
+  · |H(ω̂)|   — filter magnitude response (centre-top)
+  · ∠H(ω̂)   — filter phase response (centre-bottom)
+  · y[n]      — output signal as magenta stems (right)
+
+Red markers on the magnitude and phase plots show the filter's gain and
+phase shift at DC (f̂=0) and at the input frequency (f̂=Freq).
+
+Nine filter types are available:
+  · Averager (length 1–15)
+  · Differencer  b_k = [0.5, −0.5]
+  · Ideal Low Pass / High Pass / Band Pass (with optional phase slope)
+  · FIR Hamming-windowed Low Pass / High Pass / Band Pass
+  · User-defined b_k coefficients
+
+The "Theoretical Answer" button annotates the output axes with the
+closed-form expression for y[n] derived from the filter's frequency response.
+
+Original MATLAB GUI by Dr. James H. McClellan et al. (Georgia Tech, 1994–2021).
+Python / PyQt6 port, 2026.
+"""
 
 import sys
 import numpy as np

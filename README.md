@@ -42,27 +42,6 @@ $ ./zdrill.py
 | --- | --- |
 | ![](img/zdrill_matlab.png) | ![](img/zdrill_python.png) |
 
-### Discrete LTI System demo
-
-```sh
-$ ./dltidemo.py
-```
-
-| Matlab | Python |
-| --- | --- |
-| ![](img/dltidemo_matlab.png) | ![](img/dltidemo_python.png) |
-
-### Continuous LTI System demo
-
-```sh
-$ ./cltidemo.py
-```
-
-| Matlab | Python |
-| --- | --- |
-| ![](img/cltidemo_matlab.png) | ![](img/cltidemo_python.png) |
-
-
 ### Fourier series demo
 
 ```sh
@@ -83,6 +62,16 @@ $ ./cspin.py
 | --- | --- |
 | ![](img/cspin_matlab.png) | ![](img/cspin_python.png) |
 
+### Continuous-Discrete Sampling Demo
+
+```sh
+$ ./con2dis.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/con2dis_matlab.png) | ![](img/con2dis_python.png) |
+
 ### Discrete Convolution demo
 
 ```sh
@@ -102,6 +91,27 @@ $ ./cconvdemo.py
 | Matlab | Python |
 | --- | --- |
 | ![](img/cconvdemo_matlab.png) | ![](img/cconvdemo_python.png) |
+
+### Discrete LTI System demo
+
+```sh
+$ ./dltidemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/dltidemo_matlab.png) | ![](img/dltidemo_python.png) |
+
+### Continuous LTI System demo
+
+```sh
+$ ./cltidemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/cltidemo_matlab.png) | ![](img/cltidemo_python.png) |
+
 
 ### Filter Design demo
 
@@ -133,16 +143,6 @@ $ ./specgramdemo.py
 | --- | --- |
 | ![](img/specgramdemo_matlab.png) | ![](img/specgramdemo_python.png) |
 
-### Continuous-Discrete Sampling Demo
-
-```sh
-$ ./con2dis.py
-```
-
-| Matlab | Python |
-| --- | --- |
-| ![](img/con2dis_matlab.png) | ![](img/con2dis_python.png) |
-
 
 ## _DSP First_ book series
 
@@ -152,7 +152,7 @@ and [Mark A. Yoder](https://www.rose-hulman.edu/academics/faculty/yoder-mark-yod
 wrote three books together, the first 6 chapters are almost the same, as well as two chapters on $z$-Transforms and IIR Filters.
 
 * _DSP First: A Multimedia Approach_ (523 pp.) was published in 1998, focused almost entirely on the digital domain.
-* _Signal Processing First_ (512 pp.)published in 2003 expanded the original book, adding several chapters covering Continuous-Time Linear Time-Invariant (LTI) systems, the Continuous-Time Fourier Transform (CTFT), and analog filtering/modulation/sampling. It was designed to serve as a complete, single-semester course covering _both_ analog and digital concepts.
+* _Signal Processing First_ (512 pp.), published in 2003, expanded the original book, adding several chapters covering Continuous-Time Linear Time-Invariant (LTI) systems, the Continuous-Time Fourier Transform (CTFT), and analog filtering/modulation/sampling. It was designed to serve as a complete, single-semester course covering _both_ analog and digital concepts.
 * [_DSP First, second edition_](https://www.pearson.com/se/Nordics-Higher-Education/subject-catalogue/engineering/mcclellan-digital-signal-processing-first-2e-ge.html) (592 pp.) features three new chapters on Discrete-Time Fourier Transform, The Discrete Fourier Transform, and the Fourier Series.
 
 
@@ -191,7 +191,7 @@ wrote three books together, the first 6 chapters are almost the same, as well as
   [Thomas W. Parks](https://en.wikipedia.org/wiki/Thomas_W._Parks), Ronald W. Schafer, and Hans W. Schuessler, 1994.
 
 
-* [Ronald W. Schafer](https://en.wikipedia.org/wiki/Ronald_W._Schafer) co-authored two DSP books with [Alan V. Oppenheim](https://en.wikipedia.org/wiki/Alan_V._Oppenheim), _Digital Signal Processing_ (1975) and _Discrete-Time Signal Processing_ (1<sup>st</sup> ed. 1989, 2<sup>nd</sup> ed. 1999, 3<sup>rd</sup> ed. 2009).
+* [Ronald W. Schafer](https://en.wikipedia.org/wiki/Ronald_W._Schafer) co-authored two DSP books with [Alan V. Oppenheim](https://en.wikipedia.org/wiki/Alan_V._Oppenheim), _Digital Signal Processing_ (1975) and _Discrete-Time Signal Processing_ (1<sup>st</sup> ed. 1989, 2<sup>nd</sup> ed. 1999, 3<sup>rd</sup> ed. 2009). Co-authored _Digital Processing of Speech Signals_ with [Lawrence R. Rabiner](https://en.wikipedia.org/wiki/Lawrence_Rabiner), published in 1978.
 
   ![](img/schafer.jpg)
 

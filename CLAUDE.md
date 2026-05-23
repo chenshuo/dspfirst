@@ -14,12 +14,14 @@ python3 cconvdemo.py      # Continuous Convolution Demo
 python3 sindrill.py       # Reading Sinusoids Drill
 python3 pezdemo.py        # Pole-Zero Demo (z-domain)
 python3 phrace.py         # Phasor Race timed quiz
-python3 cspindemo.py      # Spinning Phasors Visualisation
+python3 cspin.py          # Spinning Phasors Visualisation
 python3 strobedemo.py     # Strobe / Aliasing Demo
 python3 specgramdemo.py   # Spectrogram Demo
 python3 zdrill.py         # Complex Number Operations Drill
 python3 fseriesdemo.py    # Fourier Series Demo
 python3 filterdesign.py   # Filter Design Demo (FIR/IIR)
+python3 dltidemo.py       # Discrete LTI System Demo
+python3 cltidemo.py       # Continuous LTI System Demo
 ```
 
 No build step, package install, or virtual environment is prescribed — the scripts run directly. Dependencies: `PyQt6`, `numpy`, `matplotlib`, `scipy`.
@@ -138,6 +140,48 @@ Three design paths:
 `_update_visibility()` shows/hides parameter fields dynamically (F_stop, F_pass2/F_stop2 for band types, δ_pass/δ_stop for Kaiser/PM/IIR, Alpha for Gaussian/Dolph-Chebyshev, Auto Order checkbox). The `x_mode` toggle switches between Hz and normalized-frequency (0–1) display without recomputing; `y_mode` toggles linear vs. dB magnitude and converts the ripple fields accordingly. Red spec-lines (`_draw_spec_lines`) overlay the magnitude plot for designs with an explicit stopband spec (Kaiser, PM, IIR); plain dashed cutoff lines for basic window designs.
 
 File menu exports `b`/`a` coefficients as `.npz` via `np.savez`.
+
+### dltidemo
+
+Four-panel layout using `gridspec.GridSpec(2, 3, width_ratios=[3,4,3], height_ratios=[1,1])`: the input signal (`ax_in`, red stems) spans both rows in the left column; the filter magnitude (`ax_mag`) and phase (`ax_phase`) stack in the centre column; the output signal (`ax_out`, magenta stems) spans both rows in the right column. A fixed-height (≤190 px) control strip sits below.
+
+**Input panel** (dark-purple `QGroupBox`): four slider+edit rows for Amplitude (0–4), Frequency (0–1.5, where 1.0 = 2π), Phase (−1–2, units of π), and DC Level (−2–2). Labels update dynamically (e.g. "Frequency = 2π(0.1)"). Sliders use `blockSignals` when synced from the edit box to avoid re-entrancy.
+
+**Filter panel** (dark-blue `QGroupBox`): a `QComboBox` selects from nine filter types (Averager, Differencer, Ideal LP/HP/BP, FIR LP/HP/BP, User-defined). A shared freq/length label+slider+edit row reconfigures for each type; a phase-slope row (±5) appears only for ideal filters; a b_k edit field appears only for user-defined. `_apply_filter_visibility()` shows/hides widgets; `_configure_ff_slider()` resets the slider range and integer/float mode.
+
+**Filter design** (all pure-math, no Qt dependency):
+- `_myfir1(M, wc, fir_type)`: Hamming-windowed sinc FIR (port of `myfir1.m`); `wc` ∈ [0,1] (fraction of π); M forced even; bandpass shifts centre frequency via cosine modulation.
+- `_ideal_filter(pop_up, freq1, phase_shift)`: returns (ff, HH) on a 1001-pt grid over [−0.5, 0.5]; masks LP/HP/BP and multiplies by `exp(j·2π·ff·phase_shift)`.
+- `_freqz(b)`: 512-pt whole-spectrum `scipy.signal.freqz`, mapped to [−0.5, 0.5] with fftshift.
+- `_freqz_at(b, freqs)`: evaluates freqz at specific normalised frequencies for output computation.
+
+**Output computation**: for ideal filters (3–5), finds nearest bins in the 1001-pt grid for DC and the input frequency; for all other filters, calls `_freqz_at` at [0, Freq, −Freq]. `out_phase` is in units of π; `out_dc = Re{H(0)} × DC`.
+
+**Frequency markers**: five red `'o'` `Line2D` artists on mag+phase axes — one at DC, one at ±Freqmod — updated on every parameter change. Freqmod folds `self.Freq` into (−∞, 0.5) by subtracting 1 while ≥ 0.5. DC marker hidden when DC=0; freq markers hidden when Freqmod=0 and DC≠0 (they coincide with DC marker); negative-freq marker hidden when |Freq| < 1e-5.
+
+**Theoretical Answer button**: calls `cosine_string(out_mag, 2*Freq, out_phase, out_dc)` and sets `ax_out.set_title(...)` to show the output formula.
+
+`cosine_string(Amp, Freq, Phase, DC)` generates a human-readable formula for `DC + Amp·cos(Freq·π·n + Phase·π)` using Unicode π, snapping near-integer multiples to exact strings (same logic as `cosinestring.m`).
+
+### cltidemo
+
+Four-panel layout using `gridspec.GridSpec(2, 3, width_ratios=[3,4,3], height_ratios=[1,1])`: the input signal (`ax_in`, red line) spans both rows in the left column; the filter magnitude (`ax_mag`) and phase (`ax_phase`) stack in the centre column; the output signal (`ax_out`, magenta line) spans both rows in the right column. A fixed-height (≤210 px) control strip sits below. Unlike dltidemo, signals are drawn as continuous lines (`ax.plot()`), not stems.
+
+**Input panel** (dark-purple `QGroupBox`): four slider+edit rows for Amplitude (0–4), Frequency (10–100 Hz), Phase (−1–2, units of π), and DC Level (−2–2). Labels update dynamically (e.g. "Frequency = 20 Hz"). Sliders use `blockSignals` when synced from the edit box.
+
+**Filter panel** (dark-blue `QGroupBox`): a `QComboBox` selects from eight filter types (Ideal LP/HP/BP/BR, First-order LP/HP/BP/BR). A cutoff/center-freq label+slider+edit row applies to all types. A phase-slope row (−1 to 1 seconds) appears only for ideal filters (types 1–4). A bandwidth row (10–50 Hz) appears only for first-order BP/BR (types 7–8). `_apply_filter_visibility()` shows/hides widgets. When switching to types 3,4,6,7,8 (band/high-pass), the freq slider lower bound becomes 20 Hz; if the current `filt_freq1 < 20`, it resets to 50 Hz.
+
+**Filter design** (pure-math, no Qt dependency):
+- `ct_filter(filter_type, cutoff, bandwidth, freqs)`: port of `ctfirstorderfilter.m`; LP: `1/(1+jf/fc)`, HP: `(jf/fc)/(1+jf/fc)`, BP: `(jf·bw)/(fc²−f²+jf·bw)`, BR: `(fc²−f²)/(fc²−f²+jf·bw)`. `freqs` defaults to `linspace(0,200,1001)`.
+- `ideal_filter_ct(pop_up, freq1, phase_shift)`: port of `IdealFilter` subfunction; 1001-pt grid 0–200 Hz; masks LP/HP/BP/BR (BP/BR use fixed bw=20 Hz) multiplied by `exp(j·2π·f·phase_shift)`.
+
+**Output computation**: for ideal filters (1–4), finds nearest bins in the 1001-pt grid for DC (f=0) and input frequency; for first-order filters (5–8), calls `ct_filter(..., freqs=[0, Freq])` to evaluate exactly at DC and the signal frequency. `out_mag = |H(Freq)| × Amp`, `out_phase = ∠H(Freq)/π + Phase`, `out_dc = Re{H(0)} × DC`.
+
+**Frequency markers**: five red `'o'` `Line2D` artists on mag+phase axes. The frequency axis is 0–200 Hz (one-sided), so the negative-frequency marker is permanently hidden (off-screen). DC marker (at f=0) visible when DC≠0; positive-freq marker (at f=Freq) hidden when Freq=0 and DC≠0.
+
+**Theoretical Answer button**: calls `cosine_string_ct(out_mag, Freq, out_phase, out_dc)` and sets `ax_out.set_title(...)` to display the output formula.
+
+`cosine_string_ct(Amp, Freq, Phase, DC)` generates a human-readable formula for `DC + Amp·cos(2π·Freq·t + Phase·π)` using Unicode π. For Freq=20 Hz it produces "cos(40πt)" (matching MATLAB `cosinestring.m` which formats `2*Freq` as the π coefficient).
 
 ## Porting Convention
 

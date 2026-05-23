@@ -98,6 +98,26 @@ $ ./zdrill.py
 | --- | --- |
 | ![](img/zdrill_matlab.png) | ![](img/zdrill_python.png) |
 
+### Discrete LTI System demo
+
+```sh
+$ ./dltidemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/dltidemo_matlab.png) | ![](img/dltidemo_python.png) |
+
+### Continuous LTI System demo
+
+```sh
+$ ./cltidemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/cltidemo_matlab.png) | ![](img/cltidemo_python.png) |
+
 
 ### Fourier series demo
 

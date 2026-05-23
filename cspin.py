@@ -190,42 +190,40 @@ class CSpinWindow(QMainWindow):
     def _build_axes(self):
         # Layout (3 rows × 3 cols):
         #   row/col     0 (uc)   1 (real)   2 (spec/eq)
-        #   0 (tall)    uc       real       spec
-        #   1 (thin)    uc       real       eq
-        #   2 (strip)   imag     imag       —
+        #   0 (tall)    uc       imag       imag
+        #   1 (thin)    real     -       spec
+        #   2 (strip)   real     -       eq
         gs = gridspec.GridSpec(
             3, 3,
             figure=self.fig,
-            width_ratios=[3, 1, 2],
-            height_ratios=[3, 0.7, 1.2],
+            width_ratios=[1, 1, 1],
+            height_ratios=[1, 1, 1],
             left=0.05, right=0.97,
             top=0.97, bottom=0.06,
             hspace=0.06, wspace=0.08,
         )
 
-        self.ax_uc = self.fig.add_subplot(gs[0:2, 0])
+        self.ax_uc = self.fig.add_subplot(gs[0, 0])
         self.ax_uc.set_facecolor(UC_BG)
         self.ax_uc.set_aspect('equal', adjustable='box')
         self.ax_uc.set_xticks([]); self.ax_uc.set_yticks([])
 
-        self.ax_real = self.fig.add_subplot(gs[0:2, 1])
-        self.ax_real.set_facecolor(RE_BG)
-        self.ax_real.set_xticks([])
-        self.ax_real.yaxis.set_label_position('right')
-        self.ax_real.yaxis.tick_right()
-        self.ax_real.set_title(r'$\mathrm{Re}\{z(t)\}$', fontsize=8, pad=2)
+        self.ax_imag = self.fig.add_subplot(gs[0, 1:3])
+        self.ax_imag.set_facecolor(IM_BG)
+        self.ax_imag.set_yticks([])
+        self.ax_imag.set_title(r'$\mathrm{Im}\{z(t)\}$', fontsize=8, pad=2)
 
-        self.ax_spec = self.fig.add_subplot(gs[0, 2])
+        self.ax_spec = self.fig.add_subplot(gs[1, 1])
         self.ax_spec.set_facecolor('white')
         self.ax_spec.set_xticks([]); self.ax_spec.set_yticks([])
 
-        self.ax_eq = self.fig.add_subplot(gs[1, 2])
+        self.ax_eq = self.fig.add_subplot(gs[2, 1])
         self.ax_eq.axis('off')
 
-        self.ax_imag = self.fig.add_subplot(gs[2, 0:2])
-        self.ax_imag.set_facecolor(IM_BG)
-        self.ax_imag.set_yticks([])
-        self.ax_imag.set_ylabel(r'$\mathrm{Im}\{z(t)\}$', fontsize=8)
+        self.ax_real = self.fig.add_subplot(gs[1:3, 0])
+        self.ax_real.set_facecolor(RE_BG)
+        self.ax_real.set_xticks([])
+        self.ax_real.set_title(r'$\mathrm{Re}\{z(t)\}$', fontsize=8, pad=2)
 
         # Unit circle (static radius-1 ring)
         th = np.linspace(0, 2 * np.pi, 300)
@@ -241,7 +239,7 @@ class CSpinWindow(QMainWindow):
         self._ph2,       = self.ax_imag.plot([], [], color=_BROWN, lw=1.5)
         self._pim,       = self.ax_imag.plot([], [], color=_BROWN, lw=2)
 
-        # Real axis artists (x = Re value, y = time going down)
+        # Real axis artists (x = time, y = Re value)
         self._real_base, = self.ax_real.plot([], [], 'k:', lw=0.8)
         self._pv2,       = self.ax_real.plot([], [], color=_BLUE,  lw=1.5)
         self._pre,       = self.ax_real.plot([], [], color=_BLUE,  lw=2)
@@ -304,19 +302,19 @@ class CSpinWindow(QMainWindow):
         self.ax_uc.set_xlim(-scl, scl)
         self.ax_uc.set_ylim(-scl, scl)
 
-        # ax_real: x = Re{z}, y = time with 0 at top
-        self._real_base.set_data([0, 0], [0, T])
-        self.ax_real.set_xlim(-scl, scl)
-        self.ax_real.set_ylim(T, 0)          # reversed: 0 at top, T at bottom
-        self.ax_real.set_yticks([0, T])
-        self.ax_real.set_yticklabels(['0', f'{T:.3g}'], fontsize=7)
-
-        # ax_imag: x = time, y = Im{z}
+        # ax_imag: x = time, y = Im{z} (vertical strip right, horizontal direction)
         self._imag_base.set_data([0, T], [0, 0])
         self.ax_imag.set_xlim(0, T)
         self.ax_imag.set_ylim(-scl, scl)
         self.ax_imag.set_xticks([0, T])
         self.ax_imag.set_xticklabels(['0', f'{T:.3g}'], fontsize=7)
+
+        # ax_real: x = Re{z}, y = time with 0 at top (horizontal strip bottom, vertical direction)
+        self._real_base.set_data([0, 0], [0, T])
+        self.ax_real.set_xlim(-scl, scl)
+        self.ax_real.set_ylim(T, 0)          # reversed: 0 at top, T at bottom
+        self.ax_real.set_yticks([0, T])
+        self.ax_real.set_yticklabels(['0', f'{T:.3g}'], fontsize=7)
 
         # ── Spectrum ──────────────────────────────────────────────────
         self.ax_spec.cla()
@@ -422,11 +420,11 @@ class CSpinWindow(QMainWindow):
         self._ph1.set_data([rx, scl], [iy, iy])
         self._pv1.set_data([rx, rx], [iy, -scl])
 
-        # Im trace and level marker
+        # Im trace and level marker (ax_imag: x = time, y = Im)
         self._pim.set_data(tt[:nt + 1], self._xi[:nt + 1])
         self._ph2.set_data([0, t], [iy, iy])
 
-        # Re trace and level marker (x = Re value, y = time)
+        # Re trace and level marker (ax_real: x = Re, y = time going down)
         self._pre.set_data(self._xr[:nt + 1], tt[:nt + 1])
         self._pv2.set_data([rx, rx], [0, t])
 

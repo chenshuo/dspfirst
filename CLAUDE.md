@@ -9,6 +9,7 @@ This is a Python port of the [DSP First](https://dspfirst.gatech.edu) MATLAB too
 ## Running the Demos
 
 ```bash
+python3 dconvdemo.py      # Discrete Convolution Demo
 python3 cconvdemo.py      # Continuous Convolution Demo
 python3 sindrill.py       # Reading Sinusoids Drill
 python3 pezdemo.py        # Pole-Zero Demo (z-domain)
@@ -32,6 +33,26 @@ Each Python demo follows the same pattern:
 - **`matplotlib.use('QtAgg')`** called before any other matplotlib import (required for PyQt6 embedding)
 - **`FigureCanvas`** embedded inside a `QVBoxLayout` as the main widget; controls go below
 - **No separate modules** — each demo is a single self-contained `.py` file
+
+### dconvdemo
+
+Two-section layout: a `QHBoxLayout` splits the window into a left matplotlib canvas and a fixed-width (295 px) right control panel.
+
+**Left — main canvas** uses `gridspec.GridSpec(3, 1)` (or 4 rows when circular mode is on), all axes sharing the same x-axis via `sharex`:
+- `ax_sig` — fixed signal (blue stems) + flipped/shifted signal (red stems) + ↑ n annotation.
+- `ax_mul` — pointwise product at overlapping sample positions (green stems).
+- `ax_out` — full linear convolution y[n], with the current-n sample highlighted green; in circular mode the stems are colour-coded red/blue to show aliasing (red circles = extra-period samples that wrap into [0, N−1]; red squares = in-range samples that receive aliased energy).
+- `ax_circ` — circular convolution result (inserted between `ax_mul` and `ax_out` when enabled).
+
+**Right panel** (top → bottom): two mini `FigureCanvas` widgets showing x[n] and h[n] previews; **Get x[n]** / **Get h[n]** buttons; **Flip x[n]** / **Flip h[n]** radio buttons; **Show Circular Convolution** checkbox; an HTML `QLabel` formula key; **Close** button.
+
+Five signal classes (`UnitSample`, `Pulse`, `Exponential`, `Cosine`, `Sine`) each expose `xdata`, `ydata` arrays and a `formula_str()`. `SignalDialog` is a modal `QDialog` with a `QStackedWidget` (one `QFormLayout` per signal type) and a live matplotlib preview.
+
+Stems are drawn by `_stem_artists`: a zigzag `Line2D` (`x, x, nan` / `0, y, nan` triplets) plus dot markers — no `ax.stem()` call, matching the MATLAB `mystem.m` approach.
+
+`alias(x, L, nStart)` pads `x` to a multiple of `L` using `mod(nStart, L)` / `L − mod(nend, L) − 1` fill amounts, then reshapes and sums rows — a direct port of `alias.m`.
+
+n can be moved by: dragging the mouse in `ax_sig` or `ax_out` (press → record `_drag_x0` and `_drag_n0`, motion → delta = `round(xdata − x0)`, integer steps); or ← → / 4 6 key presses. The x-axis auto-pans when n leaves the current view. Changing the flip selection or circular mode calls `_initialize()` which recomputes the full linear convolution via `np.convolve` and resets n to −5.
 
 ### cconvdemo
 

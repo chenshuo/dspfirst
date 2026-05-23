@@ -109,6 +109,16 @@ $ ./fseriesdemo.py
 | --- | --- |
 | ![](img/fseriesdemo_matlab.png) | ![](img/fseriesdemo_python.png) |
 
+### Discrete Convolution demo
+
+```sh
+$ ./dconvdemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/dconvdemo_matlab.png) | ![](img/dconvdemo_python.png) |
+
 ### Continuous Convolution demo
 
 ```sh
@@ -128,6 +138,26 @@ $ ./filterdesign.py
 | Matlab | Python |
 | --- | --- |
 | ![](img/filterdesign_matlab.png) | ![](img/filterdesign_python.png) |
+
+### Pole-Zero demo
+
+```sh
+$ ./pezdemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/pezdemo_matlab.png) | ![](img/pezdemo_python.png) |
+
+### Spectrogram demo
+
+```sh
+$ ./specgramdemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/specgramdemo_matlab.png) | ![](img/specgramdemo_python.png) |
 
 
 

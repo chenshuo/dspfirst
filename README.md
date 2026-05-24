@@ -72,6 +72,16 @@ $ ./con2dis.py
 | --- | --- |
 | ![](img/con2dis_matlab.png) | ![](img/con2dis_python.png) |
 
+### Strobe Demo
+
+```sh
+$ ./strobedemo.py
+```
+
+| Matlab | Python |
+| --- | --- |
+| ![](img/strobedemo_matlab.png) | ![](img/strobedemo_python.png) |
+
 ### Discrete Convolution demo
 
 ```sh

@@ -26,8 +26,8 @@ import matplotlib.patches as mpatches
 
 VERSION = '1.43'
 
-MOTOR_RPM_INIT = 750.0
-FLASH_FPM_INIT = 1500.0
+MOTOR_RPM_INIT = 1000.0
+FLASH_FPM_INIT = 3600.0
 MOTOR_RPM_MIN  = 60.0
 MOTOR_RPM_MAX  = 1500.0
 FLASH_FPM_MIN  = 60.0
@@ -203,14 +203,15 @@ class StrobeWindow(QMainWindow):
         self.fig.set_facecolor('#e8e8e8')
         gs = gridspec.GridSpec(
             2, 3, figure=self.fig,
-            left=0.06, right=0.97, top=0.94, bottom=0.06,
-            hspace=0.45, wspace=0.35,
+            left=0.06, right=0.97, top=0.94, bottom=0.1,
+            hspace=0.20, wspace=0.40,
         )
         self.ax1 = self.fig.add_subplot(gs[0, 0])  # Motor disk
         self.ax2 = self.fig.add_subplot(gs[1, 0])  # CT spectrum
         self.ax3 = self.fig.add_subplot(gs[0, 2])  # Samples disk
         self.ax4 = self.fig.add_subplot(gs[1, 1])  # DT spectrum
         self.ax5 = self.fig.add_subplot(gs[1, 2])  # Sampled spectrum
+        self.ax6 = self.fig.add_subplot(gs[0, 1])  # KEY
 
         for ax, title in [
             (self.ax1, 'MOTOR'),
@@ -218,6 +219,7 @@ class StrobeWindow(QMainWindow):
             (self.ax2, 'Continuous-Time Spectrum'),
             (self.ax4, 'Discrete-Time Spectrum'),
             (self.ax5, 'Sampled Spectrum'),
+            (self.ax6, 'Key'),
         ]:
             ax.set_title(title, fontsize=9, fontweight='bold')
 
@@ -235,7 +237,7 @@ class StrobeWindow(QMainWindow):
         ax.set_xticks([])
         ax.set_yticks([])
         r  = 1 / 3
-        th2 = np.linspace(0, np.pi / 2, 100)
+        th2 = np.linspace(-np.pi / 2, np.pi / 2, 100)
         semi, = ax.plot(r * np.cos(th2), r * np.sin(th2), 'b', lw=1)
         return semi
 
@@ -334,6 +336,16 @@ class StrobeWindow(QMainWindow):
         self.stem5d, = ax.plot([-fm], [1], 'bo', ms=6, mfc='b', zorder=3)
         ax.set_xlabel('frequency (Hz)', fontsize=9)
         self._set_ax5_lim()
+
+        # ---- Axes 6: Key ----
+        ax = self.ax6
+        ax.set_aspect('equal')
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.text(0.5, 0.8, "1st Arrow", ha='center', fontsize=10, color='b')
+        ax.text(0.5, 0.6, "2nd Arrow", ha='center', fontsize=10, color='k')
+        ax.text(0.5, 0.4, "3rd Arrow", ha='center', fontsize=10, color='g')
+        ax.text(0.5, 0.2, "4th Arrow", ha='center', fontsize=10, color='m')
 
         self.canvas.draw()
 
@@ -469,7 +481,7 @@ class StrobeWindow(QMainWindow):
         rpm = fm * 60
         fpm = fs * 60
         self.lbl_motor.setText(f'f = {fm:.2f} Hz  ({rpm:.1f} rpm)')
-        self.lbl_flash.setText(f'f = {fs:.2f} Hz  ({fpm:.1f} flash/min)')
+        self.lbl_flash.setText(f'fs = {fs:.2f} Hz  ({fpm:.1f} flash/min)')
         self.lbl_delta.setText(f'Δθ = {delt:.1f}°  '
                                f'{"(ALIASING)" if aliasing else ""}')
 

@@ -2,6 +2,8 @@
 
 DSP demos from http://dspfirst.gatech.edu ported to Python, using Claude Code.
 
+Original MATLAB version by Prof. James H. McClellan, Dr. Jordan Rosenthal, et al. (Georgia Tech, 1994–2021).
+
 ## Demos
 
 Install PyQt6 and dependencies first.
@@ -11,6 +13,9 @@ pip install PyQt6 numpy scipy matplotlib
 ```
 
 ### Sinusoids Drill
+
+Tests the user's ability to identify the amplitude, frequency, and phase
+of a displayed cosine wave:  $x(t) = A\cos(2\pi f t + \phi)$
 
 ```sh
 $ ./sindrill.py
@@ -34,6 +39,8 @@ $ ./phrace.py
 
 ### ZDrill
 
+Timed quiz on phasor / complex-number operations.
+
 ```sh
 $ ./zdrill.py
 ```
@@ -43,6 +50,8 @@ $ ./zdrill.py
 | ![](img/zdrill_matlab.png) | ![](img/zdrill_python.png) |
 
 ### Fourier series demo
+
+Illustrates how a periodic signal is built up from its Fourier series.
 
 ```sh
 $ ./fseriesdemo.py
@@ -72,7 +81,10 @@ $ ./con2dis.py
 | --- | --- |
 | ![](img/con2dis_matlab.png) | ![](img/con2dis_python.png) |
 
-### Strobe Demo
+### Strobe Demo — Rotating Disc / Aliasing Demo
+
+Simulates a rotating disc with an arrow being flashed by a strobe light.
+Vary the flash rate to observe aliasing concepts.
 
 ```sh
 $ ./strobedemo.py
@@ -93,6 +105,9 @@ $ ./dconvdemo.py
 | ![](img/dconvdemo_matlab.png) | ![](img/dconvdemo_python.png) |
 
 ### Continuous Convolution demo
+
+Visualises continuous-time convolution interactively:
+y(t) = ∫ x(τ) h(t−τ) dτ
 
 ```sh
 $ ./cconvdemo.py
@@ -133,7 +148,11 @@ $ ./filterdesign.py
 | --- | --- |
 | ![](img/filterdesign_matlab.png) | ![](img/filterdesign_python.png) |
 
-### Pole-Zero demo
+### Pole-Zero demo (z-domain / Discrete-Time)
+
+Interactive placement and dragging of poles (×) and zeros (○) in the
+z-plane.  Magnitude/phase frequency response and impulse response update
+in real time.
 
 ```sh
 $ ./pezdemo.py
@@ -144,6 +163,9 @@ $ ./pezdemo.py
 | ![](img/pezdemo_matlab.png) | ![](img/pezdemo_python.png) |
 
 ### Spectrogram demo
+
+Demonstrates how window type, window size, FFT size, and overlap
+affect the spectrogram of linear chirps, sinusoids, or audio files.
 
 ```sh
 $ ./specgramdemo.py

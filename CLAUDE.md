@@ -77,7 +77,12 @@ Interactive features: drag poles/zeros on the z-plane (conjugate pairs co-move);
 
 ### cspin
 
-Four-panel layout using `gridspec.GridSpec(3, 3, width_ratios=[3,1,2], height_ratios=[3,0.7,1.2])`: the unit circle (`ax_uc`, yellowish background) spans the tall left area; `ax_real` (green, thin vertical strip to its right) shows Re{z(t)} vs time with time running top-to-bottom (`ylim=(T, 0)`); `ax_imag` (pink, wide bottom strip) shows Im{z(t)} vs time; `ax_spec` (upper right) shows spectral lines; `ax_eq` (middle right) shows the equation and parameter table.
+Five-panel layout using `gridspec.GridSpec(3, 3, width_ratios=[1,1,1], height_ratios=[1,1,1])`:
+- `ax_uc` (yellowish background, top-left `gs[0, 0]`) — unit circle.
+- `ax_imag` (pink background, top-right `gs[0, 1:3]` spanning 2 columns) — Im{z(t)} vs time (x = time, y = Im).
+- `ax_real` (green background, bottom-left `gs[1:3, 0]` spanning 2 rows) — Re{z(t)} vs time (x = Re, y = time reversed so 0 is at top; `ylim=(T, 0)`).
+- `ax_spec` (middle-centre `gs[1, 1]`) — spectral lines.
+- `ax_eq` (bottom-centre `gs[2, 1]`) — equation and parameter table.
 
 `_preset_xf(name)` returns `(X, F)` for each of the 5 built-in cases. The Conjugate checkbox appends `conj(X)` and `-F` to create conjugate-symmetric phasor pairs. All phasor positions for all time steps are precomputed in `_phasors_t` (shape `(N, NT)`) at setup time; each timer tick reads `_phasors_t[:, nt]` to avoid recomputing `exp()`. Each phasor is drawn as a tip-to-tail vector (one `Line2D` per phasor in `self._ph_artists`). Projection lines `_ph1`/`_pv1` (in `ax_uc`) and `_ph2`/`_pv2` (in `ax_imag`/`ax_real`) connect the current phasor tip to both projection axes. Phasor color maps frequency to a red–green gradient via `_phasor_color(fn, maxf)`. Animation uses `QTimer` at 20 ms; Play/Pause/Replay cycles through `_IDLE → _PLAYING → _PAUSED / _DONE` states.
 
@@ -95,11 +100,11 @@ Single-axis quiz app. `LEVELS` dict controls the pools of amplitude/frequency/ph
 
 ### strobedemo
 
-Five-panel layout using `gridspec.GridSpec(2, 3)`: top row holds `ax1` (MOTOR disk, static) and `ax3` (SAMPLES disk, updates with strobe); bottom row holds `ax2` (continuous-time spectrum), `ax4` (discrete-time spectrum, ω domain), and `ax5` (sampled/aliased spectrum).
+Six-panel layout using `gridspec.GridSpec(2, 3)`: top row holds `ax1` (MOTOR disk, static), `ax6` (Key legend, centre), and `ax3` (SAMPLES disk, updates with strobe); bottom row holds `ax2` (continuous-time spectrum), `ax4` (discrete-time spectrum, ω domain), and `ax5` (sampled/aliased spectrum). `ax6` shows the colour key for the sample-position arrows (blue/black/green/magenta labels).
 
 `draw_arrow_line` / `draw_arrow_patch` / `update_arrow_line` are pure-function helpers ported from `arrow.m`; they return tuples of `Line2D` / `Polygon` artists that are updated in place on every `_update()` call. `_wrap_delt` mirrors the MATLAB degree-wrapping logic from `fig4update.m`.
 
-State: `fm` (motor Hz) and `fs` (flash Hz), both driven by QSliders (in RPM / flashes-per-min) with paired QLineEdit boxes showing both the per-minute and Hz values. `_update()` computes `what = 2π(−fm/fs)` and classifies into no-aliasing / c==1 alias / c>1 deep-alias, then updates all five axes in one pass. Aliasing detection follows `fig4update.m` exactly: alias arrow visibility, "ALIASING!" text, stem colours, and the three sample-position arrows (black/green/magenta) in `ax3` with visibility gated on `abs(delt) ≤ 120°`.
+State: `fm` (motor Hz) and `fs` (flash Hz), both driven by QSliders (in RPM / flashes-per-min) with paired QLineEdit boxes showing both the per-minute and Hz values. `_update()` computes `what = 2π(−fm/fs)` and classifies into no-aliasing / c==1 alias / c>1 deep-alias, then updates all six axes in one pass. Aliasing detection follows `fig4update.m` exactly: alias arrow visibility, "ALIASING!" text, stem colours, and three sample-position arrows in `ax3` — `arr3n` (black, always visible), `arr3n2` (green, always visible), `arr3n3` (magenta, visible only when `abs(delt) ≤ 120°`).
 
 ### specgramdemo
 
